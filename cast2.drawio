@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-06-26T13:47:06.149Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36" etag="U62mC1VSeJ6SI-BSH0hP" version="20.0.3" type="github">
+<mxfile host="app.diagrams.net" modified="2022-06-26T13:49:18.113Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36" etag="0YMNR_WhBnKqdjLKs0Yp" version="20.0.3" type="github">
   <diagram id="dkiNthlMaqfUQM1gwQfn" name="Page-1">
     <mxGraphModel dx="1665" dy="1549" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -388,7 +388,7 @@
             <mxRectangle width="45" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="FGt0lHxh2fxRir9ZSNWb-492" value="participate" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;hachureGap=4;" vertex="1" parent="FGt0lHxh2fxRir9ZSNWb-490">
+        <mxCell id="FGt0lHxh2fxRir9ZSNWb-492" value="auditions" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;hachureGap=4;" vertex="1" parent="FGt0lHxh2fxRir9ZSNWb-490">
           <mxGeometry x="45" width="145" height="30" as="geometry">
             <mxRectangle width="145" height="30" as="alternateBounds" />
           </mxGeometry>
@@ -924,6 +924,9 @@
         </mxCell>
         <mxCell id="FGt0lHxh2fxRir9ZSNWb-536" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;startArrow=ERone;startFill=0;endArrow=ERone;endFill=0;startSize=14;endSize=14;sourcePerimeterSpacing=8;targetPerimeterSpacing=8;" edge="1" parent="1" source="FGt0lHxh2fxRir9ZSNWb-271" target="FGt0lHxh2fxRir9ZSNWb-107">
           <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FGt0lHxh2fxRir9ZSNWb-537" value="지원한 오디션 리스트 확인 페이지" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;hachureGap=4;" vertex="1" parent="1">
+          <mxGeometry x="430" y="90" width="190" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
