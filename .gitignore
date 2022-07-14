@@ -10,3 +10,6 @@ yarn-error.log*
 .vscode
 
 server/config/dev.js
+server/config/dev.env
+
+/.history
