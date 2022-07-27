@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-07-26T15:19:57.705Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36" etag="epd1f_jBodqjd4xeDNG2" version="20.1.4" type="github">
+<mxfile host="app.diagrams.net" modified="2022-07-27T04:25:00.328Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36" etag="9Nuq2wGvsZyI92ZZSQfP" version="20.2.0" type="github">
   <diagram id="dkiNthlMaqfUQM1gwQfn" name="Page-1">
     <mxGraphModel dx="1955" dy="1315" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -212,7 +212,7 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="FGt0lHxh2fxRir9ZSNWb-132" value="Video(길이제한)" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;hachureGap=4;" parent="1" vertex="1">
-          <mxGeometry x="20" y="380" width="180" height="250" as="geometry" />
+          <mxGeometry x="20" y="380" width="180" height="280" as="geometry" />
         </mxCell>
         <mxCell id="FGt0lHxh2fxRir9ZSNWb-133" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=1;hachureGap=4;" parent="FGt0lHxh2fxRir9ZSNWb-132" vertex="1">
           <mxGeometry y="30" width="180" height="30" as="geometry" />
@@ -301,6 +301,19 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="XoAOpLD4tpguOgFPBc0_-47" value="bookmark" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;hachureGap=4;" parent="XoAOpLD4tpguOgFPBc0_-45" vertex="1">
+          <mxGeometry x="40" width="140" height="30" as="geometry">
+            <mxRectangle width="140" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="wILmW50bLRlRW8NVaTIa-1" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;hachureGap=4;" vertex="1" parent="FGt0lHxh2fxRir9ZSNWb-132">
+          <mxGeometry y="240" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="wILmW50bLRlRW8NVaTIa-2" value="date" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;hachureGap=4;" vertex="1" parent="wILmW50bLRlRW8NVaTIa-1">
+          <mxGeometry width="40" height="30" as="geometry">
+            <mxRectangle width="40" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="wILmW50bLRlRW8NVaTIa-3" value="create_date" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;hachureGap=4;" vertex="1" parent="wILmW50bLRlRW8NVaTIa-1">
           <mxGeometry x="40" width="140" height="30" as="geometry">
             <mxRectangle width="140" height="30" as="alternateBounds" />
           </mxGeometry>
