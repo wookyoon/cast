@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-07-29T03:16:14.935Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36" etag="OctZbCaRHvUMDnerZZPy" version="20.2.1" type="github">
+<mxfile host="app.diagrams.net" modified="2022-07-29T03:20:03.422Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36" etag="u7DMYpzq0rfh_PkRSAou" version="20.2.1" type="github">
   <diagram id="dkiNthlMaqfUQM1gwQfn" name="Page-1">
     <mxGraphModel dx="1955" dy="1315" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -476,8 +476,8 @@
         <mxCell id="XoAOpLD4tpguOgFPBc0_-1" value="[&lt;br&gt;{videoid(FK):&#39;&#39;,&lt;br&gt;url:&#39;&#39;,&lt;br&gt;hit: int ,&lt;br&gt;like: int}&lt;br&gt;]" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="-230" y="180" width="120" height="130" as="geometry" />
         </mxCell>
-        <mxCell id="XoAOpLD4tpguOgFPBc0_-2" value="이미지 필요없죠?" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="40" y="-160" width="140" height="60" as="geometry" />
+        <mxCell id="XoAOpLD4tpguOgFPBc0_-2" value="name&lt;br&gt;job&lt;br&gt;location&lt;br&gt;comment&lt;br&gt;story" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="40" y="-160" width="140" height="130" as="geometry" />
         </mxCell>
         <mxCell id="XoAOpLD4tpguOgFPBc0_-3" value="VideoTags" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;hachureGap=4;" parent="1" vertex="1">
           <mxGeometry x="-270" y="350" width="200" height="300" as="geometry" />
