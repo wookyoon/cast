@@ -13,7 +13,7 @@ function App() {
 				<Route path='/' exact element={<Main />} />
 
 				<Route path='/login' exact element={<Login />} />
-				<Route path='/mypage' component={MyPage} />
+				<Route path='/mypage' exact element={<MyPage />} />
 			</Routes>
 			<Footer />
 		</>

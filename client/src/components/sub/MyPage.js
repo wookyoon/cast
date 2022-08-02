@@ -1,7 +1,14 @@
 import React from 'react';
+import Intro from './Intro';
+import VidPost from './VidPost';
 
 function MyPage() {
-	return <div>MyPage</div>;
+	return (
+		<section id='mypage'>
+			<Intro />
+			<VidPost />
+		</section>
+	);
 }
 
 export default MyPage;

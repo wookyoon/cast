@@ -1,0 +1,67 @@
+#intro {
+	width: 917px;
+	margin: 0px auto;
+	background-color: #000;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	h1,
+	a {
+		font: 30px/2 'Abel';
+		color: #ae8854;
+	}
+	h2,
+	p {
+		font: 30px/2 'Abel';
+		color: #fff;
+	}
+	.vid {
+		width: 25%;
+		video {
+			width: 100%;
+			height: 400px;
+			object-fit: cover;
+		}
+	}
+	.info {
+		width: 50%;
+	}
+	.stat {
+		width: 25%;
+		background-color: #222;
+		h1 {
+			font: 20px/2 'Abel';
+			color: #ae8854;
+		}
+		.profile {
+			display: flex;
+			flex-wrap: wrap;
+
+			img {
+				width: 50px;
+				height: 50px;
+				object-fit: cover;
+				border-radius: 50%;
+			}
+		}
+		.repute {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-around;
+
+			.follow {
+				display: flex;
+				flex-wrap: wrap;
+			}
+			.reviews {
+				display: flex;
+				flex-wrap: wrap;
+			}
+		}
+		.tags {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-evenly;
+		}
+	}
+}

@@ -1,7 +1,6 @@
 header {
 	width: 100%;
 	background: #000;
-	// border-bottom: 1px solid #000;
 
 	.inner {
 		width: 100%;
@@ -14,15 +13,50 @@ header {
 			bottom: 0px;
 			left: 50%;
 			transform: translateX(-50%);
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-around;
 			li {
 				float: left;
-				padding-right: 10px;
 
 				a {
 					display: inline-block;
-					padding: 22px 30px;
-					font: 20px/2 'Abel';
+					padding: 20px 20px;
+					font: 30px/1 'Abel';
 					color: #ae8854;
+				}
+				h1 {
+					font: 30px/1 'Abel';
+				}
+			}
+			.logo {
+				h1 {
+					float: right;
+					margin-left: 5px;
+				}
+				&::after {
+					content: '';
+					display: block;
+					clear: both;
+				}
+			}
+			.search {
+				padding: 20px 20px;
+				.d-flex {
+					.me-2 {
+						background: #444;
+						color: #ae8854;
+						border: #444;
+						height: 30px;
+						width: 200px;
+					}
+					button {
+						background: #444;
+						color: #ae8854;
+						border: #444;
+						height: 30px;
+						width: 30px;
+					}
 				}
 			}
 		}
