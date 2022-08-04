@@ -4,9 +4,20 @@
 	background-color: #000;
 	ul {
 		h1 {
-			font: 30px/2 'Abel';
+			font: 30px/2 'Oswald';
 			color: #ae8854;
 		}
+		h2,
+		p {
+			font: 22px/1.5 'Oswald';
+			color: #fff;
+			text-shadow: -0.2px 0 #000, 0 0.2px #000, 0.2px 0 #000, 0 -0.2px #000;
+		}
+
+		p {
+			font: 20px/1.5 'Oswald';
+		}
+
 		.swiper {
 			.swiper-button-prev,
 			.swiper-button-next {
@@ -20,13 +31,50 @@
 					width: 100%;
 					height: 400px;
 					object-fit: cover;
-					filter: grayscale(1);
+					// filter: grayscale(1);
 					// transform: scale(0.9);
 				}
-				:hover {
-					filter: grayscale(0);
-					// border: 1px solid #222;
-					// transform: scale(1);
+				// :hover {
+				// 	filter: grayscale(0);
+				// 	// border: 1px solid #222;
+				// 	// transform: scale(1);
+				// }
+			}
+			.cover {
+				background-color: rgba(29, 105, 153, 0.3);
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				.info {
+					position: absolute;
+					bottom: 2%;
+					margin-left: 3%;
+					.box {
+						position: relative;
+						display: flex;
+						flex-wrap: wrap;
+						justify-content: space-between;
+						.profile {
+							position: relative;
+							display: flex;
+							flex-wrap: wrap;
+
+							img {
+								width: 40px;
+								height: 40px;
+								object-fit: cover;
+								border-radius: 50%;
+							}
+						}
+						.like {
+							position: relative;
+							display: flex;
+							flex-wrap: wrap;
+							margin-right: 3%;
+						}
+					}
 				}
 			}
 		}

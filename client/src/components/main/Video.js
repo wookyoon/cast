@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import HoverVideoPlayer from 'react-hover-video-player';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Modal from './Modal';
@@ -8,6 +9,9 @@ import 'swiper/css/navigation';
 
 // import required modules
 import { Navigation } from 'swiper';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 const path = process.env.PUBLIC_URL;
 
 function Video() {
@@ -26,47 +30,355 @@ function Video() {
 					modules={[Navigation]}
 					className='mySwiper'>
 					<SwiperSlide>
-						<video
-							src={`${path}/vid/vid1.mp4`}
-							loop
-							autoPlay
-							muted
+						<HoverVideoPlayer
+							videoSrc={`${path}/vid/vid11.mp4`}
+							pausedOverlay={
+								<div className='cover'>
+									<div className='info'>
+										<h2>Title is My Sharona</h2>
+										<p>#actor #monologue #voice #strangerthings</p>
+										<div className='box'>
+											<div className='profile'>
+												<img src={`${path}/img/img1.jpg`} alt='' />
+												<p>&nbsp;id123!</p>
+											</div>
+											<div className='like'>
+												<p>
+													<FontAwesomeIcon icon={faThumbsUp} />
+												</p>
+												<p>&nbsp;489</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							}
 							onClick={() => {
 								setModal(!modal);
-							}}></video>
+							}}></HoverVideoPlayer>
 					</SwiperSlide>
 					<SwiperSlide>
-						<video src={`${path}/vid/vid2.mp4`} loop autoPlay muted></video>
+						<HoverVideoPlayer
+							videoSrc={`${path}/vid/vid1.mp4`}
+							pausedOverlay={
+								<div className='cover'>
+									<div className='info'>
+										<h2>Title is My Sharona</h2>
+										<p>#actor #monologue #voice #strangerthings</p>
+										<div className='box'>
+											<div className='profile'>
+												<img src={`${path}/img/img1.jpg`} alt='' />
+												<p>&nbsp;id123!</p>
+											</div>
+											<div className='like'>
+												<p>
+													<FontAwesomeIcon icon={faThumbsUp} />
+												</p>
+												<p>&nbsp;489</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							}
+							onClick={() => {
+								setModal(!modal);
+							}}></HoverVideoPlayer>
 					</SwiperSlide>
 					<SwiperSlide>
-						<video src={`${path}/vid/vid3.mp4`} loop autoPlay muted></video>
+						<HoverVideoPlayer
+							videoSrc={`${path}/vid/vid2.mp4`}
+							pausedOverlay={
+								<div className='cover'>
+									<div className='info'>
+										<h2>Title is My Sharona</h2>
+										<p>#actor #monologue #voice #strangerthings</p>
+										<div className='box'>
+											<div className='profile'>
+												<img src={`${path}/img/img1.jpg`} alt='' />
+												<p>&nbsp;id123!</p>
+											</div>
+											<div className='like'>
+												<p>
+													<FontAwesomeIcon icon={faThumbsUp} />
+												</p>
+												<p>&nbsp;489</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							}
+							onClick={() => {
+								setModal(!modal);
+							}}></HoverVideoPlayer>
 					</SwiperSlide>
 					<SwiperSlide>
-						<video src={`${path}/vid/vid4.mp4`} loop autoPlay muted></video>
+						<HoverVideoPlayer
+							videoSrc={`${path}/vid/vid3.mp4`}
+							pausedOverlay={
+								<div className='cover'>
+									<div className='info'>
+										<h2>Title is My Sharona</h2>
+										<p>#actor #monologue #voice #strangerthings</p>
+										<div className='box'>
+											<div className='profile'>
+												<img src={`${path}/img/img1.jpg`} alt='' />
+												<p>&nbsp;id123!</p>
+											</div>
+											<div className='like'>
+												<p>
+													<FontAwesomeIcon icon={faThumbsUp} />
+												</p>
+												<p>&nbsp;489</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							}
+							onClick={() => {
+								setModal(!modal);
+							}}></HoverVideoPlayer>
 					</SwiperSlide>
 					<SwiperSlide>
-						<video src={`${path}/vid/vid15.mp4`} loop autoPlay muted></video>
+						<HoverVideoPlayer
+							videoSrc={`${path}/vid/vid4.mp4`}
+							pausedOverlay={
+								<div className='cover'>
+									<div className='info'>
+										<h2>Title is My Sharona</h2>
+										<p>#actor #monologue #voice #strangerthings</p>
+										<div className='box'>
+											<div className='profile'>
+												<img src={`${path}/img/img1.jpg`} alt='' />
+												<p>&nbsp;id123!</p>
+											</div>
+											<div className='like'>
+												<p>
+													<FontAwesomeIcon icon={faThumbsUp} />
+												</p>
+												<p>&nbsp;489</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							}
+							onClick={() => {
+								setModal(!modal);
+							}}></HoverVideoPlayer>
 					</SwiperSlide>
 					<SwiperSlide>
-						<video src={`${path}/vid/vid6.mp4`} loop autoPlay muted></video>
+						<HoverVideoPlayer
+							videoSrc={`${path}/vid/vid16.mp4`}
+							pausedOverlay={
+								<div className='cover'>
+									<div className='info'>
+										<h2>Title is My Sharona</h2>
+										<p>#actor #monologue #voice #strangerthings</p>
+										<div className='box'>
+											<div className='profile'>
+												<img src={`${path}/img/img1.jpg`} alt='' />
+												<p>&nbsp;id123!</p>
+											</div>
+											<div className='like'>
+												<p>
+													<FontAwesomeIcon icon={faThumbsUp} />
+												</p>
+												<p>&nbsp;489</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							}
+							onClick={() => {
+								setModal(!modal);
+							}}></HoverVideoPlayer>
 					</SwiperSlide>
 					<SwiperSlide>
-						<video src={`${path}/vid/vid10.mp4`} loop autoPlay muted></video>
+						<HoverVideoPlayer
+							videoSrc={`${path}/vid/vid15.mp4`}
+							pausedOverlay={
+								<div className='cover'>
+									<div className='info'>
+										<h2>Title is My Sharona</h2>
+										<p>#actor #monologue #voice #strangerthings</p>
+										<div className='box'>
+											<div className='profile'>
+												<img src={`${path}/img/img1.jpg`} alt='' />
+												<p>&nbsp;id123!</p>
+											</div>
+											<div className='like'>
+												<p>
+													<FontAwesomeIcon icon={faThumbsUp} />
+												</p>
+												<p>&nbsp;489</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							}
+							onClick={() => {
+								setModal(!modal);
+							}}></HoverVideoPlayer>
 					</SwiperSlide>
 					<SwiperSlide>
-						<video src={`${path}/vid/vid14.mp4`} loop autoPlay muted></video>
+						<HoverVideoPlayer
+							videoSrc={`${path}/vid/vid14.mp4`}
+							pausedOverlay={
+								<div className='cover'>
+									<div className='info'>
+										<h2>Title is My Sharona</h2>
+										<p>#actor #monologue #voice #strangerthings</p>
+										<div className='box'>
+											<div className='profile'>
+												<img src={`${path}/img/img1.jpg`} alt='' />
+												<p>&nbsp;id123!</p>
+											</div>
+											<div className='like'>
+												<p>
+													<FontAwesomeIcon icon={faThumbsUp} />
+												</p>
+												<p>&nbsp;489</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							}
+							onClick={() => {
+								setModal(!modal);
+							}}></HoverVideoPlayer>
 					</SwiperSlide>
 					<SwiperSlide>
-						<video src={`${path}/vid/vid16.mp4`} loop autoPlay muted></video>
+						<HoverVideoPlayer
+							videoSrc={`${path}/vid/vid8.mp4`}
+							pausedOverlay={
+								<div className='cover'>
+									<div className='info'>
+										<h2>Title is My Sharona</h2>
+										<p>#actor #monologue #voice #strangerthings</p>
+										<div className='box'>
+											<div className='profile'>
+												<img src={`${path}/img/img1.jpg`} alt='' />
+												<p>&nbsp;id123!</p>
+											</div>
+											<div className='like'>
+												<p>
+													<FontAwesomeIcon icon={faThumbsUp} />
+												</p>
+												<p>&nbsp;489</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							}
+							onClick={() => {
+								setModal(!modal);
+							}}></HoverVideoPlayer>
 					</SwiperSlide>
 					<SwiperSlide>
-						<video src={`${path}/vid/vid11.mp4`} loop autoPlay muted></video>
+						<HoverVideoPlayer
+							videoSrc={`${path}/vid/vid7.mp4`}
+							pausedOverlay={
+								<div className='cover'>
+									<div className='info'>
+										<h2>Title is My Sharona</h2>
+										<p>#actor #monologue #voice #strangerthings</p>
+										<div className='box'>
+											<div className='profile'>
+												<img src={`${path}/img/img1.jpg`} alt='' />
+												<p>&nbsp;id123!</p>
+											</div>
+											<div className='like'>
+												<p>
+													<FontAwesomeIcon icon={faThumbsUp} />
+												</p>
+												<p>&nbsp;489</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							}
+							onClick={() => {
+								setModal(!modal);
+							}}></HoverVideoPlayer>
 					</SwiperSlide>
 					<SwiperSlide>
-						<video src={`${path}/vid/vid9.mp4`} loop autoPlay muted></video>
+						<HoverVideoPlayer
+							videoSrc={`${path}/vid/vid6.mp4`}
+							pausedOverlay={
+								<div className='cover'>
+									<div className='info'>
+										<h2>Title is My Sharona</h2>
+										<p>#actor #monologue #voice #strangerthings</p>
+										<div className='box'>
+											<div className='profile'>
+												<img src={`${path}/img/img1.jpg`} alt='' />
+												<p>&nbsp;id123!</p>
+											</div>
+											<div className='like'>
+												<p>
+													<FontAwesomeIcon icon={faThumbsUp} />
+												</p>
+												<p>&nbsp;489</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							}
+							onClick={() => {
+								setModal(!modal);
+							}}></HoverVideoPlayer>
 					</SwiperSlide>
 					<SwiperSlide>
-						<video src={`${path}/vid/vid8.mp4`} loop autoPlay muted></video>
+						<HoverVideoPlayer
+							videoSrc={`${path}/vid/vid5.mp4`}
+							pausedOverlay={
+								<div className='cover'>
+									<div className='info'>
+										<h2>Title is My Sharona</h2>
+										<p>#actor #monologue #voice #strangerthings</p>
+										<div className='box'>
+											<div className='profile'>
+												<img src={`${path}/img/img1.jpg`} alt='' />
+												<p>&nbsp;id123!</p>
+											</div>
+											<div className='like'>
+												<p>
+													<FontAwesomeIcon icon={faThumbsUp} />
+												</p>
+												<p>&nbsp;489</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							}
+							onClick={() => {
+								setModal(!modal);
+							}}></HoverVideoPlayer>
+					</SwiperSlide>
+					<SwiperSlide>
+						<HoverVideoPlayer
+							videoSrc={`${path}/vid/vid12.mp4`}
+							pausedOverlay={
+								<div className='cover'>
+									<div className='info'>
+										<h2>Title is My Sharona</h2>
+										<p>#actor #monologue #voice #strangerthings</p>
+										<div className='box'>
+											<div className='profile'>
+												<img src={`${path}/img/img1.jpg`} alt='' />
+												<p>&nbsp;id123!</p>
+											</div>
+											<div className='like'>
+												<p>
+													<FontAwesomeIcon icon={faThumbsUp} />
+												</p>
+												<p>&nbsp;489</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							}
+							onClick={() => {
+								setModal(!modal);
+							}}></HoverVideoPlayer>
 					</SwiperSlide>
 				</Swiper>
 			</ul>
@@ -82,28 +394,220 @@ function Video() {
 					modules={[Navigation]}
 					className='mySwiper'>
 					<SwiperSlide>
-						<video src={`${path}/vid/vid5.mp4`} loop autoPlay muted></video>
+						<HoverVideoPlayer
+							videoSrc={`${path}/vid/vid5.mp4`}
+							pausedOverlay={
+								<div className='cover'>
+									<div className='info'>
+										<h2>Title is My Sharona</h2>
+										<p>#actor #monologue #voice #strangerthings</p>
+										<div className='box'>
+											<div className='profile'>
+												<img src={`${path}/img/img1.jpg`} alt='' />
+												<p>&nbsp;id123!</p>
+											</div>
+											<div className='like'>
+												<p>
+													<FontAwesomeIcon icon={faThumbsUp} />
+												</p>
+												<p>&nbsp;489</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							}
+							onClick={() => {
+								setModal(!modal);
+							}}></HoverVideoPlayer>
 					</SwiperSlide>
 					<SwiperSlide>
-						<video src={`${path}/vid/vid6.mp4`} loop autoPlay muted></video>
+						<HoverVideoPlayer
+							videoSrc={`${path}/vid/vid6.mp4`}
+							pausedOverlay={
+								<div className='cover'>
+									<div className='info'>
+										<h2>Title is My Sharona</h2>
+										<p>#actor #monologue #voice #strangerthings</p>
+										<div className='box'>
+											<div className='profile'>
+												<img src={`${path}/img/img1.jpg`} alt='' />
+												<p>&nbsp;id123!</p>
+											</div>
+											<div className='like'>
+												<p>
+													<FontAwesomeIcon icon={faThumbsUp} />
+												</p>
+												<p>&nbsp;489</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							}
+							onClick={() => {
+								setModal(!modal);
+							}}></HoverVideoPlayer>
 					</SwiperSlide>
 					<SwiperSlide>
-						<video src={`${path}/vid/vid7.mp4`} loop autoPlay muted></video>
+						<HoverVideoPlayer
+							videoSrc={`${path}/vid/vid7.mp4`}
+							pausedOverlay={
+								<div className='cover'>
+									<div className='info'>
+										<h2>Title is My Sharona</h2>
+										<p>#actor #monologue #voice #strangerthings</p>
+										<div className='box'>
+											<div className='profile'>
+												<img src={`${path}/img/img1.jpg`} alt='' />
+												<p>&nbsp;id123!</p>
+											</div>
+											<div className='like'>
+												<p>
+													<FontAwesomeIcon icon={faThumbsUp} />
+												</p>
+												<p>&nbsp;489</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							}
+							onClick={() => {
+								setModal(!modal);
+							}}></HoverVideoPlayer>
 					</SwiperSlide>
 					<SwiperSlide>
-						<video src={`${path}/vid/vid8.mp4`} loop autoPlay muted></video>
+						<HoverVideoPlayer
+							videoSrc={`${path}/vid/vid8.mp4`}
+							pausedOverlay={
+								<div className='cover'>
+									<div className='info'>
+										<h2>Title is My Sharona</h2>
+										<p>#actor #monologue #voice #strangerthings</p>
+										<div className='box'>
+											<div className='profile'>
+												<img src={`${path}/img/img1.jpg`} alt='' />
+												<p>&nbsp;id123!</p>
+											</div>
+											<div className='like'>
+												<p>
+													<FontAwesomeIcon icon={faThumbsUp} />
+												</p>
+												<p>&nbsp;489</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							}
+							onClick={() => {
+								setModal(!modal);
+							}}></HoverVideoPlayer>
 					</SwiperSlide>
 					<SwiperSlide>
-						<video src={`${path}/vid/vid4.mp4`} loop autoPlay muted></video>
+						<HoverVideoPlayer
+							videoSrc={`${path}/vid/vid16.mp4`}
+							pausedOverlay={
+								<div className='cover'>
+									<div className='info'>
+										<h2>Title is My Sharona</h2>
+										<p>#actor #monologue #voice #strangerthings</p>
+										<div className='box'>
+											<div className='profile'>
+												<img src={`${path}/img/img1.jpg`} alt='' />
+												<p>&nbsp;id123!</p>
+											</div>
+											<div className='like'>
+												<p>
+													<FontAwesomeIcon icon={faThumbsUp} />
+												</p>
+												<p>&nbsp;489</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							}
+							onClick={() => {
+								setModal(!modal);
+							}}></HoverVideoPlayer>
 					</SwiperSlide>
 					<SwiperSlide>
-						<video src={`${path}/vid/vid3.mp4`} loop autoPlay muted></video>
+						<HoverVideoPlayer
+							videoSrc={`${path}/vid/vid4.mp4`}
+							pausedOverlay={
+								<div className='cover'>
+									<div className='info'>
+										<h2>Title is My Sharona</h2>
+										<p>#actor #monologue #voice #strangerthings</p>
+										<div className='box'>
+											<div className='profile'>
+												<img src={`${path}/img/img1.jpg`} alt='' />
+												<p>&nbsp;id123!</p>
+											</div>
+											<div className='like'>
+												<p>
+													<FontAwesomeIcon icon={faThumbsUp} />
+												</p>
+												<p>&nbsp;489</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							}
+							onClick={() => {
+								setModal(!modal);
+							}}></HoverVideoPlayer>
 					</SwiperSlide>
 					<SwiperSlide>
-						<video src={`${path}/vid/vid2.mp4`} loop autoPlay muted></video>
+						<HoverVideoPlayer
+							videoSrc={`${path}/vid/vid10.mp4`}
+							pausedOverlay={
+								<div className='cover'>
+									<div className='info'>
+										<h2>Title is My Sharona</h2>
+										<p>#actor #monologue #voice #strangerthings</p>
+										<div className='box'>
+											<div className='profile'>
+												<img src={`${path}/img/img1.jpg`} alt='' />
+												<p>&nbsp;id123!</p>
+											</div>
+											<div className='like'>
+												<p>
+													<FontAwesomeIcon icon={faThumbsUp} />
+												</p>
+												<p>&nbsp;489</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							}
+							onClick={() => {
+								setModal(!modal);
+							}}></HoverVideoPlayer>
 					</SwiperSlide>
 					<SwiperSlide>
-						<video src={`${path}/vid/vid1.mp4`} loop autoPlay muted></video>
+						<HoverVideoPlayer
+							videoSrc={`${path}/vid/vid14.mp4`}
+							pausedOverlay={
+								<div className='cover'>
+									<div className='info'>
+										<h2>Title is My Sharona</h2>
+										<p>#actor #monologue #voice #strangerthings</p>
+										<div className='box'>
+											<div className='profile'>
+												<img src={`${path}/img/img1.jpg`} alt='' />
+												<p>&nbsp;id123!</p>
+											</div>
+											<div className='like'>
+												<p>
+													<FontAwesomeIcon icon={faThumbsUp} />
+												</p>
+												<p>&nbsp;489</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							}
+							onClick={() => {
+								setModal(!modal);
+							}}></HoverVideoPlayer>
 					</SwiperSlide>
 				</Swiper>
 			</ul>
@@ -119,25 +623,193 @@ function Video() {
 					modules={[Navigation]}
 					className='mySwiper'>
 					<SwiperSlide>
-						<video src={`${path}/vid/vid9.mp4`} loop autoPlay muted></video>
+						<HoverVideoPlayer
+							videoSrc={`${path}/vid/vid9.mp4`}
+							pausedOverlay={
+								<div className='cover'>
+									<div className='info'>
+										<h2>Title is My Sharona</h2>
+										<p>#actor #monologue #voice #strangerthings</p>
+										<div className='box'>
+											<div className='profile'>
+												<img src={`${path}/img/img1.jpg`} alt='' />
+												<p>&nbsp;id123!</p>
+											</div>
+											<div className='like'>
+												<p>
+													<FontAwesomeIcon icon={faThumbsUp} />
+												</p>
+												<p>&nbsp;489</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							}
+							onClick={() => {
+								setModal(!modal);
+							}}></HoverVideoPlayer>
 					</SwiperSlide>
 					<SwiperSlide>
-						<video src={`${path}/vid/vid10.mp4`} loop autoPlay muted></video>
+						<HoverVideoPlayer
+							videoSrc={`${path}/vid/vid10.mp4`}
+							pausedOverlay={
+								<div className='cover'>
+									<div className='info'>
+										<h2>Title is My Sharona</h2>
+										<p>#actor #monologue #voice #strangerthings</p>
+										<div className='box'>
+											<div className='profile'>
+												<img src={`${path}/img/img1.jpg`} alt='' />
+												<p>&nbsp;id123!</p>
+											</div>
+											<div className='like'>
+												<p>
+													<FontAwesomeIcon icon={faThumbsUp} />
+												</p>
+												<p>&nbsp;489</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							}
+							onClick={() => {
+								setModal(!modal);
+							}}></HoverVideoPlayer>
 					</SwiperSlide>
 					<SwiperSlide>
-						<video src={`${path}/vid/vid11.mp4`} loop autoPlay muted></video>
+						<HoverVideoPlayer
+							videoSrc={`${path}/vid/vid11.mp4`}
+							pausedOverlay={
+								<div className='cover'>
+									<div className='info'>
+										<h2>Title is My Sharona</h2>
+										<p>#actor #monologue #voice #strangerthings</p>
+										<div className='box'>
+											<div className='profile'>
+												<img src={`${path}/img/img1.jpg`} alt='' />
+												<p>&nbsp;id123!</p>
+											</div>
+											<div className='like'>
+												<p>
+													<FontAwesomeIcon icon={faThumbsUp} />
+												</p>
+												<p>&nbsp;489</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							}
+							onClick={() => {
+								setModal(!modal);
+							}}></HoverVideoPlayer>
 					</SwiperSlide>
 					<SwiperSlide>
-						<video src={`${path}/vid/vid12.mp4`} loop autoPlay muted></video>
+						<HoverVideoPlayer
+							videoSrc={`${path}/vid/vid12.mp4`}
+							pausedOverlay={
+								<div className='cover'>
+									<div className='info'>
+										<h2>Title is My Sharona</h2>
+										<p>#actor #monologue #voice #strangerthings</p>
+										<div className='box'>
+											<div className='profile'>
+												<img src={`${path}/img/img1.jpg`} alt='' />
+												<p>&nbsp;id123!</p>
+											</div>
+											<div className='like'>
+												<p>
+													<FontAwesomeIcon icon={faThumbsUp} />
+												</p>
+												<p>&nbsp;489</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							}
+							onClick={() => {
+								setModal(!modal);
+							}}></HoverVideoPlayer>
 					</SwiperSlide>
 					<SwiperSlide>
-						<video src={`${path}/vid/vid3.mp4`} loop autoPlay muted></video>
+						<HoverVideoPlayer
+							videoSrc={`${path}/vid/vid4.mp4`}
+							pausedOverlay={
+								<div className='cover'>
+									<div className='info'>
+										<h2>Title is My Sharona</h2>
+										<p>#actor #monologue #voice #strangerthings</p>
+										<div className='box'>
+											<div className='profile'>
+												<img src={`${path}/img/img1.jpg`} alt='' />
+												<p>&nbsp;id123!</p>
+											</div>
+											<div className='like'>
+												<p>
+													<FontAwesomeIcon icon={faThumbsUp} />
+												</p>
+												<p>&nbsp;489</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							}
+							onClick={() => {
+								setModal(!modal);
+							}}></HoverVideoPlayer>
 					</SwiperSlide>
 					<SwiperSlide>
-						<video src={`${path}/vid/vid16.mp4`} loop autoPlay muted></video>
+						<HoverVideoPlayer
+							videoSrc={`${path}/vid/vid3.mp4`}
+							pausedOverlay={
+								<div className='cover'>
+									<div className='info'>
+										<h2>Title is My Sharona</h2>
+										<p>#actor #monologue #voice #strangerthings</p>
+										<div className='box'>
+											<div className='profile'>
+												<img src={`${path}/img/img1.jpg`} alt='' />
+												<p>&nbsp;id123!</p>
+											</div>
+											<div className='like'>
+												<p>
+													<FontAwesomeIcon icon={faThumbsUp} />
+												</p>
+												<p>&nbsp;489</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							}
+							onClick={() => {
+								setModal(!modal);
+							}}></HoverVideoPlayer>
 					</SwiperSlide>
 					<SwiperSlide>
-						<video src={`${path}/vid/vid4.mp4`} loop autoPlay muted></video>
+						<HoverVideoPlayer
+							videoSrc={`${path}/vid/vid7.mp4`}
+							pausedOverlay={
+								<div className='cover'>
+									<div className='info'>
+										<h2>Title is My Sharona</h2>
+										<p>#actor #monologue #voice #strangerthings</p>
+										<div className='box'>
+											<div className='profile'>
+												<img src={`${path}/img/img1.jpg`} alt='' />
+												<p>&nbsp;id123!</p>
+											</div>
+											<div className='like'>
+												<p>
+													<FontAwesomeIcon icon={faThumbsUp} />
+												</p>
+												<p>&nbsp;489</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							}
+							onClick={() => {
+								setModal(!modal);
+							}}></HoverVideoPlayer>
 					</SwiperSlide>
 				</Swiper>
 			</ul>
@@ -153,24 +825,167 @@ function Video() {
 					modules={[Navigation]}
 					className='mySwiper'>
 					<SwiperSlide>
-						<video src={`${path}/vid/vid13.mp4`} loop autoPlay muted></video>
+						<HoverVideoPlayer
+							videoSrc={`${path}/vid/vid13.mp4`}
+							pausedOverlay={
+								<div className='cover'>
+									<div className='info'>
+										<h2>Title is My Sharona</h2>
+										<p>#actor #monologue #voice #strangerthings</p>
+										<div className='box'>
+											<div className='profile'>
+												<img src={`${path}/img/img1.jpg`} alt='' />
+												<p>&nbsp;id123!</p>
+											</div>
+											<div className='like'>
+												<p>
+													<FontAwesomeIcon icon={faThumbsUp} />
+												</p>
+												<p>&nbsp;489</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							}
+							onClick={() => {
+								setModal(!modal);
+							}}></HoverVideoPlayer>
 					</SwiperSlide>
 					<SwiperSlide>
-						<video src={`${path}/vid/vid14.mp4`} loop autoPlay muted></video>
+						<HoverVideoPlayer
+							videoSrc={`${path}/vid/vid14.mp4`}
+							pausedOverlay={
+								<div className='cover'>
+									<div className='info'>
+										<h2>Title is My Sharona</h2>
+										<p>#actor #monologue #voice #strangerthings</p>
+										<div className='box'>
+											<div className='profile'>
+												<img src={`${path}/img/img1.jpg`} alt='' />
+												<p>&nbsp;id123!</p>
+											</div>
+											<div className='like'>
+												<p>
+													<FontAwesomeIcon icon={faThumbsUp} />
+												</p>
+												<p>&nbsp;489</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							}
+							onClick={() => {
+								setModal(!modal);
+							}}></HoverVideoPlayer>
 					</SwiperSlide>
 					<SwiperSlide>
-						<video src={`${path}/vid/vid15.mp4`} loop autoPlay muted></video>
+						<HoverVideoPlayer
+							videoSrc={`${path}/vid/vid15.mp4`}
+							pausedOverlay={
+								<div className='cover'>
+									<div className='info'>
+										<h2>Title is My Sharona</h2>
+										<p>#actor #monologue #voice #strangerthings</p>
+										<div className='box'>
+											<div className='profile'>
+												<img src={`${path}/img/img1.jpg`} alt='' />
+												<p>&nbsp;id123!</p>
+											</div>
+											<div className='like'>
+												<p>
+													<FontAwesomeIcon icon={faThumbsUp} />
+												</p>
+												<p>&nbsp;489</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							}
+							onClick={() => {
+								setModal(!modal);
+							}}></HoverVideoPlayer>
 					</SwiperSlide>
 					<SwiperSlide>
-						<video src={`${path}/vid/vid16.mp4`} loop autoPlay muted></video>
+						<HoverVideoPlayer
+							videoSrc={`${path}/vid/vid16.mp4`}
+							pausedOverlay={
+								<div className='cover'>
+									<div className='info'>
+										<h2>Title is My Sharona</h2>
+										<p>#actor #monologue #voice #strangerthings</p>
+										<div className='box'>
+											<div className='profile'>
+												<img src={`${path}/img/img1.jpg`} alt='' />
+												<p>&nbsp;id123!</p>
+											</div>
+											<div className='like'>
+												<p>
+													<FontAwesomeIcon icon={faThumbsUp} />
+												</p>
+												<p>&nbsp;489</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							}
+							onClick={() => {
+								setModal(!modal);
+							}}></HoverVideoPlayer>
 					</SwiperSlide>
 					<SwiperSlide>
-						<video src={`${path}/vid/vid3.mp4`} loop autoPlay muted></video>
+						<HoverVideoPlayer
+							videoSrc={`${path}/vid/vid2.mp4`}
+							pausedOverlay={
+								<div className='cover'>
+									<div className='info'>
+										<h2>Title is My Sharona</h2>
+										<p>#actor #monologue #voice #strangerthings</p>
+										<div className='box'>
+											<div className='profile'>
+												<img src={`${path}/img/img1.jpg`} alt='' />
+												<p>&nbsp;id123!</p>
+											</div>
+											<div className='like'>
+												<p>
+													<FontAwesomeIcon icon={faThumbsUp} />
+												</p>
+												<p>&nbsp;489</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							}
+							onClick={() => {
+								setModal(!modal);
+							}}></HoverVideoPlayer>
 					</SwiperSlide>
 					<SwiperSlide>
-						<video src={`${path}/vid/vid6.mp4`} loop autoPlay muted></video>
+						<HoverVideoPlayer
+							videoSrc={`${path}/vid/vid1.mp4`}
+							pausedOverlay={
+								<div className='cover'>
+									<div className='info'>
+										<h2>Title is My Sharona</h2>
+										<p>#actor #monologue #voice #strangerthings</p>
+										<div className='box'>
+											<div className='profile'>
+												<img src={`${path}/img/img1.jpg`} alt='' />
+												<p>&nbsp;id123!</p>
+											</div>
+											<div className='like'>
+												<p>
+													<FontAwesomeIcon icon={faThumbsUp} />
+												</p>
+												<p>&nbsp;489</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							}
+							onClick={() => {
+								setModal(!modal);
+							}}></HoverVideoPlayer>
 					</SwiperSlide>
-					<SwiperSlide></SwiperSlide>
 				</Swiper>
 			</ul>
 			{modal == true ? <Modal></Modal> : null}
