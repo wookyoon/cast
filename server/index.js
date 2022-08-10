@@ -21,6 +21,10 @@ const authRouter = require('./routes/auth');
 app.use('/api/auth/', authRouter);
 const profileRouter = require('./routes/profile');
 app.use('/api/profile', profileRouter);
+const videoRouter = require('./routes/video');
+app.use('/api/content', videoRouter);
+const tagRouter = require('./routes/tags');
+app.use('/api/tag', tagRouter);
 
 // mongodb connection
 mongoose.connect(config.mongoURI,

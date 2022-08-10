@@ -4,8 +4,8 @@ const { Profile } = require("../models/Profile");
 
 router.post("/exist", (req, res) => {
     
-    Profile.findOne({ email: req.body.email }, (err, user) => {
-        if (!user){
+    Profile.findOne({ email: req.body.email }, (err, doc) => {
+        if (!doc){
             return res.json({
                 exist: false
             });
@@ -16,8 +16,32 @@ router.post("/exist", (req, res) => {
             });
         }
     });
-            
+});
+
+router.post("/set", (req, res) => {
+    console.log("###",req.body.email );
     
+    Profile.findOne({ email: req.body.email }, (err, doc) => {
+        if (doc){
+            console.log(doc);
+            res.send({doc});
+        }
+    });
+});
+
+router.post("/name/exist", (req, res) => {
+    
+    Profile.findOne({ name: req.body.name }, (err, doc) => {
+        if (!doc){
+            return res.json({
+                exist: false
+            });
+        }else{
+            return res.json({
+                exist: true
+            });
+        }
+    });
 });
 
 router.post("/create", (req, res) => {
@@ -26,12 +50,10 @@ router.post("/create", (req, res) => {
 
     profile.save((err, doc) => {
         if (err) return res.json({ success: false, err });
-        return res.status(200).json({
+        return res.json({
             success: true
         });
     });
-
-    
 });
 
 // below rud

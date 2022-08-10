@@ -1,13 +1,13 @@
 import React from 'react';
 import Banner from './Banner';
-import Video from './Video';
+import VideoList from './VideoList';
 
 function Main() {
 	return (
 		<>
 			<main>
 				<Banner />
-				<Video />
+				<VideoList />
 			</main>
 		</>
 	);

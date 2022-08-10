@@ -13,11 +13,12 @@ const profileSchema = mongoose.Schema({
         match: /.+\@.+\..+/,
         unique:true
     },
-    text:{
-        type:String,
-        trim:true
+    tags:{
+        type:String
+    },
+    imgurl:{
+        type:String
     }
-    // add more column
 });
 
 
