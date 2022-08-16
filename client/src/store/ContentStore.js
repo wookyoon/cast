@@ -5,11 +5,12 @@ import LoginStore from "./LoginStore";
 class ContentStore{
     title = "";
     tags = [];
-    searchTag="바이올린";
+    searchTag="";
     video=[];
     videos=[];
-    // profiletags = [];
     url = "";
+    menu="0";
+    frommain=true;
 
     constructor() {
         makeAutoObservable(this, {}, { autoBind: true });
@@ -19,36 +20,11 @@ class ContentStore{
         this.videos = videos;
     }
 
-    async getVideoList(tags){
+    async getVideoList(category, param){
         try{            
-            const results = await ContentApi.getVideos(tags);
-            // this.setVideoList(results.docs);
-            runInAction(() => this.videos = results.docs);
-            console.log(this.videos);
-            console.log(results.docs);
-        }
-        catch (err){
-            console.log(err);
-        }
-    }
-
-    async getVideoListByEmail(){
-        try{            
-            const results = await ContentApi.getVideosByEmail(localStorage.email);
-            // const results = await ContentApi.getVideosByEmail('hahihihihehehe@gmail.com');
-            runInAction(() => this.videos = results.docs);
-            console.log("!",this.videos);
-        }
-        catch (err){
-            console.log(err);
-        }
-    }
-
-    async getVideoListByTag(tag){
-        try{            
-            const results = await ContentApi.getVideosByTag(this.searchTag);
-            runInAction(() => this.videos = results.docs.videos);
-            console.log("#",this.videos);
+            const results = await ContentApi.getVideos(category, param);
+            console.log(results);
+            runInAction(() => this.videos = results);
         }
         catch (err){
             console.log(err);
@@ -57,23 +33,15 @@ class ContentStore{
 
     async contentUpload(){
         try {
-            const result = await ContentApi.contentUpload(localStorage.getItem('email'), localStorage.getItem('name'),this.title, this.tags, this.url);
-            return result['success'];
+            const result = await ContentApi.contentUpload(localStorage.getItem('name'),this.title, this.tags, this.url);
+            console.log(result['message'])
+            return result['message'];
         } catch (error) {
             console.log(error)
             runInAction(this.message = error.message);
         }
     }
 
-    async titleValidation(){
-        try {
-            const result = await ContentApi.titleValidation(this.title, (localStorage.getItem('email')));
-            return result['exist'];
-        } catch (error) {
-            console.log(error)
-            runInAction(this.message = error.message);
-        }
-    }
 
     setTitle(title){
         this.title = title;
@@ -105,10 +73,12 @@ class ContentStore{
     }
 
     setVideo(video){
-        console.log("###");
-
         this.video=video;
         console.log("current video", this.video);
+    }
+
+    setMenu(menu){
+        this.menu=menu;
     }
 }
 export default new ContentStore();

@@ -8,6 +8,8 @@ import { faUserTie } from '@fortawesome/free-solid-svg-icons';
 import { faUserAstronaut } from '@fortawesome/free-solid-svg-icons';
 import { faMasksTheater } from '@fortawesome/free-solid-svg-icons';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import Search from './Search';
+
 function Header(props) {
 	const active = { color: '#d5a869' };
 
@@ -24,17 +26,7 @@ function Header(props) {
 					</div>
 					<div className='search'>
 						<li>
-							<Form className='d-flex'>
-								<Button variant='outline-success'>
-									<FontAwesomeIcon icon={faMagnifyingGlass} />
-								</Button>
-								<Form.Control
-									type='search'
-									placeholder='Search'
-									className='me-2'
-									aria-label='Search'
-								/>
-							</Form>
+							<Search />
 						</li>
 					</div>
 					<div className='menu'>

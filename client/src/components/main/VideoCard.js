@@ -7,7 +7,9 @@ import ContentStore from '../../store/ContentStore';
 
 function VideoCard({video}) {
     let [modal, setModal] = useState(false);
-
+	// useEffect(() => {
+    //     console.log(video);
+    // },[]);
     return (
 						<HoverVideoPlayer onClick={()=>{ContentStore.setVideo(video)}}
 							videoSrc={`${video.url}`}
@@ -15,13 +17,12 @@ function VideoCard({video}) {
 								<div className='cover'>
 									<div className='info'>
 										<h2>{video.title}</h2>
-										{video.tags.map((tag, i)=>(
+										{video.tag.map((tag, i)=>(
 										<p key={i} >#{tag}</p>
 										))}
 										<div className='box'>
 											<div className='profile'>
-												{/* <img src={`https://feedback-resized.s3.ap-northeast-2.amazonaws.com/profileImg/${video.name}.jpeg`} alt='' /> */}
-												<img src={`https://feedback-resized.s3.ap-northeast-2.amazonaws.com/profileImg/${video.name}.jpg`} alt='' />
+												<img src={`https://feedback-resized.s3.ap-northeast-2.amazonaws.com/profileImg/${video.name}.jpeg`} alt='' />
 												<p>{video.name}</p>
 											</div>
 											<div className='like'>
@@ -38,7 +39,6 @@ function VideoCard({video}) {
 							// onClick={() => {
 							// 	setModal(!modal);
 							// }}>
-
     );
 }
 

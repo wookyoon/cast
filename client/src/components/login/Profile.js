@@ -6,18 +6,24 @@ import Dropzone from 'react-dropzone';
 import {PlusOutlined} from '@ant-design/icons'
 import ContentStore from '../../store/ContentStore';
 import AWS from "aws-sdk";
-import TageSearch from '../content/TageSearch';
+import TagSearch from '../content/TagSearch';
 import TagApi from "../../api/TagApi";
+import { useNavigate } from 'react-router';
 
 const Profile = ({ logout }) => {
   const email = localStorage.getItem('email');
   const [profilePic, setProfilePic] =useState('');
   const [profilePicName, setProfilePicName] =useState('');
   const [name, setName] = useState('');
+  const [insta, setInsta] = useState("");
+  const [facebook, setFacebook] = useState("");
+  const [youtube, setYoutube] = useState("");
+  const [info, setInfo] = useState('');
   const [dbtags, setDBTags] = useState();
+  const navigate = useNavigate();
 
   useEffect( () => {
-    TagApi.getTags("profile").then(
+    TagApi.getTags().then(
         function (result) {
             setDBTags(result.tags);
         }
@@ -32,7 +38,6 @@ const Profile = ({ logout }) => {
   const handleSubmit = async (e) =>{
     e.preventDefault();
 
-
     AWS.config.update({
         region: "ap-northeast-2",
         accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
@@ -41,9 +46,13 @@ const Profile = ({ logout }) => {
 
     if(nameTest()){
       
-      if(!(await LoginStore.nameValidation(name))){
-          
-           const upload = new AWS.S3.ManagedUpload({
+      let url = 'https://feedback-resized.s3.ap-northeast-2.amazonaws.com/profileImg/' + name+'.jpeg';
+      
+      LoginStore.profileCreate(email,name,url,insta,facebook,youtube,info).then((result)=>{
+        if(result === "exist"){
+          return alert( '중복된 이름입니다.');
+        }else{
+          const upload = new AWS.S3.ManagedUpload({
             params: {
                 Bucket: 'mern-feedback', 
                 Key:  'profileImg/'+name + ".jpeg", 
@@ -54,21 +63,12 @@ const Profile = ({ logout }) => {
         });
         
         const promise = upload.promise();
-        promise.then(
-          (data) =>{
-          let url = 'https://feedback-resized.s3.ap-northeast-2.amazonaws.com/' + data.Key
-          console.log(url)
-          let tags = ContentStore.tags;
-           LoginStore.profileCreate(email,name,tags,url);
-          }
-        );
-        }else{
-          return alert( '중복된 이름입니다.');
         }
-    }else{
-      return alert( '특수문자 또는 공백이 입력되었습니다.');
+      })
+      navigate('/')
+        }else{
+         return alert( '특수문자 또는 공백이 입력되었습니다.');
     }
-    
   }
 
   const nameTest = () =>{
@@ -110,10 +110,20 @@ const Profile = ({ logout }) => {
             Name:
             <input type="text" name="text" onChange = {(e)=>{setName(e.target.value)}}/>
           </label>
+          <label>
+            SNS:
+            <input placeholder="instagram" type="text" name="text" onChange = {(e)=>{setInsta( e.target.value)}}/>
+            <input placeholder="facebook" type="text" name="text" onChange = {(e)=>{setFacebook( e.target.value)}}/>
+            <input placeholder="youtube" type="text" name="text" onChange = {(e)=>{setYoutube( e.target.value)}}/>
+          </label>
+          <label>
+            Info:
+            <input type="text" name="text" onChange = {(e)=>{setInfo(e.target.value)}}/>
+          </label>
           <br/>
 
           <label>Tags:
-                <TageSearch types={"profile"} dbtags={dbtags}/>
+                <TagSearch  dbtags={dbtags}/>
           </label>
           <input type="submit" value="Submit" onClick={handleSubmit}/>
         </form>

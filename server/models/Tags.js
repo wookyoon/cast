@@ -2,16 +2,8 @@ const e = require('express');
 const mongoose = require('mongoose');
 
 const tagsSchema = mongoose.Schema({
-    videotag:[String],
-
-    profiletag:[{
-        type:String,
-        maxlength:50,
-        trim:true,
-    }],
+    tags:[String]
 });
 
 
-const Tags = mongoose.model('Tags', tagsSchema);
-
-module.exports = {Tags};
+module.exports = mongoose.model('Tags',tagsSchema);

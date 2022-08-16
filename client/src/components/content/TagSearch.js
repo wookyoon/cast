@@ -1,17 +1,21 @@
 import React ,{useState, useEffect }from 'react';
 import ContentStore from '../../store/ContentStore';
 import TagApi from '../../api/TagApi';
+import { useNavigate  } from 'react-router-dom';
+import SearchList from '../main/VideoSearchList';
 
-function TageSearch({type, dbtags}) {
+function TagSearch({ dbtags, search}) {
     const [hasText, setHasText] = useState(false);
     const [inputValue, setInputValue] = useState('');
     const [tags, setTags] = useState([]);
     const [limit, setLimit] = useState(0);
-    
+    const searchtype= search;
+    const navigate = useNavigate();
+
     useEffect( () => {
         if (inputValue === '') {
         setHasText(false);
-        }       
+        } 
     }, [inputValue]);
 
      
@@ -26,7 +30,7 @@ function TageSearch({type, dbtags}) {
     
     const addTag = async  (e) => {
         if (checkLimit()){
-            const result = await TagApi.addTag(type, inputValue);
+            const result = await TagApi.addTag(inputValue);
             console.log(result);
             setTags([...tags, inputValue]);
             console.log(tags);
@@ -36,10 +40,22 @@ function TageSearch({type, dbtags}) {
     }
 
     const handleDropDownClick = (clickedOption) => {
-        if (checkLimit()){
-            setTags([...tags, dbtags[clickedOption]]);
-            ContentStore.addTags(dbtags[clickedOption]);
-            setLimit(limit+1);
+        if(searchtype===1){
+            if(ContentStore.frommain){
+                navigate('/search?tag='+dbtags[clickedOption],);
+                ContentStore.frommain=false
+            }else{
+                ContentStore.getVideoList("tag",dbtags[clickedOption]).then(()=>{
+                    navigate('/search?tag='+dbtags[clickedOption], SearchList);
+                }) 
+            }
+            
+        }else{
+            if (checkLimit()){
+                setTags([...tags, dbtags[clickedOption]]);
+                ContentStore.addTags(dbtags[clickedOption]);
+                setLimit(limit+1);
+            }
         }
     };
 
@@ -70,4 +86,4 @@ function TageSearch({type, dbtags}) {
 }
 
 
-export default TageSearch;
+export default TagSearch;

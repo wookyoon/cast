@@ -16,6 +16,8 @@ function LoginPage() {
   };
 
   const logout = () => {
+    loginStore.isLoggedIn=false
+    console.log(loginStore.isLoggedIn)
     localStorage.clear();
     navigate('/');
   };
@@ -24,7 +26,7 @@ function LoginPage() {
   return (
     <>
       {loginStore.isLoggedIn ? (
-        !loginStore.emailIsExist? (
+        !(loginStore.emailIsExist === "exist") ? (
           <Profile logout={logout} />
            ):
           (<Navigate to='/' />)

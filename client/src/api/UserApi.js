@@ -5,22 +5,12 @@ class UserApi{
     URL = '/api/profile';
     
     emailValidation(email) {
-        return axios.post(this.URL + `/exist` , {email:`${email}`})
-            .then((response) => response.data);
-    }
-
-    setUser(email){
-        return axios.post(this.URL + `/set` , {email:`${email}`})
+        return axios.get(this.URL + `/exist/?email=`+ email)
             .then((response) => response.data);
     }
     
-    nameValidation(name) {
-        return axios.post(this.URL + `/name/exist` , {name:`${name}`})
-            .then((response) => response.data);
-    }
-
-    profileCreate(email,name,tags, url) {
-        return axios.post(this.URL + `/create` , {email:`${email}`,name:`${name}`,tags:`${tags}`,imgurl:`${url}`})
+    profileCreate(email,name,url, insta, facebook, youtube, info,tags) {
+        return axios.post(this.URL , {email:`${email}`,name:`${name}`,tag:`${tags}`,insta:`${insta}`,facebook:`${facebook}`,youtube:`${youtube}`,imgUrl:`${url}`,info:`${info}`})
             .then((response) => response.data);
     }
 

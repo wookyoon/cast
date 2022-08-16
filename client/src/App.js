@@ -13,7 +13,7 @@ function App() {
 			<Header />
 			<Routes>
 				<Route path='/' exact element={<Main />} />
-				<Route path="/search" exact element={<VideoSearchList  />}/>
+				<Route path="/search" element={<VideoSearchList  />}/>
 				<Route path="/upload" exact element={<Upload  />}/>
 				<Route path='/login' exact element={<Login />} />
 				<Route path='/mypage' exact element={<MyPage />} />

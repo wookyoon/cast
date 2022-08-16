@@ -5,7 +5,7 @@ import LoginStore from '../../store/LoginStore';
 import AWS from "aws-sdk";
 import Dropzone from 'react-dropzone';
 import {PlusOutlined} from '@ant-design/icons'
-import TageSearch from './TageSearch';
+import TagSearch from './TagSearch';
 import TagApi from "../../api/TagApi";
 
 const { Title } = Typography;
@@ -19,12 +19,12 @@ function UploadPage() {
     const [dbtags, setDBTags] = useState();
 
     useEffect( () => {
-        TagApi.getTags("video").then(
+        TagApi.getTags().then(
             function (result) {
                 setDBTags(result.tags);
             }
         )
-        ContentStore.getVideoListByEmail();
+        // ContentStore.getVideoListByEmail();
         // ContentStore.getVideoListByTag("건반");
     }, []);
 
@@ -46,9 +46,14 @@ function UploadPage() {
     const onSubmit = async (event) => {
         event.preventDefault();
 
+        if(VideoName.split(".")[1]!=="mp4"){
+            return alert('mp4 파일만 가능합니다.')
+        }
+
         if (!title || !Video || ContentStore.getTags().length===0) {
             return alert('fill all the fields first!')
         }
+
 
         if(titleTest()){
             return alert( '특수문자 또는 공백이 입력되었습니다.');
@@ -61,33 +66,32 @@ function UploadPage() {
         }else{
             ContentStore.setTitle(title);
             ContentStore.setUser(localStorage.getItem('name')); 
-            // console.log("##",await ContentStore.titleValidation());
-            if(!(await ContentStore.titleValidation())){
-                console.log("###")
-                ContentStore.setUrl("https://mern-feedback.s3.ap-northeast-2.amazonaws.com/videos/"+localStorage.getItem('name')+'/'+title);
-                //    ContentStore.contentUpload();
-                        const upload = new AWS.S3.ManagedUpload({
-                            params: {
-                                Bucket: 'mern-feedback', 
-                                Key:  'videos/'+localStorage.getItem('name')  + '/'+title+ ".mp4", 
-                                Body: Video, 
-                                ACL: "public-read",
-                                ContentType:'video/mp4'
-                            }
-                        });
+            ContentStore.setUrl("https://mern-feedback.s3.ap-northeast-2.amazonaws.com/videos/"+localStorage.getItem('name')+'/'+title+".mp4");
+            console.log("!",ContentStore.tags)
+            ContentStore.contentUpload()
+            .then((result)=>{
+
+                console.log("*",result)
+                if (result === 'Success'){
+                    const upload = new AWS.S3.ManagedUpload({
+                        params: {
+                            Bucket: 'mern-feedback', 
+                            Key:  'videos/'+localStorage.getItem('name')  + '/'+title+ ".mp4", 
+                            Body: Video, 
+                            ACL: "public-read",
+                            ContentType:'video/mp4'
+                        }
+                    });
     
-                        
-                        const promise = upload.promise();
-                        promise.then(
-                            (data) => {
-                                ContentStore.setUrl(data.Location);
-                                ContentStore.contentUpload();
-                            }
-                        );
                     
-                    }else{
-                return alert( '동일한 Title이 존재합니다.');
-            }
+                    const promise = upload.promise();
+                }else{
+                    return alert( '동일한 Title이 존재합니다.');
+                }
+            })
+            // console.log("##",await ContentStore.titleValidation());
+            
+
         }
     }
 
@@ -169,7 +173,7 @@ function UploadPage() {
                 <br />
                 <br />
                 <label>Tags</label>
-                <TageSearch type={"video"} dbtags={dbtags}/>
+                <TagSearch dbtags={dbtags}/>
                 <br />
                 <br />
 
@@ -183,9 +187,7 @@ function UploadPage() {
 
             </Form>
             
-            <video controls>
-                <source src='https://feedback-resized.s3.ap-northeast-2.amazonaws.com/videos/y3/y50.mp4'></source>
-            </video>
+            
         </div>
     );
 }
