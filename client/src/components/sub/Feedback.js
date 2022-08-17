@@ -1,7 +1,7 @@
 import React from 'react';
 
 function Feedback() {
-	return <div>Feedback</div>;
+	return <section id='feedback'></section>;
 }
 
 export default Feedback;

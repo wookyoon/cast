@@ -4,7 +4,9 @@ import Footer from './components/common/Footer';
 import Login from './components/login/LoginPage';
 import Main from './components/main/Main';
 import MyPage from './components/sub/MyPage';
+import Feedback from './components/sub/Feedback';
 import './scss/style.scss';
+
 function App() {
 	return (
 		<>
@@ -14,6 +16,7 @@ function App() {
 
 				<Route path='/login' exact element={<Login />} />
 				<Route path='/mypage' exact element={<MyPage />} />
+				<Route path='/feedback' exact element={<Feedback />} />
 			</Routes>
 			<Footer />
 		</>
