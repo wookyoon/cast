@@ -8,6 +8,8 @@ import { faUserTie } from '@fortawesome/free-solid-svg-icons';
 import { faUserAstronaut } from '@fortawesome/free-solid-svg-icons';
 import { faMasksTheater } from '@fortawesome/free-solid-svg-icons';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import Search from './Search';
+
 function Header(props) {
 	const active = { color: '#d5a869' };
 
@@ -18,44 +20,39 @@ function Header(props) {
 					<div className='logo'>
 						<li>
 							<NavLink activestyle={active} to='/login'>
-								<FontAwesomeIcon icon={faMasksTheater} /> <h1>cast</h1>
+								{/* <FontAwesomeIcon icon={faMasksTheater} />  */}
+								<h1>KineDb</h1>
 							</NavLink>
 						</li>
 					</div>
 					<div className='search'>
 						<li>
-							<Form className='d-flex'>
-								<Button variant='outline-success'>
-									<FontAwesomeIcon icon={faMagnifyingGlass} />
-								</Button>
-								<Form.Control
-									type='search'
-									placeholder='Search'
-									className='me-2'
-									aria-label='Search'
-								/>
-							</Form>
+							<Search />
 						</li>
 					</div>
 					<div className='menu'>
 						<li>
 							<NavLink activestyle={active} exact='true' to='/'>
-								<FontAwesomeIcon icon={faMicrophoneLines} />
+								{/* <FontAwesomeIcon icon={faMicrophoneLines} /> */}
+								<h1>배우</h1>
 							</NavLink>
 						</li>
-						<li>
+						{/* <li>
 							<NavLink activestyle={active} to='/upload'>
 								<FontAwesomeIcon icon={faPenToSquare} />
+								<h1>게시</h1>
 							</NavLink>
-						</li>
+						</li> */}
 						<li>
 							<NavLink activestyle={active} to='/feedback'>
-								<FontAwesomeIcon icon={faUserTie} />
+								{/* <FontAwesomeIcon icon={faUserTie} /> */}
+								<h1>작품</h1>
 							</NavLink>
 						</li>
 						<li>
 							<NavLink activestyle={active} to='/mypage'>
-								<FontAwesomeIcon icon={faUserAstronaut} />
+								{/* <FontAwesomeIcon icon={faUserAstronaut} /> */}
+								<h1>프로필</h1>
 							</NavLink>
 						</li>
 					</div>

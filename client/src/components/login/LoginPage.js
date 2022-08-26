@@ -5,7 +5,6 @@ import loginStore from '../../store/LoginStore';
 import { observer } from 'mobx-react';
 import { Navigate, useNavigate  } from 'react-router-dom';
 
-
 function LoginPage() {
   const navigate = useNavigate();
 
@@ -13,11 +12,12 @@ function LoginPage() {
     localStorage.setItem('isLoggedIn',true);
     loginStore.setIsLoggedIn(true);
     loginStore.setUser(userData);
-    loginStore.emailValidation();
-
+    loginStore.emailValidation(localStorage.getItem('email'));
   };
 
   const logout = () => {
+    loginStore.isLoggedIn=false
+    console.log(loginStore.isLoggedIn)
     localStorage.clear();
     navigate('/');
   };
@@ -25,13 +25,13 @@ function LoginPage() {
 
   return (
     <>
-      {!loginStore.emailIsExist ? (
-        loginStore.isLoggedIn? (
-          <Profile user={loginStore.user} logout={logout} />
+      {loginStore.isLoggedIn ? (
+        !(loginStore.emailIsExist === "exist") ? (
+          <Profile logout={logout} />
            ):
-          (<Login login={login}/>)
+          (<Navigate to='/' />)
         ) : (
-          <Navigate to='/' />
+          <Login login={login}/>
         )}
     </>
   )

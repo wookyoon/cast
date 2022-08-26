@@ -1,7 +1,7 @@
-const e = require('express');
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-const profileSchema = mongoose.Schema({
+const profileSchema = new Schema({
     name:{
         type:String,
         maxlength:50
@@ -13,14 +13,24 @@ const profileSchema = mongoose.Schema({
         match: /.+\@.+\..+/,
         unique:true
     },
-    text:{
-        type:String,
-        trim:true
-    }
-    // add more column
+    tag:[String],
+    imgUrl:{
+        type:Object
+    },
+    sns:{
+        insta:{type:String},
+        facebook:{type:String},
+        youtube:{type:String}
+    },
+    info:{type:String},
+    followRequest:[Object],
+    followers:[Object],
+    followersNum:Number,
+    likeUser:[Object],
+    likeVideo:[Object]
 });
 
 
-const Profile = mongoose.model('Profile', profileSchema);
+module.exports = mongoose.model('Profile',profileSchema);
 
-module.exports = {Profile};
+

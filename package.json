@@ -12,11 +12,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "aws-sdk": "^2.1191.0",
     "bootstrap": "^5.2.0",
     "concurrently": "^7.2.2",
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
+    "express-async-handler": "^1.2.0",
     "google-auth-library": "^8.1.1",
     "mongoose": "^6.4.4",
     "morgan": "^1.10.0",

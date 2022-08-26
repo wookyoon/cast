@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -8,7 +8,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 // import required modules
-import { Pagination, Navigation } from 'swiper';
+import { Autoplay, Pagination, Navigation } from 'swiper';
 const path = process.env.PUBLIC_URL;
 
 function Banner() {
@@ -17,21 +17,25 @@ function Banner() {
 			<Swiper
 				slidesPerView={1}
 				spaceBetween={30}
+				autoplay={{
+					delay: 2000,
+					disableOnInteraction: false,
+				}}
 				loop={true}
 				pagination={{
 					clickable: true,
 				}}
 				navigation={true}
-				modules={[Pagination, Navigation]}
+				modules={[Autoplay, Pagination, Navigation]}
 				className='mySwiper'>
 				<SwiperSlide>
-					<video src={`${path}/vid/banner1.mp4`} loop autoPlay muted></video>
+					<img src={`${path}/img/banner1.jpg`} alt='' />
 				</SwiperSlide>
 				<SwiperSlide>
-					<video src={`${path}/vid/banner2.mp4`} loop autoPlay muted></video>
+					<img src={`${path}/img/banner2.jpg`} alt='' />
 				</SwiperSlide>
 				<SwiperSlide>
-					<video src={`${path}/vid/banner3.mp4`} loop autoPlay muted></video>
+					<img src={`${path}/img/banner3.jpg`} alt='' />
 				</SwiperSlide>
 			</Swiper>
 		</section>
