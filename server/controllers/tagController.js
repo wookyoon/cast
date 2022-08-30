@@ -18,7 +18,6 @@ const addTag = asyncHandler(async (req, res) => {
         if(err){
             return res.status(400).json({message: 'failed to add tag'})
         }
-        console.log(tags);
         res.send(tags);
     });
 

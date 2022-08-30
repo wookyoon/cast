@@ -1,7 +1,6 @@
 import React, { useState, useEffect  } from 'react';
 import { Typography, Button, Form, Input } from 'antd';
 import ContentStore from '../../store/ContentStore';
-import LoginStore from '../../store/LoginStore';
 import AWS from "aws-sdk";
 import Dropzone from 'react-dropzone';
 import {PlusOutlined} from '@ant-design/icons'
@@ -24,17 +23,20 @@ function UploadPage() {
                 setDBTags(result.tags);
             }
         )
-        // ContentStore.getVideoListByEmail();
-        // ContentStore.getVideoListByTag("건반");
     }, []);
 
     const titleTest = () =>{
-        if(title.search(/\W|\s/g) > -1){
-            return true;
+        var special_pattern = /[`~!@#$%^&*|\\\'\";:\/?]/gi;
+        var blank_pattern = /[\s]/g;
+        if(special_pattern.test(title) === true){
+          return alert('특수문자가 입력되었습니다.');
+        }else if( blank_pattern.test(title)=== true){
+          return alert('공백이 입력되었습니다.');
         }else{
           return false;
         }
     }
+
     const region = "ap-northeast-2";
     
     AWS.config.update({
@@ -54,14 +56,13 @@ function UploadPage() {
             return alert('fill all the fields first!')
         }
 
-
         if(titleTest()){
-            return alert( '특수문자 또는 공백이 입력되었습니다.');
+
         }
-        
-        if(VideoSize > 5000000){
-            return alert("동영상 사이즈가 5MB이상입니다")
-        } else if(VideoDuration > 60){
+        else if(VideoSize > 5000000){
+            // 얼마나 남았는지 보여주고 넘기면 업로드안되게
+            return alert("동영상 사이즈가 MB이상입니다")
+        } else if(VideoDuration >30){
             return alert("동영상 길이가 1분 이상입니다")
         }else{
             ContentStore.setTitle(title);
@@ -89,15 +90,8 @@ function UploadPage() {
                     return alert( '동일한 Title이 존재합니다.');
                 }
             })
-            // console.log("##",await ContentStore.titleValidation());
-            
 
         }
-    }
-
-    const onGet = () => {
-        // console.log(ContentStore.videosbyemail);
-        // console.log(ContentStore.videosbytag);
     }
 
     const onDrop = (file) => {
@@ -179,10 +173,6 @@ function UploadPage() {
 
                 <Button  onClick={onSubmit} >
                     Submit
-                </Button>
-
-                <Button  onClick={onGet} >
-                    Get
                 </Button>
 
             </Form>

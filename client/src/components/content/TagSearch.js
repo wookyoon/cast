@@ -4,7 +4,7 @@ import TagApi from '../../api/TagApi';
 import { useNavigate  } from 'react-router-dom';
 import SearchList from '../main/VideoSearchList';
 
-function TagSearch({ dbtags, search}) {
+function TagSearch({dbtags, search}) {
     const [hasText, setHasText] = useState(false);
     const [inputValue, setInputValue] = useState('');
     const [tags, setTags] = useState([]);

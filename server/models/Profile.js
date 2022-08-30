@@ -14,20 +14,31 @@ const profileSchema = new Schema({
         unique:true
     },
     tag:[String],
+    position:{type:String},
+    team:{type:String},
+    birth:{type:String},
+    height:{type:Number},
+    weight:{type:Number},
+    phoneNumber:{type:Number},
     imgUrl:{
-        type:Object
+        type:String
     },
     sns:{
         insta:{type:String},
         facebook:{type:String},
         youtube:{type:String}
     },
+    youtube:{type:String},
+    specialty:{type:String},
+    career:{type:String},
     info:{type:String},
     followRequest:[Object],
     followers:[Object],
-    followersNum:Number,
+    followersNum:{type:Number},
     likeUser:[Object],
-    likeVideo:[Object]
+    likeVideo:[Object],
+    applyWork:[Object],
+    volume:{type:Number}    // 용량 제한 : 20mb
 });
 
 

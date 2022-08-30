@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const videoSchema = new Schema({
+const imageSchema = new Schema({
     tag:[String],
     name:{type:String},
     title:{type:String},
@@ -9,7 +9,6 @@ const videoSchema = new Schema({
         type:String,
         trim:true,
     },
-    category:{type:Number},// 자기소개:0, 자유연기:1, 특기:2
     hit:{type:Number},
     like:{type:Number},
     created:{type:Date},
@@ -20,9 +19,9 @@ const videoSchema = new Schema({
         like:{type:Number},
         created:{type:Date}
     }],
-    videoShare:{
+    imageShare:{
         type:Number, // public:0, follower:1, private:2, feedback:3
     }
 });
 
-module.exports = mongoose.model('Video',videoSchema);
+module.exports = mongoose.model('Image',imageSchema);

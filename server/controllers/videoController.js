@@ -12,22 +12,26 @@ const getVideos = asyncHandler(async (req, res) => {
     if(category == "main"){
         const tags = param.split(",");
         for (var tag of tags){
-            if(tag=="popular"){
-                // sort : ascending =1 / descending=-1
+            if(tag=="Popular"){
+                // sort : ascending=1 / descending=-1
                 video = await Video.find().sort({"hit":-1}).limit(12).lean();
             }else{
-                video = await Video.find({tag: { $in: tag }}).lean();
+                video = await Video.find({tag: { $in: tag }}).limit(12).lean();
             }
             videos.push({'tag':tag, "videos":video})
         }
     }else if(category == "tag"){
-        videos = await Video.find({tag: { $in: param }}).limit(12).lean();
+        if(param=="Popular"){
+            video = await Video.find().sort({"hit":-1}).limit(20).lean();
+        }else{
+            videos = await Video.find({tag: { $in: param }}).limit(20).lean();
+        }
     }else if(category == "title"){
         var re = new RegExp(param,"gi");
-        videos = await Video.find({"title": re }).limit(12).lean()
+        videos = await Video.find({"title": re }).limit(20).lean()
     }else{
         var re = new RegExp(param,"gi");
-        videos = await Video.find({"name": re }).limit(12).lean()
+        videos = await Video.find({"name": re }).limit(20).lean()
     }
 
     if(videos){
@@ -42,8 +46,9 @@ const addVideo = asyncHandler(async (req, res) => {
     const {name, title, url} = req.body
     const tag = req.body.tag.split(',')
 
-    const duplicate = await Video.findOne({title: req.body.title}).lean().exec()
+    const duplicate = await Video.findOne({name: name, title: title}).lean().exec()
     if(duplicate){
+        console.log(duplicate)
         return res.json({message: 'Dupicate Title'});
     }
 

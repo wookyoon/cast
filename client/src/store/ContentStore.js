@@ -1,6 +1,5 @@
 import {makeAutoObservable, runInAction} from "mobx";
 import ContentApi from "../api/ContentApi";
-import LoginStore from "./LoginStore";
 
 class ContentStore{
     title = "";
@@ -15,11 +14,7 @@ class ContentStore{
     constructor() {
         makeAutoObservable(this, {}, { autoBind: true });
     }
-
-    setVideoList(videos){
-        this.videos = videos;
-    }
-
+    
     async getVideoList(category, param){
         try{            
             const results = await ContentApi.getVideos(category, param);
@@ -30,7 +25,7 @@ class ContentStore{
             console.log(err);
         }
     }
-
+    
     async contentUpload(){
         try {
             const result = await ContentApi.contentUpload(localStorage.getItem('name'),this.title, this.tags, this.url);
@@ -41,8 +36,11 @@ class ContentStore{
             runInAction(this.message = error.message);
         }
     }
-
-
+    
+    setVideoList(videos){
+        this.videos = videos;
+    }
+    
     setTitle(title){
         this.title = title;
     }

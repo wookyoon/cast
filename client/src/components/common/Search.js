@@ -43,7 +43,6 @@ function Search() {
 
     const handleEnter= (e) => {
         if(e.key==="Enter"){
-            console.log("enter")
             if(menu==="2"){
                 if(ContentStore.frommain){
                     navigate('/search?title='+inputText);
@@ -70,7 +69,7 @@ function Search() {
                 <FontAwesomeIcon icon={faMagnifyingGlass} />
             </Button>
             {menu === "1" ? 
-            <TagSearch type={"video"} dbtags={dbtags} search={1}/>
+            <TagSearch dbtags={dbtags} search={1}/>
              :
             <Form.Control
                 type='search'
@@ -78,7 +77,6 @@ function Search() {
                 className='me-2'
                 aria-label='Search'
                 onChange={(e)=>setinputText(e.target.value)}
-                
             />
         }
         </Form>

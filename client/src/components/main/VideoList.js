@@ -1,19 +1,14 @@
 import React, { useEffect,useState } from 'react';
-// Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Modal from './Modal';
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
 
-// import required modules
 import { Navigation } from 'swiper';
 import ContentStore from '../../store/ContentStore';
 import VideoCard from './VideoCard';
 import { observer } from 'mobx-react';
 import { useNavigate  } from 'react-router-dom';
-import { Link } from 'react-router-dom';
-import SearchList from './VideoSearchList';
 const path = process.env.PUBLIC_URL;
 
 function VideoList() {
@@ -22,25 +17,19 @@ function VideoList() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        ContentStore.getVideoList("main",["popular","나비","드럼"]);
+        ContentStore.getVideoList("main",["Popular","건반","드럼"]);
+        setLoading(false);
         console.log(ContentStore.videos);
     },[]);
     
-    const searchByTag = (tag) =>{
-        navigate('/search?tag='+tag);
-    } 
-    // if(isLoading){
-    //     return <div>Loading...</div> 
-    // }else{
     return (
+        isLoading ? <p>Loading</p> :
         <>
         {ContentStore.videos.map((tagvideos, idx) => (      
             <section id='video' key={idx}>
         <ul className='popular' >
-        {/* <Link to= '/search' state= {{tag: docs.tagname}}  replace={true}> */}
-            <h1 onClick={()=>searchByTag(tagvideos.tag)}>{tagvideos.tag}</h1>
-            {/* </Link> */}
-            <Swiper 
+            <h1 onClick={()=>navigate('/search?tag='+tagvideos.tag)}>{tagvideos.tag}</h1>
+            <Swiper key={tagvideos.tag}
                 slidesPerView={4}
                 spaceBetween={0}
                 slidesPerGroup={4}
@@ -52,7 +41,7 @@ function VideoList() {
                 >
                 {tagvideos.videos.map((video,index) =>(
                     <SwiperSlide key={index}>
-                    <VideoCard  video={video} index={index}/>
+                        <VideoCard  video={video} index={index}/>
                     </SwiperSlide>
                   ))}
             </Swiper>

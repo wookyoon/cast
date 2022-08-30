@@ -1,9 +1,10 @@
-const e = require('express');
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-const tagsSchema = mongoose.Schema({
-    tags:[String]
+const tagsSchema = new Schema({
+    // 태그 카운팅
+    tags:[{tag:{type:String},
+    count:{type:Number}}]
 });
-
 
 module.exports = mongoose.model('Tags',tagsSchema);

@@ -1,15 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const userController = require('../controllers/userController')
+const profileController = require('../controllers/profileController')
 
 router.route('/')
-    .get(userController.getUser)
-    .post(userController.createUser)
-    .patch(userController.updateUser)
-    .delete(userController.deleteUser)
+    .get(profileController.getUser)
+    .post(profileController.createUser)
+    .patch(profileController.updateUser)
+    .delete(profileController.deleteUser)
 
 router.route('/exist')
-    .get(userController.getEmail)
+    .get(profileController.getEmail)
 
 
 // router.post("/exist", (req, res) => {

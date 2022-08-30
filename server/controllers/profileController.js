@@ -3,7 +3,7 @@ const asyncHandler = require('express-async-handler')
 var url = require('url');
 
 const createUser = asyncHandler(async (req, res) => {
-    const {name, email, imgUrl, insta,facebook, youtube, info} = req.body
+    const {name, email, imgUrl, insta, facebook, youtube, info} = req.body
     const tag = req.body.tag.split(',');
     console.log(insta,facebook,youtube);
 

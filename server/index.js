@@ -22,7 +22,7 @@ app.use('/api/auth/', authRouter);
 const profileRouter = require('./routes/profile');
 app.use('/api/profile', profileRouter);
 const videoRouter = require('./routes/video');
-app.use('/api/content', videoRouter);
+app.use('/api/video', videoRouter);
 const tagRouter = require('./routes/tags');
 app.use('/api/tag', tagRouter);
 

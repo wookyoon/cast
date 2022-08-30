@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-class ContentApi{
+class TagApi{
     URL = '/api/tag';
 
     getTags(type) {
@@ -14,4 +14,4 @@ class ContentApi{
     }
 
 }
-export default new ContentApi();
+export default new TagApi();

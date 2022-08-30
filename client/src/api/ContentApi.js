@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 class ContentApi{
-    URL = '/api/content';
+    URL = '/api/video';
 
     contentUpload(name, title, tags, url) {
         return axios.post(this.URL,  { name:`${name}`, title:`${title}`,tag:`${tags}`,url:`${url}`})

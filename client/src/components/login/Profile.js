@@ -4,11 +4,11 @@ import LoginStore from '../../store/LoginStore';
 import { observer } from 'mobx-react';
 import Dropzone from 'react-dropzone';
 import {PlusOutlined} from '@ant-design/icons'
-import ContentStore from '../../store/ContentStore';
 import AWS from "aws-sdk";
 import TagSearch from '../content/TagSearch';
 import TagApi from "../../api/TagApi";
 import { useNavigate } from 'react-router';
+import ContentStore from '../../store/ContentStore';
 
 const Profile = ({ logout }) => {
   const email = localStorage.getItem('email');
@@ -37,7 +37,15 @@ const Profile = ({ logout }) => {
 
   const handleSubmit = async (e) =>{
     e.preventDefault();
+    if (!name || !profilePic || ContentStore.getTags().length===0) {
+      return alert('fill all the fields(Name, profilePic, Tags) first!')
+    }
 
+    if(profilePicName.split(".")[1]==="jpg" || profilePicName.split(".")[1]==="jpeg"){
+            
+    }else{
+    return alert('jpg or jpeg 파일만 가능합니다.')
+    }
     AWS.config.update({
         region: "ap-northeast-2",
         accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
@@ -63,20 +71,24 @@ const Profile = ({ logout }) => {
         });
         
         const promise = upload.promise();
+        navigate('/')
         }
       })
-      navigate('/')
-        }else{
-         return alert( '특수문자 또는 공백이 입력되었습니다.');
-    }
+      
+        }
   }
 
+  
   const nameTest = () =>{
-      if(name.search(/\W|\s/g) > -1){
-          return false;
-      }else{
-        return true;
-      }
+    var special_pattern = /[`~!@#$%^&*|\\\'\";:\/?]/gi;
+    var blank_pattern = /[\s]/g;
+    if(special_pattern.test(name) === true){
+      return alert('특수문자가 입력되었습니다.');
+    }else if( blank_pattern.test(name) === true){
+      return alert('공백이 입력되었습니다.');
+    }else{
+      return true;
+    }
   }
 
   return (
