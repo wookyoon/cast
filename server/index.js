@@ -25,6 +25,8 @@ const videoRouter = require('./routes/video');
 app.use('/api/video', videoRouter);
 const tagRouter = require('./routes/tags');
 app.use('/api/tag', tagRouter);
+const castingRouter = require('./routes/casting');
+app.use('/api/casting', castingRouter);
 
 // mongodb connection
 mongoose.connect(config.mongoURI,

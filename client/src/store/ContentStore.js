@@ -46,7 +46,9 @@ class ContentStore{
     }
 
     addTags(newtag){
-        this.tags = [...this.tags, newtag];
+        this.tags = new Set([...this.tags, newtag]);
+        this.tags = [...this.tags.data_]
+        console.log(this.tags)
     }
 
     getTags(){

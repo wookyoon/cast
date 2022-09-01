@@ -3,7 +3,7 @@ import React from 'react';
 function Footer() {
 	return (
 		<footer>
-			<h1>© 2022 Cast All rights reserved.</h1>
+			<h1>© 2022 Bleucheese All rights reserved.</h1>
 		</footer>
 	);
 }

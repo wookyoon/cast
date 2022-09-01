@@ -3,8 +3,9 @@ import ContentStore from '../../store/ContentStore';
 import TagApi from '../../api/TagApi';
 import { useNavigate  } from 'react-router-dom';
 import SearchList from '../main/VideoSearchList';
+import dbtags from '../../utils/tags';
 
-function TagSearch({dbtags, search}) {
+function TagSearch({search}) {
     const [hasText, setHasText] = useState(false);
     const [inputValue, setInputValue] = useState('');
     const [tags, setTags] = useState([]);
@@ -28,16 +29,17 @@ function TagSearch({dbtags, search}) {
         }
     }
     
-    const addTag = async  (e) => {
-        if (checkLimit()){
-            const result = await TagApi.addTag(inputValue);
-            console.log(result);
-            setTags([...tags, inputValue]);
-            console.log(tags);
-            ContentStore.addTags(inputValue);
-            setLimit(limit+1);
-        }
-    }
+    // const addTag = async  (e) => {
+    //     if (checkLimit()){
+    //         console.log(inputValue)
+    //         const result = await TagApi.addTag(inputValue);
+    //         console.log(result);
+    //         setTags([...tags, inputValue]);
+    //         console.log(tags);
+    //         ContentStore.addTags(inputValue);
+    //         setLimit(limit+1);
+    //     }
+    // }
 
     const handleDropDownClick = (clickedOption) => {
         if(searchtype===1){
@@ -72,7 +74,7 @@ function TagSearch({dbtags, search}) {
     return (
         <div>
             <input onChange= {(e)=>{setInputValue(e.target.value); setHasText(!hasText)}}/>
-            <input type="button" value="add" onClick={(e)=>{addTag(e)}}/>
+            {/* <input type="button" value="add" onClick={(e)=>{addTag(e)}}/> */}
             {tags.map( (x,i)=> 
             <div  key={i}>
                 {x}

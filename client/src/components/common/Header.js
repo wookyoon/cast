@@ -17,7 +17,8 @@ function Header(props) {
 					<div className='logo'>
 						<li>
 							<NavLink activestyle={active} to='/login'>
-								<FontAwesomeIcon icon={faMasksTheater} /> <h1>cast</h1>
+								{/* <FontAwesomeIcon icon={faMasksTheater} />  */}
+								<h1>KineDb</h1>
 							</NavLink>
 						</li>
 					</div>
@@ -29,22 +30,26 @@ function Header(props) {
 					<div className='menu'>
 						<li>
 							<NavLink activestyle={active} exact='true' to='/'>
-								<FontAwesomeIcon icon={faMicrophoneLines} />
+								{/* <FontAwesomeIcon icon={faMicrophoneLines} /> */}
+								<h1>배우</h1>
 							</NavLink>
 						</li>
-						<li>
+						{/* <li>
 							<NavLink activestyle={active} to='/upload'>
 								<FontAwesomeIcon icon={faPenToSquare} />
+								<h1>게시</h1>
 							</NavLink>
-						</li>
+						</li> */}
 						<li>
-							<NavLink activestyle={active} to='/feedback'>
-								<FontAwesomeIcon icon={faUserTie} />
+							<NavLink activestyle={active} to='/casting'>
+								{/* <FontAwesomeIcon icon={faUserTie} /> */}
+								<h1>작품</h1>
 							</NavLink>
 						</li>
 						<li>
 							<NavLink activestyle={active} to='/mypage'>
-								<FontAwesomeIcon icon={faUserAstronaut} />
+								{/* <FontAwesomeIcon icon={faUserAstronaut} /> */}
+								<h1>프로필</h1>
 							</NavLink>
 						</li>
 					</div>

@@ -7,12 +7,12 @@
 	justify-content: space-between;
 	h1,
 	a {
-		font: 30px/2 'Abel';
+		font: 20px/2 'Abel';
 		color: #ae8854;
 	}
 	h2,
 	p {
-		font: 30px/2 'Abel';
+		font: 20px/2 'Abel';
 		color: #fff;
 	}
 	.vid {
@@ -22,46 +22,103 @@
 			height: 400px;
 			object-fit: cover;
 		}
+		.cover {
+			background-color: rgba(29, 105, 153, 0.3);
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			.info {
+				position: absolute;
+				bottom: 2%;
+				margin-left: 3%;
+				.box {
+					position: relative;
+					display: flex;
+					flex-wrap: wrap;
+					justify-content: space-between;
+					.profile {
+						position: relative;
+						display: flex;
+						flex-wrap: wrap;
+
+						img {
+							width: 40px;
+							height: 40px;
+							object-fit: cover;
+							border-radius: 50%;
+						}
+					}
+					.like {
+						position: relative;
+						display: flex;
+						flex-wrap: wrap;
+						margin-right: 3%;
+					}
+				}
+			}
+		}
 	}
 	.info {
 		width: 50%;
+		padding: 5px;
 	}
 	.stat {
 		width: 25%;
 		background-color: #222;
+		padding: 5px;
+
 		h1 {
 			font: 20px/2 'Abel';
 			color: #ae8854;
 		}
-		.profile {
+		.profile_follow {
 			display: flex;
 			flex-wrap: wrap;
-
-			img {
-				width: 50px;
-				height: 50px;
-				object-fit: cover;
-				border-radius: 50%;
-			}
-		}
-		.repute {
-			display: flex;
-			flex-wrap: wrap;
+			align-items: center;
 			justify-content: space-around;
+			.profile {
+				display: flex;
+				flex-wrap: wrap;
+				align-items: center;
 
+				img {
+					width: 50px;
+					height: 50px;
+					object-fit: cover;
+					border-radius: 50%;
+				}
+			}
 			.follow {
 				display: flex;
 				flex-wrap: wrap;
 			}
-			.reviews {
+		}
+		.body {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-around;
+
+			.height {
+				display: flex;
+				flex-wrap: wrap;
+			}
+			.weight {
 				display: flex;
 				flex-wrap: wrap;
 			}
 		}
-		.tags {
+		.special {
 			display: flex;
 			flex-wrap: wrap;
-			justify-content: space-evenly;
+			justify-content: space-around;
+		}
+		.career {
+			p {
+				font: 18px/2 'Abel';
+				color: #fff;
+			}
 		}
 	}
 }
