@@ -4,7 +4,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { faBookmark } from '@fortawesome/free-solid-svg-icons';
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
-import Modal from '../main/Modal';
+import VidModal from '../main/VidModal';
+import Avatar from '@mui/material/Avatar';
+import Chip from '@mui/material/Chip';
+import { Button } from 'semantic-ui-react';
+
 const path = process.env.PUBLIC_URL;
 
 function Intro() {
@@ -31,6 +35,17 @@ function Intro() {
 					onClick={() => {
 						setModal(!modal);
 					}}></HoverVideoPlayer>
+				<Button
+					color='red'
+					content='Like'
+					icon='heart'
+					label={{
+						basic: true,
+						color: 'red',
+						pointing: 'left',
+						content: '2,048',
+					}}
+				/>
 			</div>
 			<div className='info'>
 				<h1>이름</h1> <p>김이박</p>
@@ -47,8 +62,10 @@ function Intro() {
 			<div className='stat'>
 				<div className='profile_follow'>
 					<div className='profile'>
-						<img src={`${path}/img/img2.jpg`} alt='' />
-						<h1>Id123</h1>
+						<Chip
+							avatar={<Avatar alt='Natacha' src={`${path}/img/img3.jpg`} />}
+							label='IDabc123'
+						/>
 					</div>
 					<div className='follow'>
 						<h1>

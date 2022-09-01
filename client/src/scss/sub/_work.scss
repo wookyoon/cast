@@ -1,7 +1,7 @@
 #work {
 	width: 917px;
 	margin: 0px auto;
-	background-color: #222;
+	background-color: #000;
 	h1 {
 		font: 25px/2 'Oswald';
 		color: #ae8854;
@@ -51,8 +51,19 @@
 				justify-content: space-between;
 				padding: 10px;
 				.id {
-					span {
-						color: #fff;
+					.MuiChip-root {
+						height: 50px;
+						.MuiAvatar-root {
+							width: 40px;
+							height: 40px;
+						}
+						img {
+							object-fit: cover;
+						}
+						span {
+							color: #fff;
+							font-size: 16px;
+						}
 					}
 				}
 			}

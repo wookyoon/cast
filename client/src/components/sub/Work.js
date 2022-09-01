@@ -1,7 +1,8 @@
 import React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Chip from '@mui/material/Chip';
-import Pagination from '@mui/material/Pagination';
+
+const path = process.env.PUBLIC_URL;
 
 function Work() {
 	return (
@@ -58,11 +59,8 @@ function Work() {
 					<div className='head'>
 						<div className='id'>
 							<Chip
-								avatar={
-									<Avatar alt='Natacha' src='/static/images/avatar/1.jpg' />
-								}
+								avatar={<Avatar alt='Natacha' src={`${path}/img/img3.jpg`} />}
 								label='ID123zxc'
-								variant='outlined'
 							/>
 						</div>
 						<div className='post_date'>
@@ -168,11 +166,8 @@ function Work() {
 					<div className='head'>
 						<div className='id'>
 							<Chip
-								avatar={
-									<Avatar alt='Natacha' src='/static/images/avatar/1.jpg' />
-								}
+								avatar={<Avatar alt='Natacha' src={`${path}/img/img3.jpg`} />}
 								label='ID123zxc'
-								variant='outlined'
 							/>
 						</div>
 						<div className='post_date'>
@@ -278,11 +273,8 @@ function Work() {
 					<div className='head'>
 						<div className='id'>
 							<Chip
-								avatar={
-									<Avatar alt='Natacha' src='/static/images/avatar/1.jpg' />
-								}
+								avatar={<Avatar alt='Natacha' src={`${path}/img/img3.jpg`} />}
 								label='ID123zxc'
-								variant='outlined'
 							/>
 						</div>
 						<div className='post_date'>
@@ -385,9 +377,7 @@ function Work() {
 					<div className='sub'></div>
 				</div>
 			</div>
-			<div className='pages'>
-				<Pagination count={10} variant='outlined' shape='rounded' id='page' />
-			</div>
+
 			<table></table>
 		</section>
 	);
