@@ -6,6 +6,7 @@ import Main from './components/main/Main';
 import MyPage from './components/sub/MyPage';
 
 import Feedback from './components/sub/Feedback';
+import Location from './components/sub/Location';
 
 import VideoSearchList from './components/main/VideoSearchList';
 import Upload from './components/content/UploadPage';
@@ -23,6 +24,7 @@ function App() {
 				<Route path='/login' exact element={<Login />} />
 				<Route path='/mypage' exact element={<MyPage />} />
 				<Route path='/feedback' exact element={<Feedback />} />
+				<Route path='/location' exact element={<Location />} />
 			</Routes>
 			<Footer />
 		</>
