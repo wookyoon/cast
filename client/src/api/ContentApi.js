@@ -3,8 +3,8 @@ import axios from 'axios';
 class ContentApi{
     URL = '/api/video';
 
-    contentUpload(name, title, tags, url) {
-        return axios.post(this.URL,  { name:`${name}`, title:`${title}`,tag:`${tags}`,url:`${url}`})
+    contentUpload(data) {
+        return axios.post(this.URL,  data)
             .then((response) => response.data);
     }
 
@@ -13,9 +13,5 @@ class ContentApi{
         .then((response) => response.data);
     }
 
-    getUsers(name) {
-        return axios.post(this.URL + `/get/users`,{name:`${name}`})
-        .then((response) => response.data);
-    }
 }
 export default new ContentApi();

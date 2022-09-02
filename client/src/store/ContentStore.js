@@ -10,6 +10,7 @@ class ContentStore{
     url = "";
     menu="0";
     frommain=true;
+    open = false;
 
     constructor() {
         makeAutoObservable(this, {}, { autoBind: true });
@@ -26,9 +27,9 @@ class ContentStore{
         }
     }
     
-    async contentUpload(){
+    async contentUpload(data){
         try {
-            const result = await ContentApi.contentUpload(localStorage.getItem('name'),this.title, this.tags, this.url);
+            const result = await ContentApi.contentUpload(data);
             console.log(result['message'])
             return result['message'];
         } catch (error) {
@@ -79,6 +80,11 @@ class ContentStore{
 
     setMenu(menu){
         this.menu=menu;
+    }
+
+    setModal(open){
+        this.open = open;
+        return this.open;
     }
 }
 export default new ContentStore();

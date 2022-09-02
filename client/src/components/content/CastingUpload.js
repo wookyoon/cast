@@ -2,7 +2,6 @@ import React, { useState, useEffect  } from 'react';
 import { Typography, Button, Input } from 'antd';
 import Form from 'react-bootstrap/Form';
 import TagSearch from './TagSearch';
-import TagApi from "../../api/TagApi";
 import ContentStore from "../../store/ContentStore";
 import CastingStore from "../../store/CastingStore";
 
@@ -25,15 +24,6 @@ function CastingUpload() {
     const [explanation, setExplanation] = useState("")
     const [roleExplanation, setRoleExplanation] = useState("")
     const [note, setNote] = useState("")
-    // const [dbtags, setDBTags] = useState();
-
-    useEffect( () => {
-        // TagApi.getTags().then(
-        //     function (result) {
-        //         setDBTags(result.tags);
-        //     }
-        // )
-    }, []);
 
     const onSubmit = async (event) => {
         event.preventDefault();

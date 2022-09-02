@@ -25,16 +25,27 @@ class LoginStore{
         }
     }
 
-    async profileCreate(email, name, url,insta,facebook,youtube,info) {
-            try {
-                const result = await UserApi.profileCreate(email, name, url, insta, facebook, youtube, info, ContentStore.tags);
-                localStorage.setItem('name',result['name']);
-                return result.message;
-            } catch (error) {
-                console.log(error)
-                runInAction(this.message = error.message);
-            }
+    async profileCreate(data) {
+        try {
+            const result = await UserApi.profileCreate(data);
+            localStorage.setItem('name',result['name']);
+            return result.message;
+        } catch (error) {
+            console.log(error)
+            runInAction(this.message = error.message);
         }
+    }
+
+    async getUser(name){
+        try{            
+            const results = await UserApi.getUser(name);
+            console.log(results);
+            runInAction(() => this.user = results);
+        }
+        catch (err){
+            console.log(err);
+        }
+    }
 
     setIsLoggedIn(bool){
         this.isLoggedIn = bool;

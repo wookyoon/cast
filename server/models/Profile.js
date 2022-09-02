@@ -13,8 +13,9 @@ const profileSchema = new Schema({
         match: /.+\@.+\..+/,
         unique:true
     },
+    bookmark:{type:Number, default:0},
+    like:{type:Number, default:0},
     tag:[String],
-    position:{type:String},
     team:{type:String},
     birth:{type:String},
     height:{type:Number},
@@ -32,6 +33,14 @@ const profileSchema = new Schema({
     specialty:{type:String},
     career:{type:String},
     info:{type:String},
+    videoUrl:{
+        type:String,
+        trim:true,
+    },
+    imageUrl:{
+        type:String,
+        trim:true,
+    },
     followRequest:[Object],
     followers:[Object],
     followersNum:{type:Number},

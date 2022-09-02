@@ -2,17 +2,21 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const videoSchema = new Schema({
-    tag:[String],
+    tag:[{type:String}],
     name:{type:String},
     title:{type:String},
-    url:{
+    videoUrl:{
         type:String,
         trim:true,
     },
-    category:{type:Number},// 자기소개:0, 자유연기:1, 특기:2
-    hit:{type:Number},
-    like:{type:Number},
-    created:{type:Date},
+    imageUrl:{
+        type:String,
+        trim:true,
+    },
+    category:{type:String},
+    hit:{type:Number, default:0},
+    like:{type:Number , default:0},
+    created:{type:String},
     commentsOpen:{type:Boolean},
     comments:[{
         name:{type:String},
@@ -21,7 +25,7 @@ const videoSchema = new Schema({
         created:{type:Date}
     }],
     videoShare:{
-        type:Number, // public:0, follower:1, private:2, feedback:3
+        type:Number, // public:0, follower:1, private:2
     }
 });
 

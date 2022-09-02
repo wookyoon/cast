@@ -5,8 +5,11 @@ import VidPost from './VidPost';
 function MyPage() {
 	return (
 		<section id='mypage'>
+			<table />
 			<Intro />
+			<table />
 			<VidPost />
+			<table />
 		</section>
 	);
 }

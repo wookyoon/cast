@@ -3,17 +3,17 @@ const asyncHandler = require('express-async-handler')
 var url = require('url');
 
 const createUser = asyncHandler(async (req, res) => {
-    const {name, email, imgUrl, insta, facebook, youtube, info} = req.body
-    const tag = req.body.tag.split(',');
-    console.log(insta,facebook,youtube);
+    const {name} = req.body
+    // const tag = req.body.tag.split(',');
+    // console.log(insta,facebook,youtube);
 
     const exist = await Profile.findOne({name: name}).lean().exec()
     if(exist){
         return res.json({message: 'exist'});
     }
 
-    const userObject = {name,email,"tag":tag,imgUrl,"sns":{"insta":insta, "facebook":facebook, "youtube":youtube},info,"followersNum":0}
-    const user = await Profile.create(userObject);
+    // const userObject = {name,email,"tag":tag,imgUrl,"sns":{"insta":insta, "facebook":facebook, "youtube":youtube},info,"followersNum":0}
+    const user = await Profile.create(req.body);
     if(user){
         console.log(user);
         return res.status(201).json({message: 'Success', name:name});
@@ -35,7 +35,17 @@ const getEmail = asyncHandler(async (req, res) => {
 })
 
 const getUser = asyncHandler(async (req, res) => {
-
+    var _url = req.url;
+    var queryData = url.parse(_url, true).query;
+    console.log(queryData.name)
+    
+    const user = await Profile.findOne({name:queryData.name}).lean().exec()
+    if(user){
+        console.log(user)
+        return res.json(user);
+    }else{
+        return res.json({message: "not exist"});
+    }
 })
 
 const updateUser = asyncHandler(async (req, res) => {

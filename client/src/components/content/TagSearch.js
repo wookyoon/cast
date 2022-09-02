@@ -28,37 +28,14 @@ function TagSearch({search}) {
             return true;
         }
     }
-    
-    // const addTag = async  (e) => {
-    //     if (checkLimit()){
-    //         console.log(inputValue)
-    //         const result = await TagApi.addTag(inputValue);
-    //         console.log(result);
-    //         setTags([...tags, inputValue]);
-    //         console.log(tags);
-    //         ContentStore.addTags(inputValue);
-    //         setLimit(limit+1);
-    //     }
-    // }
 
     const handleDropDownClick = (clickedOption) => {
-        if(searchtype===1){
-            if(ContentStore.frommain){
-                navigate('/search?tag='+dbtags[clickedOption],);
-                ContentStore.frommain=false
-            }else{
-                ContentStore.getVideoList("tag",dbtags[clickedOption]).then(()=>{
-                    navigate('/search?tag='+dbtags[clickedOption], SearchList);
-                }) 
-            }
-            
-        }else{
             if (checkLimit()){
                 setTags([...tags, dbtags[clickedOption]]);
                 ContentStore.addTags(dbtags[clickedOption]);
                 setLimit(limit+1);
+                setInputValue(""); setHasText(!hasText)
             }
-        }
     };
 
    const DropDown = ({ options, handleComboBox, onClick }) => {

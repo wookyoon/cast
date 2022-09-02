@@ -1,6 +1,6 @@
 header {
 	width: 100%;
-	background: #000;
+	background: #fff;
 
 	.inner {
 		width: 100%;
@@ -9,6 +9,7 @@ header {
 		position: relative;
 
 		#gnb {
+			width: 100%;
 			position: absolute;
 			bottom: 0px;
 			left: 50%;
@@ -40,24 +41,29 @@ header {
 					clear: both;
 				}
 			}
-			.search {
+			.logo:hover {
+				text-shadow: #ae8854 0px 0 1px;
+			}
+			#actor:hover {
+				text-shadow: #ae8854 0px 0 1px;
+			}
+			#movie:hover {
+				text-shadow: #ae8854 0px 0 1px;
+			}
+			#profile:hover {
+				text-shadow: #ae8854 0px 0 1px;
+			}
+
+			button {
+				cursor: pointer;
+				border: none;
+				background-color: #fff;
+				font: 20px/1 'Oswald';
+				color: #ae8854;
 				padding: 20px 20px;
-				.d-flex {
-					.me-2 {
-						background: #444;
-						color: #ae8854;
-						border: #444;
-						height: 30px;
-						width: 200px;
-					}
-					button {
-						background: #444;
-						color: #ae8854;
-						border: #444;
-						height: 30px;
-						width: 30px;
-					}
-				}
+			}
+			button:hover {
+				text-shadow: #ae8854 0px 0 1px;
 			}
 		}
 	}

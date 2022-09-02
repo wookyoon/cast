@@ -4,7 +4,7 @@ import Footer from './components/common/Footer';
 import Login from './components/login/LoginPage';
 import Main from './components/main/Main';
 import MyPage from './components/sub/MyPage';
-
+import MyPagewithData from './components/main/MyPage'
 import Feedback from './components/sub/Feedback';
 
 import VideoSearchList from './components/main/VideoSearchList';
@@ -23,6 +23,7 @@ function App() {
 				<Route path='/upload' exact element={<Upload />} />
 				<Route path='/login' exact element={<Login />} />
 				<Route path='/mypage' exact element={<MyPage />} />
+				<Route path='/mypage/data' exact element={<MyPagewithData />} />
 				<Route path='/casting' exact element={<CastingList />} />
 				<Route path='/upload/casting' exact element={<CastingUpload />} />
 				<Route path='/feedback' exact element={<Feedback />} />

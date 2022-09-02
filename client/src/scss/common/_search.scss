@@ -1,0 +1,23 @@
+.search {
+	width: 400px;
+	margin: 0px auto;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	.category {
+		background: #444;
+		color: #ae8854;
+		border: #444;
+		height: 35px;
+		width: 50px;
+	}
+	.d-flex {
+		.me-2 {
+			background: #444;
+			color: #ae8854;
+			border: #444;
+			height: 35px;
+			width: 350px;
+		}
+	}
+}

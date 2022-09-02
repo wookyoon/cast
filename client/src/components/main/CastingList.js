@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import CastingStore from '../../store/CastingStore';
 import CastingCard from './CastingCard';
-import recommendedTags from '../../utils/recommendedTags'
-import categorys from '../../utils/categorys'
+import recommendedTags from '../../utils/castingRecommendedTags';
+import categorys from '../../utils/castingCategory';
 function CastingList() {
     const [isLoading, setLoading] = useState(true);
     const [castingList, setCastingList] = useState();
@@ -37,7 +37,7 @@ function CastingList() {
                         {categorys.map((category, i)=>(
                             <div key={i}>
                             &nbsp; &nbsp; &nbsp;
-                            <h1 key={i} onClick={()=>handleOnClickCategory(category)}> {category}</h1>
+                            <h1 onClick={()=>handleOnClickCategory(category)}> {category}</h1>
                             </div>
                         ))}
                     </div>

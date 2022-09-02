@@ -7,57 +7,21 @@
 	justify-content: space-between;
 	h1,
 	a {
-		font: 20px/2 'Abel';
+		font: 20px/1 'Abel';
 		color: #ae8854;
 	}
 	h2,
 	p {
-		font: 20px/2 'Abel';
+		font: 20px/1 'Abel';
 		color: #fff;
 	}
 	.vid {
 		width: 25%;
+		text-align: center;
 		video {
 			width: 100%;
 			height: 400px;
 			object-fit: cover;
-		}
-		.cover {
-			background-color: rgba(29, 105, 153, 0.3);
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			.info {
-				position: absolute;
-				bottom: 2%;
-				margin-left: 3%;
-				.box {
-					position: relative;
-					display: flex;
-					flex-wrap: wrap;
-					justify-content: space-between;
-					.profile {
-						position: relative;
-						display: flex;
-						flex-wrap: wrap;
-
-						img {
-							width: 40px;
-							height: 40px;
-							object-fit: cover;
-							border-radius: 50%;
-						}
-					}
-					.like {
-						position: relative;
-						display: flex;
-						flex-wrap: wrap;
-						margin-right: 3%;
-					}
-				}
-			}
 		}
 	}
 	.info {
@@ -70,7 +34,7 @@
 		padding: 5px;
 
 		h1 {
-			font: 20px/2 'Abel';
+			font: 20px/1 'Abel';
 			color: #ae8854;
 		}
 		.profile_follow {
@@ -79,15 +43,19 @@
 			align-items: center;
 			justify-content: space-around;
 			.profile {
-				display: flex;
-				flex-wrap: wrap;
-				align-items: center;
-
-				img {
-					width: 50px;
+				.MuiChip-root {
 					height: 50px;
-					object-fit: cover;
-					border-radius: 50%;
+					.MuiAvatar-root {
+						width: 40px;
+						height: 40px;
+					}
+					img {
+						object-fit: cover;
+					}
+					span {
+						color: #fff;
+						font-size: 16px;
+					}
 				}
 			}
 			.follow {
@@ -116,7 +84,7 @@
 		}
 		.career {
 			p {
-				font: 18px/2 'Abel';
+				font: 18px/1 'Abel';
 				color: #fff;
 			}
 		}

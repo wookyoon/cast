@@ -11,29 +11,40 @@ import { useNavigate } from 'react-router';
 import ContentStore from '../../store/ContentStore';
 
 const Profile = ({ logout }) => {
-  const email = localStorage.getItem('email');
   const [profilePic, setProfilePic] =useState('');
   const [profilePicName, setProfilePicName] =useState('');
+  const [introVideo, setIntroVideo] =useState('');
+  const [introVideoName, setIntroVideoName] =useState('');
+  const [introImage, setIntroImage] =useState('');
+  const [introImageName, setIntroImageName] =useState('');
   const [name, setName] = useState('');
   const [insta, setInsta] = useState("");
   const [facebook, setFacebook] = useState("");
   const [youtube, setYoutube] = useState("");
-  const [info, setInfo] = useState('');
-  const [dbtags, setDBTags] = useState();
+  const [info, setTeam] = useState('');
+  const [team, setInfo] = useState();
+  const [height, setHeight] = useState();
+  const [weight, setWeight] = useState();
+  const [specialty, setSpecialty] = useState();
+  const [career, setCareer] = useState();
+  const [youtubeLink, setYoutubeLink] = useState();
   const navigate = useNavigate();
 
-  useEffect( () => {
-    TagApi.getTags().then(
-        function (result) {
-            setDBTags(result.tags);
-        }
-    )
-}, []);
 
-  const onDrop = (files) => {
+  const onProfilePicDrop = (files) => {
     setProfilePic(files[0]);
     setProfilePicName(files[0].name);
-}
+  }
+
+  const onIntroVideoDrop = (files) => {
+    setIntroVideo(files[0]);
+    setIntroVideoName(files[0].name);
+  }
+
+  const onIntroImageDrop = (files) => {
+    setIntroImage(files[0]);
+    setIntroImageName(files[0].name);
+  }
 
   const handleSubmit = async (e) =>{
     e.preventDefault();
@@ -54,13 +65,33 @@ const Profile = ({ logout }) => {
 
     if(nameTest()){
       
-      let url = 'https://feedback-resized.s3.ap-northeast-2.amazonaws.com/profileImg/' + name+'.jpeg';
-      
-      LoginStore.profileCreate(email,name,url,insta,facebook,youtube,info).then((result)=>{
+      const data = {
+        name : name,
+        email : localStorage.getItem('email'),
+        tag : ContentStore.tags,
+        imgUrl:'https://feedback-resized.s3.ap-northeast-2.amazonaws.com/profileImg/' + name+'.jpeg',
+        team : team,
+        height : height,
+        weight : weight,
+        sns : {
+          insta:insta,
+          facebook:facebook,
+          youtube:youtube
+        },
+        youtube : youtubeLink,
+        specialty : specialty,
+        career : career,
+        info : info,
+        videoUrl:"https://mern-feedback.s3.ap-northeast-2.amazonaws.com/"+name+"/videos/intro.mp4",
+        imageUrl:"https://mern-feedback.s3.ap-northeast-2.amazonaws.com/"+name+"/images/intro.jpeg",
+    }
+    console.log(data)
+    // video create 추가
+      LoginStore.profileCreate(data).then((result)=>{
         if(result === "exist"){
           return alert( '중복된 이름입니다.');
         }else{
-          const upload = new AWS.S3.ManagedUpload({
+          const profilePicUpload = new AWS.S3.ManagedUpload({
             params: {
                 Bucket: 'mern-feedback', 
                 Key:  'profileImg/'+name + ".jpeg", 
@@ -69,8 +100,28 @@ const Profile = ({ logout }) => {
                 ContentType:'image/jpeg'
             }
         });
+        const introVideoUpload = new AWS.S3.ManagedUpload({
+          params: {
+              Bucket: 'mern-feedback', 
+              Key:  name +"/videos/intro.mp4", 
+              Body: introVideo,
+              ACL: "public-read",
+              ContentType:'video/mp4'
+          }
+      });
+      const introImageUpload = new AWS.S3.ManagedUpload({
+        params: {
+            Bucket: 'mern-feedback', 
+            Key:  name +"/images/intro.jpeg",
+            Body: introImage,
+            ACL: "public-read",
+            ContentType:'image/jpeg'
+        }
+    });
         
-        const promise = upload.promise();
+        profilePicUpload.promise();
+        introVideoUpload.promise();
+        introImageUpload.promise();
         navigate('/')
         }
       })
@@ -95,7 +146,7 @@ const Profile = ({ logout }) => {
     <div className="profile-page">
       
       <Dropzone
-                onDrop={onDrop}
+                onDrop={onProfilePicDrop}
                 multiple={false}
                 maxSize={800000000}
             >
@@ -118,24 +169,112 @@ const Profile = ({ logout }) => {
             {profilePicName}
           </label>
           <br/>
+          <Dropzone
+                onDrop={onIntroVideoDrop}
+                multiple={false}
+                maxSize={800000000}
+            >
+                {({ getRootProps, getInputProps }) => (
+                    <div style={{
+                        width: '300px', height: '240px', border: '1px solid lightgray',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center'
+                    }}
+                        {...getRootProps()}
+                    >
+                        <input {...getInputProps()} />
+                        <PlusOutlined tyle={{ fontSize: '3rem' }} />
+                    </div>
+                )}
+            </Dropzone>
+            <label>
+            Profile Video:
+            {introVideoName}
+          </label>
+            <Dropzone
+                onDrop={onIntroImageDrop}
+                multiple={false}
+                maxSize={800000000}
+            >
+                {({ getRootProps, getInputProps }) => (
+                    <div style={{
+                        width: '300px', height: '240px', border: '1px solid lightgray',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center'
+                    }}
+                        {...getRootProps()}
+                    >
+                        <input {...getInputProps()} />
+                        <PlusOutlined tyle={{ fontSize: '3rem' }} />
+                    </div>
+                )}
+            </Dropzone>
+            <label>
+            Profile Video Thumbnail:
+            {introImageName}
+          </label>
+          <br/>
           <label>
             Name:
             <input type="text" name="text" onChange = {(e)=>{setName(e.target.value)}}/>
           </label>
+          <br/>
+
           <label>
             SNS:
             <input placeholder="instagram" type="text" name="text" onChange = {(e)=>{setInsta( e.target.value)}}/>
             <input placeholder="facebook" type="text" name="text" onChange = {(e)=>{setFacebook( e.target.value)}}/>
             <input placeholder="youtube" type="text" name="text" onChange = {(e)=>{setYoutube( e.target.value)}}/>
           </label>
+          <br/>
+
           <label>
             Info:
             <input type="text" name="text" onChange = {(e)=>{setInfo(e.target.value)}}/>
           </label>
           <br/>
 
+          <label>
+            Team:
+            <input type="text" name="text" onChange = {(e)=>{setTeam(e.target.value)}}/>
+          </label>
+          <br/>
+
+          {/* <label>
+            Birth:
+            <input palceholer="" type="text" name="text" onChange = {(e)=>{setInfo(e.target.value)}}/>
+          </label>
+          <br/> */}
+
+          <label>
+            Height:
+            <input type="text" name="text" onChange = {(e)=>{setHeight(e.target.value)}}/>
+          </label>
+          <br/>
+          <label>
+            Weight:
+            <input type="text" name="text" onChange = {(e)=>{setWeight(e.target.value)}}/>
+          </label>
+          <br/>
+
+          <label>
+            Specialty:
+            <input type="text" name="text" onChange = {(e)=>{setSpecialty(e.target.value)}}/>
+          </label>
+          <br/>
+
+          <label>
+            Career:
+            <input type="text" name="text" onChange = {(e)=>{setCareer(e.target.value)}}/>
+          </label>
+          <br/>
+
+          <label>
+            YoutubeLink:
+            <input type="text" name="text" onChange = {(e)=>{setYoutubeLink(e.target.value)}}/>
+          </label>
+          <br/>
+
           <label>Tags:
-                <TagSearch  dbtags={dbtags}/>
+                <TagSearch  />
           </label>
           <input type="submit" value="Submit" onClick={handleSubmit}/>
         </form>

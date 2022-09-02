@@ -2,178 +2,103 @@
 	width: 917px;
 	margin: 0px auto;
 	background-color: #000;
-	ul {
-		h1 {
-			font: 30px/2 'Oswald';
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	h1 {
+		font: 25px/2 'Oswald';
+		color: #ae8854;
+	}
+	h2 {
+		margin: 5px;
+		font: 20px/1.5 'Oswald';
+		color: #ddd;
+	}
+	p {
+		margin: 5px;
+		font: 20px/1.5 'Oswald';
+		color: #fff;
+	}
+	a {
+		margin: 5px;
+		font: 20px/1.5 'Oswald';
+		color: pink;
+	}
+	.category {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-around;
+		li {
+			display: inline-block;
+			padding: 20px 20px;
+		}
+	}
+	.tags {
+		width: 100%;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-around;
+		li {
+			display: inline-block;
+			padding: 20px 20px;
+		}
+	}
+	.vid {
+		width: 25%;
+		padding: 5px;
+		text-align: center;
+		h1,
+		a {
+			font: 20px/1 'Abel';
 			color: #ae8854;
 		}
-		h2,
-		p {
-			font: 22px/1.5 'Oswald';
+		h1 {
 			color: #fff;
-			text-shadow: -0.2px 0 #000, 0 0.2px #000, 0.2px 0 #000, 0 -0.2px #000;
 		}
 
-		p {
-			font: 20px/1.5 'Oswald';
+		video {
+			width: 100%;
+			height: 400px;
+			object-fit: cover;
 		}
-
-		.swiper {
-			.swiper-button-prev,
-			.swiper-button-next {
-				color: #ae8854;
-			}
-			.swiper-slide {
-				float: left;
-				width: 25%;
-				padding: 5px;
-				video {
-					width: 100%;
-					height: 400px;
-					object-fit: cover;
-					// filter: grayscale(1);
-					// transform: scale(0.9);
-				}
-				// :hover {
-				// 	filter: grayscale(0);
-				// 	// border: 1px solid #222;
-				// 	// transform: scale(1);
-				// }
-			}
-			.cover {
-				background-color: rgba(29, 105, 153, 0.3);
+		#image {
+			position: relative;
+			.id {
 				position: absolute;
 				top: 0;
 				left: 0;
-				width: 100%;
-				height: 100%;
-				.info {
-					position: absolute;
-					bottom: 2%;
-					margin-left: 3%;
-					.box {
-						position: relative;
-						display: flex;
-						flex-wrap: wrap;
-						justify-content: space-between;
-						.profile {
-							position: relative;
-							display: flex;
-							flex-wrap: wrap;
-
-							img {
-								width: 40px;
-								height: 40px;
-								object-fit: cover;
-								border-radius: 50%;
-							}
-						}
-						.like {
-							position: relative;
-							display: flex;
-							flex-wrap: wrap;
-							margin-right: 3%;
-						}
+				.MuiChip-root {
+					height: 50px;
+					.MuiAvatar-root {
+						width: 40px;
+						height: 40px;
+					}
+					img {
+						object-fit: cover;
+					}
+					span {
+						color: #fff;
+						font-size: 16px;
 					}
 				}
 			}
+
+			.title {
+				width: 200px;
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: space-around;
+				align-items: baseline;
+				position: absolute;
+				bottom: 0;
+			}
+			.tag {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: space-between;
+				position: absolute;
+				top: 0;
+			}
 		}
 	}
-	&::after {
-		content: '';
-		display: block;
-		clear: both;
-	}
-	// .popular {
-	// 	&::after {
-	// 		content: '';
-	// 		display: block;
-	// 		clear: both;
-	// 	}
-	// 	h1 {
-	// 		font: 30px/2 'Abel';
-	// 		color: #ae8854;
-	// 	}
-	// }
-	// .play {
-	// 	&::after {
-	// 		content: '';
-	// 		display: block;
-	// 		clear: both;
-	// 	}
-	// 	h1 {
-	// 		font: 30px/2 'Abel';
-	// 		color: #ae8854;
-	// 	}
-	// 	li {
-	// 		float: left;
-	// 		width: 25%;
-	// 		padding: 5px;
-	// 		video {
-	// 			width: 100%;
-	// 			height: 400px;
-	// 			object-fit: cover;
-	// 			filter: grayscale(1);
-	// 			transform: scale(0.9);
-	// 		}
-	// 		:hover {
-	// 			filter: grayscale(0);
-	// 			transform: scale(1);
-	// 		}
-	// 	}
-	// }
-	// .sing {
-	// 	&::after {
-	// 		content: '';
-	// 		display: block;
-	// 		clear: both;
-	// 	}
-	// 	h1 {
-	// 		font: 30px/2 'Abel';
-	// 		color: #ae8854;
-	// 	}
-	// 	li {
-	// 		float: left;
-	// 		width: 25%;
-	// 		padding: 5px;
-	// 		video {
-	// 			width: 100%;
-	// 			height: 400px;
-	// 			object-fit: cover;
-	// 			filter: grayscale(1);
-	// 			transform: scale(0.9);
-	// 		}
-	// 		:hover {
-	// 			filter: grayscale(0);
-	// 			// transform: scale(1);
-	// 		}
-	// 	}
-	// }
-	// .show {
-	// 	&::after {
-	// 		content: '';
-	// 		display: block;
-	// 		clear: both;
-	// 	}
-	// 	h1 {
-	// 		font: 30px/2 'Abel';
-	// 		color: #ae8854;
-	// 	}
-	// 	li {
-	// 		float: left;
-	// 		width: 25%;
-	// 		padding: 5px;
-	// 		video {
-	// 			width: 100%;
-	// 			height: 400px;
-	// 			object-fit: cover;
-	// 			filter: grayscale(1);
-	// 			transform: scale(0.9);
-	// 		}
-	// 		:hover {
-	// 			filter: grayscale(0);
-	// 			transform: scale(1);
-	// 		}
-	// 	}
-	// }
 }
