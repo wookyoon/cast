@@ -1,6 +1,5 @@
 import {makeAutoObservable, runInAction} from "mobx";
 import ContentApi from "../api/ContentApi";
-import LoginStore from "./LoginStore";
 
 class ContentStore{
     title = "";
@@ -11,15 +10,12 @@ class ContentStore{
     url = "";
     menu="0";
     frommain=true;
+    open = false;
 
     constructor() {
         makeAutoObservable(this, {}, { autoBind: true });
     }
-
-    setVideoList(videos){
-        this.videos = videos;
-    }
-
+    
     async getVideoList(category, param){
         try{            
             const results = await ContentApi.getVideos(category, param);
@@ -30,10 +26,10 @@ class ContentStore{
             console.log(err);
         }
     }
-
-    async contentUpload(){
+    
+    async contentUpload(data){
         try {
-            const result = await ContentApi.contentUpload(localStorage.getItem('name'),this.title, this.tags, this.url);
+            const result = await ContentApi.contentUpload(data);
             console.log(result['message'])
             return result['message'];
         } catch (error) {
@@ -41,14 +37,19 @@ class ContentStore{
             runInAction(this.message = error.message);
         }
     }
-
-
+    
+    setVideoList(videos){
+        this.videos = videos;
+    }
+    
     setTitle(title){
         this.title = title;
     }
 
     addTags(newtag){
-        this.tags = [...this.tags, newtag];
+        this.tags = new Set([...this.tags, newtag]);
+        this.tags = [...this.tags.data_]
+        console.log(this.tags)
     }
 
     getTags(){
@@ -79,6 +80,11 @@ class ContentStore{
 
     setMenu(menu){
         this.menu=menu;
+    }
+
+    setModal(open){
+        this.open = open;
+        return this.open;
     }
 }
 export default new ContentStore();

@@ -7,11 +7,10 @@ class LoginStore{
     user=[];
     isLoggedIn=localStorage.getItem('isLoggedIn')? true : false;
     emailIsExist='';
-    nameExist='';
+
     constructor() {
         makeAutoObservable(this, {}, { autoBind: true });
     }
-    tags=[]
 
     async emailValidation(email){
         try {
@@ -26,17 +25,27 @@ class LoginStore{
         }
     }
 
-    async profileCreate(email, name, url,insta,facebook,youtube,info) {
-            try {
-                const result = await UserApi.profileCreate(email, name, url, insta, facebook, youtube, info, ContentStore.tags);
-                console.log(result)
-                localStorage.setItem('name',result['name']);
-                return result.message;
-            } catch (error) {
-                console.log(error)
-                runInAction(this.message = error.message);
-            }
+    async profileCreate(data) {
+        try {
+            const result = await UserApi.profileCreate(data);
+            localStorage.setItem('name',result['name']);
+            return result.message;
+        } catch (error) {
+            console.log(error)
+            runInAction(this.message = error.message);
         }
+    }
+
+    async getUser(name){
+        try{            
+            const results = await UserApi.getUser(name);
+            console.log(results);
+            runInAction(() => this.user = results);
+        }
+        catch (err){
+            console.log(err);
+        }
+    }
 
     setIsLoggedIn(bool){
         this.isLoggedIn = bool;
@@ -45,9 +54,7 @@ class LoginStore{
 
     setUser(data){
         localStorage.setItem('email', data.user.email);
-        localStorage.setItem('profilePic', data.user.profilePic);
     }
-
     
 }
 export default new LoginStore();

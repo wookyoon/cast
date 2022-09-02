@@ -1,19 +1,9 @@
 import { NavLink } from 'react-router-dom';
 import loginStore from '../../store/LoginStore';
 import { useNavigate } from 'react-router-dom';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMicrophoneLines } from '@fortawesome/free-solid-svg-icons';
-import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
-import { faUserTie } from '@fortawesome/free-solid-svg-icons';
-import { faUserAstronaut } from '@fortawesome/free-solid-svg-icons';
-import { faMasksTheater } from '@fortawesome/free-solid-svg-icons';
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 function Header(props) {
 	const active = { color: '#d5a869' };
-
 	const navigate = useNavigate();
 
 	const logout = () => {
@@ -50,7 +40,7 @@ function Header(props) {
 							</NavLink>
 						</li> */}
 						<li id='movie'>
-							<NavLink activestyle={active} to='/feedback'>
+							<NavLink activestyle={active} to='/casting'>
 								{/* <FontAwesomeIcon icon={faUserTie} /> */}
 								<h1>작품</h1>
 							</NavLink>

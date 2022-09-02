@@ -7,27 +7,35 @@ const getVideos = asyncHandler(async (req, res) => {
     var queryData = url.parse(_url, true).query;
     const category = queryData.category;
     const param = queryData.param;
-    
     var videos = []
-    if(category == "main"){
-        const tags = param.split(",");
-        for (var tag of tags){
-            if(tag=="popular"){
-                // sort : ascending =1 / descending=-1
-                video = await Video.find().sort({"hit":-1}).limit(12).lean();
-            }else{
-                video = await Video.find({tag: { $in: tag }}).lean();
-            }
-            videos.push({'tag':tag, "videos":video})
-        }
+    console.log(category)
+    console.log(param)
+    
+    if(category == "전체"){
+        videos = await Video.find().lean();
     }else if(category == "tag"){
-        videos = await Video.find({tag: { $in: param }}).limit(12).lean();
+        if(param=="Popular"){
+            videos = await Video.find().sort({"hit":-1}).lean();
+        }else{
+            // console.log(param)
+            const tags = param.split(",");
+            videos = await Video.find({tag: { $all: tags }}).lean();
+       }
+    }else if(category == "category"){
+        if(param == "전체보기"){
+            videos = await Video.find().lean();
+        }else{
+            videos = await Video.find({"category": param }).lean()
+        }
     }else if(category == "title"){
         var re = new RegExp(param,"gi");
-        videos = await Video.find({"title": re }).limit(12).lean()
-    }else{
+        videos = await Video.find({"title": re }).lean()
+    }else if(category == "name"){
         var re = new RegExp(param,"gi");
-        videos = await Video.find({"name": re }).limit(12).lean()
+        videos = await Video.find({"name": re }).lean()
+    }else if(category == "mypage"){
+        videos = await Video.find({"name": param, "title": { $ne: 'intro' } }).lean()
+        console.log(videos)
     }
 
     if(videos){
@@ -39,16 +47,24 @@ const getVideos = asyncHandler(async (req, res) => {
 })
 
 const addVideo = asyncHandler(async (req, res) => {
-    const {name, title, url} = req.body
-    const tag = req.body.tag.split(',')
+    console.log(req.body)
+    const {name, title} = req.body
+    // const tag = req.body.tag.split(',')
 
-    const duplicate = await Video.findOne({title: req.body.title}).lean().exec()
+    const duplicate = await Video.findOne({name: name, title: title}).lean()
     if(duplicate){
+        console.log(duplicate)
         return res.json({message: 'Dupicate Title'});
     }
 
-    const videoObject = {"tag":tag,name,title,url,"hit":0,"like":0,"bookmark":0,"created":new Date(),"commentsOpen":true}
-    const video = await Video.create(videoObject);
+    const max = await Video.find({name: name}).count().lean()
+    console.log(max)
+    if(max==4){
+        return res.json({message: 'max'});
+    }
+
+    // const videoObject = {"tag":tag,name,title,url,"hit":0,"like":0,"bookmark":0,"created":new Date(),"commentsOpen":true}
+    const video = await Video.create(req.body);
     if(video){
         console.log(video)
         return res.status(201).json({message: 'Success'})

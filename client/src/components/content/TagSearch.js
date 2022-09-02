@@ -3,8 +3,9 @@ import ContentStore from '../../store/ContentStore';
 import TagApi from '../../api/TagApi';
 import { useNavigate  } from 'react-router-dom';
 import SearchList from '../main/VideoSearchList';
+import dbtags from '../../utils/tags';
 
-function TagSearch({ dbtags, search}) {
+function TagSearch({search}) {
     const [hasText, setHasText] = useState(false);
     const [inputValue, setInputValue] = useState('');
     const [tags, setTags] = useState([]);
@@ -27,36 +28,14 @@ function TagSearch({ dbtags, search}) {
             return true;
         }
     }
-    
-    const addTag = async  (e) => {
-        if (checkLimit()){
-            const result = await TagApi.addTag(inputValue);
-            console.log(result);
-            setTags([...tags, inputValue]);
-            console.log(tags);
-            ContentStore.addTags(inputValue);
-            setLimit(limit+1);
-        }
-    }
 
     const handleDropDownClick = (clickedOption) => {
-        if(searchtype===1){
-            if(ContentStore.frommain){
-                navigate('/search?tag='+dbtags[clickedOption],);
-                ContentStore.frommain=false
-            }else{
-                ContentStore.getVideoList("tag",dbtags[clickedOption]).then(()=>{
-                    navigate('/search?tag='+dbtags[clickedOption], SearchList);
-                }) 
-            }
-            
-        }else{
             if (checkLimit()){
                 setTags([...tags, dbtags[clickedOption]]);
                 ContentStore.addTags(dbtags[clickedOption]);
                 setLimit(limit+1);
+                setInputValue(""); setHasText(!hasText)
             }
-        }
     };
 
    const DropDown = ({ options, handleComboBox, onClick }) => {
@@ -72,7 +51,7 @@ function TagSearch({ dbtags, search}) {
     return (
         <div>
             <input onChange= {(e)=>{setInputValue(e.target.value); setHasText(!hasText)}}/>
-            <input type="button" value="add" onClick={(e)=>{addTag(e)}}/>
+            {/* <input type="button" value="add" onClick={(e)=>{addTag(e)}}/> */}
             {tags.map( (x,i)=> 
             <div  key={i}>
                 {x}

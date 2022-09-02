@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -15,23 +16,12 @@ import { observer } from 'mobx-react';
 const path = process.env.PUBLIC_URL;
 
 function VideoSearchList() {
+
 	let [modal, setModal] = useState(false);
 	const [isLoading, setLoading] = useState(true);
 	const [videos, setVideos] = useState([]);
 	const type = window.location.search.split('=')[0];
 	const target = decodeURIComponent(window.location.search.split('=')[1]);
-
-	// window.onload = function() {
-	//     console.log("@@@@@")
-	//     console.log(type, target)
-	//     if(type==="?tag"){
-	//         ContentStore.getVideoList("tag",target).then((results)=>{
-	//             setVideos(results)
-	//         })
-	//     }else if(type==="?title"){
-	//         ContentStore.getVideoList("title",target)
-	//     }
-	// };
 
 	useEffect(() => {
 		console.log('2');
@@ -44,12 +34,8 @@ function VideoSearchList() {
 				setLoading(false);
 			});
 		}
-		console.log('!', ContentStore.videos);
 	}, []);
 
-	// if(isLoading){
-	//     return <div>Loading...</div>
-	// }else{
 	return isLoading ? (
 		<p>Loading</p>
 	) : (
@@ -74,7 +60,6 @@ function VideoSearchList() {
 			</section>
 		</>
 	);
-	//    }
 }
 
 export default observer(VideoSearchList);

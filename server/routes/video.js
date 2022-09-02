@@ -5,7 +5,6 @@ const videoController = require('../controllers/videoController')
 router.route('/')
     .get(videoController.getVideos)
     .post(videoController.addVideo)
-    .patch()
     .delete(videoController.deleteVideo)
 
 // db.videotags.aggregate([  {

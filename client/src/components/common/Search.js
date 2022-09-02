@@ -1,26 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ContentStore from '../../store/ContentStore';
 import TagSearch from '../content/TagSearch';
-import TagApi from '../../api/TagApi';
 import { useNavigate } from 'react-router-dom';
 import SearchList from '../main/VideoSearchList';
 import { observer } from 'mobx-react';
+import dbtags from '../../utils/tags';
 
 function Search() {
 	const [menu, setMenu] = useState();
 	const [inputText, setinputText] = useState();
-	const [dbtags, setDBTags] = useState();
 	const navigate = useNavigate();
-
-	useEffect(() => {
-		TagApi.getTags().then(function (result) {
-			setDBTags(result.tags);
-		});
-	}, []);
 
 	const handleSearch = () => {
 		if (menu === '2') {
@@ -41,7 +31,6 @@ function Search() {
 
 	const handleEnter = (e) => {
 		if (e.key === 'Enter') {
-			console.log('enter');
 			if (menu === '2') {
 				if (ContentStore.frommain) {
 					navigate('/search?title=' + inputText);
@@ -75,7 +64,7 @@ function Search() {
 					onSubmit={(e) => handleSubmit(e)}
 					onKeyPress={(e) => handleEnter(e)}>
 					{menu === '1' ? (
-						<TagSearch type={'video'} dbtags={dbtags} search={1} />
+						<TagSearch dbtags={dbtags} search={1} />
 					) : (
 						<Form.Control
 							type='search'

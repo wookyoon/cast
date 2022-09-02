@@ -1,4 +1,3 @@
-
 import axios from 'axios';
 
 class UserApi{
@@ -9,24 +8,15 @@ class UserApi{
             .then((response) => response.data);
     }
     
-    profileCreate(email,name,url, insta, facebook, youtube, info,tags) {
-        return axios.post(this.URL , {email:`${email}`,name:`${name}`,tag:`${tags}`,insta:`${insta}`,facebook:`${facebook}`,youtube:`${youtube}`,imgUrl:`${url}`,info:`${info}`})
+    profileCreate(data) {
+        return axios.post(this.URL , data)
             .then((response) => response.data);
     }
 
-    // profileRead(email) {
-    //     return axios.post(this.URL + `/read`, {email:`${email}`})
-    //         .then((response) => response.data);
-    // }
+    getUser(name) {
+        return axios.get(this.URL+"/?name="+name)
+        .then((response) => response.data);
+    }
 
-    // profileUpdate(email,name,text) {
-    //     return axios.post(this.URL + `/udpate` , {email:`${email}`,name:`${name}`,text:`${text}`})
-    //         .then((response) => response.data);
-    // }
-
-    // profileDelete(email) {
-    //     return axios.post(this.URL + `/delete` , {email:`${email}`})
-    //         .then((response) => response.data);
-    // }
 }
 export default new UserApi();

@@ -1,6 +1,9 @@
 import React, { useRef, useState } from 'react';
 import { Button, Modal, Comment, Form, Header } from 'semantic-ui-react';
 import HoverVideoPlayer from 'react-hover-video-player';
+import ContentStore from '../../store/ContentStore';
+import { observer } from 'mobx-react';
+
 const path = process.env.PUBLIC_URL;
 
 function VidModal() {
@@ -8,15 +11,15 @@ function VidModal() {
 	const [open, setOpen] = React.useState(false);
 	return (
 		<Modal
-			onClose={() => setOpen(false)}
-			onOpen={() => setOpen(true)}
-			open={open}
+			onClose={() => ContentStore.setModal(false)}
+			onOpen={() => ContentStore.setModal(true)}
+			open={ContentStore.open}
 			trigger={<Button>Show Modal</Button>}>
-			<Modal.Header>자기소개 제목</Modal.Header>
+			<Modal.Header>{ContentStore.video.title}</Modal.Header>
 			<div className='content'>
 				<div className='vid'>
 					<HoverVideoPlayer
-						videoSrc={`${path}/vid/vid0.mp4`}
+						videoSrc={ContentStore.video.videoUrl}
 						controls
 						restartOnPaused // The video should restart when it is paused
 						muted={false}
@@ -27,7 +30,9 @@ function VidModal() {
 				</div>
 				<div className='description'>
 					<Modal.Description>
-						<p>남자 20대 학생 여린</p>
+					{ContentStore.video.tag.map((tag, i)=>(
+                    <p key={i} >#{tag}</p>
+                ))} 
 					</Modal.Description>
 				</div>
 				<div className='comment'>
@@ -124,4 +129,4 @@ function VidModal() {
 	);
 }
 
-export default VidModal;
+export default observer(VidModal);
