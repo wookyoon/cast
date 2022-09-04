@@ -64,8 +64,7 @@ const Profile = ({ logout }) => {
     });
 
     if(nameTest()){
-      
-      const data = {
+      const profileData = {
         name : name,
         email : localStorage.getItem('email'),
         tag : ContentStore.tags,
@@ -81,13 +80,56 @@ const Profile = ({ logout }) => {
         youtube : youtubeLink,
         specialty : specialty,
         career : career,
-        info : info,
-        videoUrl:"https://mern-feedback.s3.ap-northeast-2.amazonaws.com/"+name+"/videos/intro.mp4",
-        imageUrl:"https://mern-feedback.s3.ap-northeast-2.amazonaws.com/"+name+"/images/intro.jpeg",
+        info : info
     }
-    console.log(data)
+    let now = new Date();  
+    let y = now.getFullYear();
+    let m = now.getMonth() + 1;
+    let d =now.getDate();
+
+    const created = y.toString()+"."+m.toString()+"."+d.toString()
+
+
+    const videoData = {
+      tag : ContentStore.tags,
+      name : localStorage.getItem('name'),
+      title : 'intro',
+      videoUrl:"https://mern-feedback.s3.ap-northeast-2.amazonaws.com/"+localStorage.getItem('name')+"/videos/intro.mp4",
+      imageUrl:"https://mern-feedback.s3.ap-northeast-2.amazonaws.com/"+localStorage.getItem('name')+"/images/intro.jpeg",
+      category : '자기소개',
+      created : created,
+      videoShare : '0'
+  }
+    console.log(videoData)
     // video create 추가
-      LoginStore.profileCreate(data).then((result)=>{
+    ContentStore.contentUpload(videoData)
+      .then((result)=>{
+          console.log("*",result)
+          if (result === 'Success'){
+              const videoUpload = new AWS.S3.ManagedUpload({
+                  params: {
+                      Bucket: 'mern-feedback', 
+                      Key:  localStorage.getItem('name') +"/videos/intro.mp4", 
+                      Body: introVideo, 
+                      ACL: "public-read",
+                      ContentType:'video/mp4'
+                  }
+              });
+
+              const imageUpload = new AWS.S3.ManagedUpload({
+                  params: {
+                      Bucket: 'mern-feedback', 
+                      Key:  localStorage.getItem('name') + "/images/intro.jpeg", 
+                      Body: introImage, 
+                      ACL: "public-read",
+                      ContentType:'image/jpeg'
+                  }
+              });
+              videoUpload.promise();
+              imageUpload.promise();
+            }
+          })
+      LoginStore.profileCreate(profileData).then((result)=>{
         if(result === "exist"){
           return alert( '중복된 이름입니다.');
         }else{

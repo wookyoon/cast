@@ -1,4 +1,5 @@
 const Video = require('../models/Video')
+const Profile = require('../models/Profile')
 const asyncHandler = require('express-async-handler')
 var url = require('url');
 
@@ -14,13 +15,8 @@ const getVideos = asyncHandler(async (req, res) => {
     if(category == "전체"){
         videos = await Video.find().lean();
     }else if(category == "tag"){
-        if(param=="Popular"){
-            videos = await Video.find().sort({"hit":-1}).lean();
-        }else{
-            // console.log(param)
             const tags = param.split(",");
             videos = await Video.find({tag: { $all: tags }}).lean();
-       }
     }else if(category == "category"){
         if(param == "전체보기"){
             videos = await Video.find().lean();
@@ -36,6 +32,18 @@ const getVideos = asyncHandler(async (req, res) => {
     }else if(category == "mypage"){
         videos = await Video.find({"name": param, "title": { $ne: 'intro' } }).lean()
         console.log(videos)
+    }else if(category == "sort"){
+        if(param == "New"){
+            videos = await Video.find().sort({"created":-1}).lean();
+        }else if(param == "Old"){
+            videos = await Video.find().sort({"created":1}).lean();
+        }if(param == "Hit"){
+            videos = await Video.find().sort({"hit":-1}).lean();
+        }if(param == "Like"){
+            videos = await Video.find().sort({"like":-1}).lean();
+        }
+        console.log(videos)
+        
     }
 
     if(videos){
@@ -76,8 +84,29 @@ const deleteVideo = asyncHandler(async (req, res) => {
     pass
 })
 
+const updateVideo = asyncHandler(async (req, res) => {
+    const {category, name, id, param} = req.body
+    let user = [];
+    let video = [];
+    if(category == "hit"){
+        const video = await Video.findByIdAndUpdate(id, { $inc: { "hit" : 1 } }).lean();
+    }else if(category == "like"){
+        if(param == "like"){
+            user = await Profile.findOneAndUpdate({"name": name}, { $addToSet: { "likeVideo" : id } }).lean().exec()
+            video = await Video.findByIdAndUpdate(id, 
+                { $addToSet: { "likeUser" : name}, $inc: { "like" : 1  }}).lean().exec()
+        }else{
+            user = await Profile.findOneAndUpdate({"name": name}, { $pull: { "likeVideo" : id } }).lean().exec()
+            video = await Video.findByIdAndUpdate(id, 
+                { $pull: { "likeUser" : name}, $inc: { "like" : -1  }}).lean().exec()
+        }
+    }
+    return res.status(201).json({message: 'Success'})
+})
+
 module.exports = {
     getVideos,
     addVideo,
+    updateVideo,
     deleteVideo
 }

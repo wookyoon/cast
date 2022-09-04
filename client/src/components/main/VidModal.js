@@ -8,7 +8,7 @@ const path = process.env.PUBLIC_URL;
 
 function VidModal() {
 	let [modal, setModal] = useState(false);
-	const [open, setOpen] = React.useState(false);
+	const [iscide, setOpen] = React.useState(false);
 	return (
 		<Modal
 			onClose={() => ContentStore.setModal(false)}
@@ -30,6 +30,7 @@ function VidModal() {
 				</div>
 				<div className='description'>
 					<Modal.Description>
+                    {/* <p >{ContentStore.video.tag}</p> */}
 					{ContentStore.video.tag.map((tag, i)=>(
                     <p key={i} >#{tag}</p>
                 ))} 

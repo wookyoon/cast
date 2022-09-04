@@ -1,9 +1,11 @@
 import React, {useState} from 'react';
 import HoverVideoPlayer from 'react-hover-video-player';
 import { Button } from 'semantic-ui-react';
+import ContentStore from '../../store/ContentStore';
 
 function VideoPostCard({video}) {
-    let [modal, setModal] = useState(false);
+	const [like, setLike] = useState(video.likeUser?.includes(localStorage.getItem("name")))
+	const [likeNum, setLikeNum] = useState(video.like);
 
     return (
         <div className='vid'>
@@ -12,9 +14,12 @@ function VideoPostCard({video}) {
 					<h1>{video.title}</h1>
 				</div>
 				{video.tag.map((tag, i)=>(
-                    <p key={i} >#{tag}</p>
+                    <p style={{
+						color:"white"
+					}} key={i} >#{tag}</p>
                 ))} 
 				<HoverVideoPlayer
+				onClick={(e) => {ContentStore.setVideo(video); ContentStore.setModal(true)}}
 					videoSrc={video.videoUrl}
 					restartOnPaused // The video should restart when it is paused
 					muted={false}
@@ -30,10 +35,9 @@ function VideoPostCard({video}) {
 							}}
 						/>
 					}
-					onClick={() => {
-						setModal(!modal);
-					}}></HoverVideoPlayer>
-				<Button
+					></HoverVideoPlayer>
+				{ like ? 
+					<Button
 					color='red'
 					content='Like'
 					icon='heart'
@@ -41,9 +45,23 @@ function VideoPostCard({video}) {
 						basic: true,
 						color: 'red',
 						pointing: 'left',
-						content: '2,048',
+						content: likeNum
 					}}
-				/>
+					onClick={(e) => {ContentStore.setLike(video._id, "dislike"); setLike(!like); setLikeNum(likeNum-1)}}
+				/> :
+				<Button
+					color='red'
+					content='Like'
+					icon='heart outline'
+					label={{
+						basic: true,
+						color: 'red',
+						pointing: 'left',
+						content: likeNum
+					}}
+					onClick={(e) => {ContentStore.setLike(video._id, "like"); setLike(!like); setLikeNum(likeNum+1)}}
+				/> 
+				}
 			</div>
     );
 }

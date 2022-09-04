@@ -14,6 +14,7 @@ class ContentStore{
 
     constructor() {
         makeAutoObservable(this, {}, { autoBind: true });
+        this.video.tag=[];
     }
     
     async getVideoList(category, param){
@@ -73,9 +74,40 @@ class ContentStore{
         this.username = user;
     }
 
-    setVideo(video){
+    async setVideo(video){
         this.video=video;
         console.log("current video", this.video);
+        const data = {
+            category : "hit",
+            id : video._id
+        }
+        try {
+            const result = await ContentApi.updateVideo(data);
+            console.log(result['message'])
+            // return result['message'];
+        } catch (error) {
+            console.log(error)
+            runInAction(this.message = error.message);
+        }
+    }
+
+    async setLike(id, param){
+        console.log("current video", id);
+        const data = {
+            category : "like",
+            id : id,
+            name: localStorage.getItem("name"),
+            param:param
+        }
+        try {
+            const result = await ContentApi.updateVideo(data);
+            console.log(result['message'])
+            // return result['message'];
+        } catch (error) {
+            console.log(error)
+            runInAction(this.message = error.message);
+        }
+
     }
 
     setMenu(menu){

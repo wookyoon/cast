@@ -1,6 +1,8 @@
-const videodSort = [
-    '최신순',
-    '인기순'
+const videoSort = [
+    'New',
+    'Old',
+    'Hit',
+    'Like'
 ]
 
 export default videoSort;

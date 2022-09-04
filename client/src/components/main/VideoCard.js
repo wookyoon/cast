@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useEffect, useState} from 'react';
 import HoverVideoPlayer from 'react-hover-video-player';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
@@ -10,16 +10,16 @@ import Chip from '@mui/material/Chip';
 const path = process.env.PUBLIC_URL;
 
 function VideoCard({video}) {
-	const [currentVideo, setCurrentVideo] = useState();
+	const [like, setLike] = useState(video.likeUser?.includes(localStorage.getItem("name")))
+	const [likeNum, setLikeNum] = useState(video.like)
 
-	const handleModal = () =>{
-		setCurrentVideo(video);
-		ContentStore.setModal(true);
-		ContentStore.setVideo(video);
-	}
+	useEffect(() => {
+	}, []);
+
     return (
-		<div className='vid' onClick={(e) => {ContentStore.setVideo(video); ContentStore.setModal(true)}}>
+		<div className='vid' >
 				<HoverVideoPlayer
+				onClick={(e) => {ContentStore.setVideo(video); ContentStore.setModal(true)}}
 					videoSrc={video.videoUrl}
 					restartOnPaused // The video should restart when it is paused
 					muted={false}
@@ -53,13 +53,11 @@ function VideoCard({video}) {
 							</div>
 						</div>
 					}
-					// onClick={() => {
-					// 	setModal(!modal);
-					// }}
 					>
-						
 					</HoverVideoPlayer>
-				<Button
+
+					{ like ? 
+					<Button
 					color='red'
 					content='Like'
 					icon='heart'
@@ -67,9 +65,23 @@ function VideoCard({video}) {
 						basic: true,
 						color: 'red',
 						pointing: 'left',
-						content: video.like,
+						content: likeNum
 					}}
-				/>
+					onClick={(e) => {ContentStore.setLike(video._id, "dislike"); setLike(!like); setLikeNum(likeNum-1)}}
+				/> :
+				<Button
+					color='red'
+					content='Like'
+					icon='heart outline'
+					label={{
+						basic: true,
+						color: 'red',
+						pointing: 'left',
+						content: likeNum
+					}}
+					onClick={(e) => {ContentStore.setLike(video._id, "like"); setLike(!like); setLikeNum(likeNum+1)}}
+				/> 
+				}
 			</div>
     );
 }

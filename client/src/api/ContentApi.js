@@ -13,5 +13,10 @@ class ContentApi{
         .then((response) => response.data);
     }
 
+    updateVideo(data) {
+        return axios.patch(this.URL, data )
+            .then((response) => response.data);
+    }
+
 }
 export default new ContentApi();

@@ -26,7 +26,8 @@ const videoSchema = new Schema({
     }],
     videoShare:{
         type:Number, // public:0, follower:1, private:2
-    }
+    },
+    likeUser:[String],
 });
 
 module.exports = mongoose.model('Video',videoSchema);

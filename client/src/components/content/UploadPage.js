@@ -92,7 +92,6 @@ function UploadPage() {
             
             ContentStore.contentUpload(data)
             .then((result)=>{
-
                 console.log("*",result)
                 if (result === 'Success'){
                     const videoUpload = new AWS.S3.ManagedUpload({

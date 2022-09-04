@@ -12,6 +12,7 @@ import { observer } from 'mobx-react';
 import { useNavigate } from 'react-router-dom';
 import recommendedTags from '../../utils/videoRecommendedTags';
 import categorys from '../../utils/videoCategory';
+import sorting from '../../utils/videoSort';
 const path = process.env.PUBLIC_URL;
 
 function VideoList() {
@@ -38,6 +39,12 @@ function VideoList() {
 
     const handleOnClickCategory = (category) => {
         ContentStore.getVideoList("category", category).then(()=>{
+        setVideoList(ContentStore.videos);
+        })
+    }
+
+	const handleOnClickSort = (sort) => {
+        ContentStore.getVideoList("sort", sort).then(()=>{
         setVideoList(ContentStore.videos);
         })
     }
@@ -122,6 +129,20 @@ function VideoList() {
 					</li>
 				</ul>
 			</div>
+			<div className='category'>
+				<ul>
+					<li>
+					<div style={{ display: 'flex', flexDirection: 'row' }}>
+                        {sorting.map((sort, i)=>(
+                            <div key={i}>
+                            <h1 key={i} onClick={()=>handleOnClickSort(sort)}> {sort}</h1>
+                            &nbsp; &nbsp; &nbsp;
+							</div>
+                        ))}
+                    </div>
+					</li>
+				</ul>
+			</div>
 			<div className='tags'>
 				<ul>
 					<li>
@@ -137,7 +158,7 @@ function VideoList() {
 				</ul>
 			</div>
 			{videoList.map((video, idx) => ( 
-                <VideoCard video = {video} key = {idx} />
+				<VideoCard video = {video} key = {idx} />
             ))}
 		</section>
 		<VideoModal />
