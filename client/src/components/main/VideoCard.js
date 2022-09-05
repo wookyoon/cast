@@ -32,6 +32,8 @@ function VideoCard({ video }) {
 			</div>{' '}
 			{ like ? 
 					<Button
+					id='btn'
+					size='mini'
 					color='red'
 					content='Like'
 					icon='heart'
@@ -44,6 +46,8 @@ function VideoCard({ video }) {
 					onClick={(e) => {ContentStore.setLike(video._id, "dislike"); setLike(!like); setLikeNum(likeNum-1)}}
 				/> :
 				<Button
+					id='btn'
+					size='mini'
 					color='red'
 					content='Like'
 					icon='heart outline'
