@@ -13,33 +13,32 @@ import { useNavigate } from 'react-router-dom';
 import recommendedTags from '../../utils/videoRecommendedTags';
 import categorys from '../../utils/videoCategory';
 import sorting from '../../utils/videoSort';
-const path = process.env.PUBLIC_URL;
 
 function VideoList() {
 	let [modal, setModal] = useState(false);
 	const [isLoading, setLoading] = useState(true);
 	const [menu, setMenu] = useState('1');
-    const [videoList, setVideoList] = useState();
+	const [videoList, setVideoList] = useState();
 	const [inputText, setinputText] = useState();
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		ContentStore.getVideoList('전체').then(()=>{
-            setLoading(false);
-            setVideoList(ContentStore.videos)
-        })
+		ContentStore.getVideoList('전체').then(() => {
+			setLoading(false);
+			setVideoList(ContentStore.videos);
+		});
 		console.log(ContentStore.videos);
 	}, []);
 
 	const handleOnClickTag = (tag) => {
-        ContentStore.getVideoList("tag", tag).then(()=>{
-            setVideoList(ContentStore.videos);
-        })
-    }
+		ContentStore.getVideoList('tag', tag).then(() => {
+			setVideoList(ContentStore.videos);
+		});
+	};
 
     const handleOnClickCategory = (category) => {
         ContentStore.getVideoList("category", category).then(()=>{
-        setVideoList(ContentStore.videos);
+        	setVideoList(ContentStore.videos);
         })
     }
 
@@ -48,16 +47,12 @@ function VideoList() {
         setVideoList(ContentStore.videos);
         })
     }
-	
-	// const searchByTag = (tag) => {
-	// 	navigate('/search?tag=' + tag);
-	// };
 
 	const handleSearch = () => {
 		if (menu === '2') {
-			ContentStore.getVideoList("title", inputText).then(()=>{
+			ContentStore.getVideoList('title', inputText).then(() => {
 				setVideoList(ContentStore.videos);
-			})
+			});
 		}
 	};
 
@@ -68,25 +63,26 @@ function VideoList() {
 	const handleEnter = (e) => {
 		if (e.key === 'Enter') {
 			if (menu === '1') {
-				ContentStore.getVideoList("tag", ContentStore.tags).then(()=>{
+				ContentStore.getVideoList('tag', ContentStore.tags).then(() => {
 					setVideoList(ContentStore.videos);
-				})
-			}else if (menu === '2') {
-				ContentStore.getVideoList("title", inputText).then(()=>{
+				});
+			} else if (menu === '2') {
+				ContentStore.getVideoList('title', inputText).then(() => {
 					setVideoList(ContentStore.videos);
-				})
-			}else if (menu === '3') {
-				ContentStore.getVideoList("name", inputText).then(()=>{
+				});
+			} else if (menu === '3') {
+				ContentStore.getVideoList('name', inputText).then(() => {
 					setVideoList(ContentStore.videos);
-				})
+				});
 			}
 		}
 	};
 
-	return (
-		isLoading ? <p>Loading</p> :
-        <>
-		<div className='search'>
+	return ( isLoading ? 
+		<p>Loading</p>
+		 : 
+		<>
+			<div className='search'>
 				<Form.Select
 					className='category'
 					aria-label='Default select example'
@@ -102,7 +98,7 @@ function VideoList() {
 					onSubmit={(e) => handleSubmit(e)}
 					onKeyPress={(e) => handleEnter(e)}>
 					{menu === '1' ? (
-						<TagSearch  />
+						<TagSearch />
 					) : (
 						<Form.Control
 							type='search'
@@ -114,21 +110,25 @@ function VideoList() {
 					)}
 				</Form>
 			</div>
-		<section id='video'>
-			<div className='category'>
-				<ul>
-					<li>
-					<div style={{ display: 'flex', flexDirection: 'row' }}>
-                        {categorys.map((category, i)=>(
-                            <div key={i}>
-                            <h1 key={i} onClick={()=>handleOnClickCategory(category)}> {category}</h1>
-                            &nbsp; &nbsp; &nbsp;
+			<section id='video'>
+				<div className='category'>
+					<ul>
+						<li>
+							<div style={{ display: 'flex', flexDirection: 'row' }}>
+								{categorys.map((category, i) => (
+									<div key={i}>
+										<h1 key={i} onClick={() => handleOnClickCategory(category)}>
+											{' '}
+											{category}
+										</h1>
+										&nbsp; &nbsp; &nbsp;
+									</div>
+								))}
+							))}
 							</div>
-                        ))}
-                    </div>
-					</li>
-				</ul>
-			</div>
+						</li>
+					</ul>
+				</div>
 			<div className='category'>
 				<ul>
 					<li>
@@ -162,7 +162,7 @@ function VideoList() {
             ))}
 		</section>
 		<VideoModal />
-		</>
+	</>
 	);
 }
 

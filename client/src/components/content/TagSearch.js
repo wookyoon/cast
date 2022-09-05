@@ -58,7 +58,7 @@ function TagSearch({search}) {
                 <div  onClick={(e)=>{setTags(tags.filter((tag) => tag !== x));setLimit(limit-1);ContentStore.removeTags(x)}}>&times;</div>
             </div>
             )}
-        <div style={{color:'red'}} onClick={(e)=>{setTags([]); ContentStore.resetTags();setLimit(0);}}>&times;</div>
+        <div style={{color:'red'}} onClick={(e)=>{setTags([]); ContentStore.resetTags(); setLimit(0);}}>&times;</div>
       {inputValue?<DropDown  options={dbtags} handleComboBox={inputValue} onClick={(e)=>handleDropDownClick(e)}/>:null}
         </div>
     );

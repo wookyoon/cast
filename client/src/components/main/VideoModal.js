@@ -1,10 +1,8 @@
-import React, { useRef, useState } from 'react';
+import React from 'react';
 import { Button, Modal, Comment, Form, Header } from 'semantic-ui-react';
 import HoverVideoPlayer from 'react-hover-video-player';
 import ContentStore from '../../store/ContentStore';
 import { observer } from 'mobx-react';
-
-const path = process.env.PUBLIC_URL;
 
 function VideoModal() {
 	return (
@@ -26,10 +24,9 @@ function VideoModal() {
 				</div>
 				<div className='description'>
 					<Modal.Description>
-                    {/* <p >{ContentStore.video.tag}</p> */}
-					{ContentStore.video.tag.map((tag, i)=>(
-                    <p key={i} >#{tag}</p>
-                ))} 
+						{ContentStore.video.tag.map((tag, i) => (
+							<p key={i}>#{tag}</p>
+						))}
 					</Modal.Description>
 				</div>
 				<div className='comment'>

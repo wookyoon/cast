@@ -12,11 +12,21 @@ function Intro() {
     let [modal, setModal] = useState(false);
     const [isLoading, setLoading] = useState(true);
     const [intro, setIntro] = useState();
+    const [video, setVideo] = useState();
+	const [like, setLike] = useState()
+	const [likeNum, setLikeNum] = useState();
+	const [name, setName] = useState(localStorage.getItem('name'));
 
     useEffect(() => {
-        LoginStore.getUser( localStorage.getItem('name')).then(()=>{
-            setLoading(false);
+        LoginStore.getUser(name).then(()=>{
+            // setLoading(false);
             setIntro(LoginStore.user)
+        })
+		ContentStore.getIntroVideo("intro", name).then(()=>{
+			setVideo(ContentStore.introVideo[0])
+			setLike(ContentStore.introVideo[0].likeUser?.includes(localStorage.getItem("name")))
+			setLikeNum(ContentStore.introVideo[0].like)
+            setLoading(false);
         })
     },[]);
 
@@ -26,12 +36,12 @@ function Intro() {
         <section id='intro'>
 			<div className='vid'>
 				<HoverVideoPlayer
-					videoSrc={intro.videoUrl}
+					videoSrc={video.videoUrl}
 					restartOnPaused // The video should restart when it is paused
 					muted={false}
 					pausedOverlay={
 						<img
-							src={intro.imageUrl}
+							src={video.imageUrl}
 							alt=''
 							style={{
 								// Make the image expand to cover the video's dimensions
@@ -42,17 +52,32 @@ function Intro() {
 						/>
 					}
 					></HoverVideoPlayer>
-				<Button
+				{ like ? 
+					<Button
 					color='red'
-					Profile='Like'
+					content='Like'
 					icon='heart'
 					label={{
 						basic: true,
 						color: 'red',
 						pointing: 'left',
-						content: intro.like,
+						content: likeNum
 					}}
-				/>
+					onClick={(e) => {ContentStore.setLike(video._id, "dislike"); setLike(!like); setLikeNum(likeNum-1)}}
+				/> :
+				<Button
+					color='red'
+					content='Like'
+					icon='heart outline'
+					label={{
+						basic: true,
+						color: 'red',
+						pointing: 'left',
+						content: likeNum
+					}}
+					onClick={(e) => {ContentStore.setLike(video._id, "like"); setLike(!like); setLikeNum(likeNum+1)}}
+				/> 
+				}
 			</div>
 			<div className='info'>
 				<h1>이름</h1> <p>{intro.name}</p>

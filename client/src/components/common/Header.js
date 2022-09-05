@@ -45,6 +45,12 @@ function Header(props) {
 								<h1>작품</h1>
 							</NavLink>
 						</li>
+						<li id='loca'>
+							<NavLink activestyle={active} to='/location'>
+								{/* <FontAwesomeIcon icon={faUserTie} /> */}
+								<h1>공간</h1>
+							</NavLink>
+						</li>
 						<li id='profile'>
 							<NavLink activestyle={active} to='/mypage'>
 								{/* <FontAwesomeIcon icon={faUserAstronaut} /> */}

@@ -31,7 +31,6 @@ const getCasting = asyncHandler(async (req, res) => {
         console.log(user)
         castings = await Casting.find({_id : user[0].applyCasting }).lean();
         console.log(castings)
-
     }
 
     if(castings){

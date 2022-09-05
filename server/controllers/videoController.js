@@ -29,8 +29,12 @@ const getVideos = asyncHandler(async (req, res) => {
     }else if(category == "name"){
         var re = new RegExp(param,"gi");
         videos = await Video.find({"name": re }).lean()
+    }else if(category=="intro"){
+        videos = await Video.find({"name": param, "title": "intro"}).lean();
+        console.log("**************")
+        console.log("*", videos)
     }else if(category == "mypage"){
-        videos = await Video.find({"name": param, "title": { $ne: 'intro' } }).lean()
+        videos = await Video.find({"name": param, "title": { $ne: 'intro' } }).lean();
     }else if(category == "sort"){
         if(param == "New"){
             videos = await Video.find().sort({"created":-1}).lean();
