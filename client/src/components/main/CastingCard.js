@@ -1,8 +1,9 @@
 import React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Chip from '@mui/material/Chip';
+import CastingStore from '../../store/CastingStore';
 
-function CastingCard({casting}) {
+function CastingCard({casting, menu}) {
     return (
         <div className='cards'>
 				<div className='card short'>
@@ -44,16 +45,37 @@ function CastingCard({casting}) {
 								<h2>장르:</h2>
 								<p> {casting.genre}</p>
 							</div>
+
+							{menu === "all" &&
 							<div className='buttons'>
 								<button class='btn save'>저장</button>
-								<button class='btn apply'>지원</button>
+								<button class='btn apply' onClick={()=>{CastingStore.setCasting(casting); CastingStore.setModal(true)}}>지원</button>
 							</div>
+							}
+							{menu === "created" &&
+							<div className='buttons'>
+								<button class='btn save' onClick={()=>{CastingStore.setCasting(casting); CastingStore.setModal(true)}}>지원자 확인</button>
+								<button class='btn apply' onClick={()=>{CastingStore.setCasting(casting); CastingStore.setModal(true)}}>수정</button>
+								<button class='btn apply' onClick={()=>{CastingStore.setCasting(casting); CastingStore.setModal(true)}}>삭제</button>
+							</div>
+							}
+							{menu === "save" &&
+							<div className='buttons'>
+								<button class='btn apply' onClick={()=>{CastingStore.setCasting(casting, "save"); CastingStore.setModal(true)}}>수정</button>
+								<button class='btn apply' onClick={()=>{CastingStore.setCasting(casting); CastingStore.setModal(true)}}>삭제</button>
+							</div>
+							}
+							{menu === "apply" &&
+							<div className='buttons'>
+								<button class='btn apply' onClick={()=>{CastingStore.setCasting(casting, "apply"); CastingStore.setModal(true)}}>확인</button>
+							</div>
+							}
 						</div>
 						<div className='bottom'>
 							<div className='keyword'>
 								<h2>키워드:</h2>
 								{casting.tag.map((tag, i)=>(
-                                    <p key={i} >#{tag}</p>
+                                    <p key={i}>#{tag}</p>
                                 ))} 
 							</div>
 						</div>

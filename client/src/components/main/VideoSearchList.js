@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
-import VidModal from './VidModal';
+import VidModal from './VideoModal';
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';

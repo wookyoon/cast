@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import VideoModal from './VidModal';
+import VideoModal from './VideoModal';
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';

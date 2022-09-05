@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { faBookmark } from '@fortawesome/free-solid-svg-icons';
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
-import VidModal from '../main/VidModal';
+import VidModal from '../main/VideoModal';
 import Avatar from '@mui/material/Avatar';
 import Chip from '@mui/material/Chip';
 import { Button } from 'semantic-ui-react';

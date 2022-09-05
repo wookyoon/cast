@@ -6,15 +6,13 @@ import { observer } from 'mobx-react';
 
 const path = process.env.PUBLIC_URL;
 
-function VidModal() {
-	let [modal, setModal] = useState(false);
-	const [iscide, setOpen] = React.useState(false);
+function VideoModal() {
 	return (
 		<Modal
 			onClose={() => ContentStore.setModal(false)}
 			onOpen={() => ContentStore.setModal(true)}
 			open={ContentStore.open}
-			trigger={<Button>Show Modal</Button>}>
+			>
 			<Modal.Header>{ContentStore.video.title}</Modal.Header>
 			<div className='content'>
 				<div className='vid'>
@@ -24,9 +22,7 @@ function VidModal() {
 						restartOnPaused // The video should restart when it is paused
 						muted={false}
 						style={{ objectFit: 'contain' }}
-						onClick={() => {
-							setModal(!modal);
-						}}></HoverVideoPlayer>
+						></HoverVideoPlayer>
 				</div>
 				<div className='description'>
 					<Modal.Description>
@@ -121,8 +117,8 @@ function VidModal() {
 			</div>
 
 			<Modal.Actions>
-				<Button onClick={() => setOpen(false)}>Cancel</Button>
-				<Button onClick={() => setOpen(false)} positive>
+				<Button onClick={() => ContentStore.setModal(false)}>Cancel</Button>
+				<Button onClick={() => ContentStore.setModal(false)} positive>
 					Ok
 				</Button>
 			</Modal.Actions>
@@ -130,4 +126,4 @@ function VidModal() {
 	);
 }
 
-export default observer(VidModal);
+export default observer(VideoModal);

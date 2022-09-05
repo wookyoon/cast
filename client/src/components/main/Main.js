@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import Banner from './Banner';
 import VideoList from './VideoList';
-import VideoModal from './VidModal';
 
 function Main() {
 
@@ -11,9 +10,7 @@ function Main() {
 				<table />
 				<Banner />
 				<table />
-				{/* <Video /> */}
 				<VideoList />
-				{/* <VideoModal /> */}
 			</main>
 		</>
 	);

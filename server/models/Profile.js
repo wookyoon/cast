@@ -46,7 +46,8 @@ const profileSchema = new Schema({
     followersNum:{type:Number},
     likeUser:[Object],
     likeVideo:[Object],
-    applyWork:[Object],
+    applyCasting:[Object],
+    saveCasting:[Object],
     volume:{type:Number}    // 용량 제한 : 20mb
 });
 

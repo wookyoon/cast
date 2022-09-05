@@ -9,7 +9,7 @@ const castingSchema = new Schema({
     genre:{type:String},
     geder:{type:String},
     role:{type:String},   
-    category:{type:String},// 단편:0, 장편:1, 기타:2
+    category:{type:String},
     created:{type:String},
     shootingDate:{type:String},
     dDay:{type:String},
@@ -20,11 +20,11 @@ const castingSchema = new Schema({
     roleExplanation:{type:String},
     note:{type:String},
     apply:[{
-        save:{type:Number}, // save:0, apply:1
+        save:{type:String}, 
         name:{type:String},
         motivation:{type:String},
         reply:{type:String},
-        result:{type:Number} // fail 나오면 바로 삭제
+        result:{type:String}
     }]
 });
 

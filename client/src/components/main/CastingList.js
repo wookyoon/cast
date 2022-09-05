@@ -3,6 +3,8 @@ import CastingStore from '../../store/CastingStore';
 import CastingCard from './CastingCard';
 import recommendedTags from '../../utils/castingRecommendedTags';
 import categorys from '../../utils/castingCategory';
+import CastingModal from './CastingModal';
+
 function CastingList() {
     const [isLoading, setLoading] = useState(true);
     const [castingList, setCastingList] = useState();
@@ -62,9 +64,10 @@ function CastingList() {
 				</ul>
 			</div>
             {castingList.map((casting, idx) => ( 
-                <CastingCard casting = {casting} key = {idx} />
+                <CastingCard casting = {casting} key = {idx} menu={"all"}/>
             ))}
             </section>
+                <CastingModal />
         </>
     );
 }

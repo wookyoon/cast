@@ -13,5 +13,10 @@ class CastingApi{
             .then((response) => response.data);
     }
 
+    applyCasting(data) {
+        return axios.patch(this.URL  , data)
+            .then((response) => response.data);
+    }
+
 }
 export default new CastingApi();

@@ -6,6 +6,7 @@ import Chip from '@mui/material/Chip';
 import { Button } from 'semantic-ui-react';
 import { faBookmark } from '@fortawesome/free-solid-svg-icons';
 import LoginStore from '../../store/LoginStore';
+import ContentStore from '../../store/ContentStore';
 
 function Intro() {
     let [modal, setModal] = useState(false);
@@ -40,9 +41,7 @@ function Intro() {
 							}}
 						/>
 					}
-					onClick={() => {
-						setModal(!modal);
-					}}></HoverVideoPlayer>
+					></HoverVideoPlayer>
 				<Button
 					color='red'
 					Profile='Like'

@@ -31,7 +31,6 @@ const getVideos = asyncHandler(async (req, res) => {
         videos = await Video.find({"name": re }).lean()
     }else if(category == "mypage"){
         videos = await Video.find({"name": param, "title": { $ne: 'intro' } }).lean()
-        console.log(videos)
     }else if(category == "sort"){
         if(param == "New"){
             videos = await Video.find().sort({"created":-1}).lean();
@@ -42,8 +41,6 @@ const getVideos = asyncHandler(async (req, res) => {
         }if(param == "Like"){
             videos = await Video.find().sort({"like":-1}).lean();
         }
-        console.log(videos)
-        
     }
 
     if(videos){
