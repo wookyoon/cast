@@ -60,9 +60,34 @@ function Localist() {
 					</li>
 				</ul>
 			</div>
+
 			<div className='vid'>
+				<div className='id'>
+					<Chip
+						avatar={<Avatar alt='Natacha' src={`${path}/img/img3.jpg`} />}
+						label='ID123zxc'
+					/>
+				</div>
+				<Button
+					id='btn'
+					size='mini'
+					color='red'
+					content='Like'
+					icon='heart'
+					label={{
+						basic: true,
+						color: 'red',
+						pointing: 'left',
+						content: '2,048',
+					}}
+				/>
 				<HoverVideoPlayer
 					videoSrc={`${path}/vid/loca1.mp4`}
+					style={{
+						width: '250px',
+						height: '250px',
+						objectFit: 'cover',
+					}}
 					restartOnPaused // The video should restart when it is paused
 					muted={false}
 					pausedOverlay={
@@ -72,34 +97,38 @@ function Localist() {
 								alt=''
 								style={{
 									// Make the image expand to cover the video's dimensions
-									width: '219.25px',
-									height: '400px',
+									width: '250px',
+									height: '250px',
 									objectFit: 'cover',
 								}}
 							/>
-							<div className='id'>
-								<Chip
-									avatar={<Avatar alt='Natacha' src={`${path}/img/img3.jpg`} />}
-									label='ID123zxc'
-								/>
-							</div>
-
-							<div className='title'>
-								<a href=''>로케이션</a>
-								<h1>카페</h1>
-							</div>
-							<div className='tag'>
-								<a href=''>마포</a>
-								<a href=''>주말</a>
-								<a href=''>야간</a>
-								<a href=''>카페</a>
-							</div>
 						</div>
 					}
 					onClick={() => {
 						setModal(!modal);
 					}}></HoverVideoPlayer>
+
+				<div className='title'>
+					<p>로케이션</p>
+					<p>마포카페</p>
+				</div>
+				<div className='tag'>
+					<a href=''>#마포</a>
+					<a href=''>#따뜻한</a>
+					<a href=''>#안락</a>
+					<a href=''>#주말</a>
+				</div>
+			</div>
+			<div className='vid'>
+				<div className='id'>
+					<Chip
+						avatar={<Avatar alt='Natacha' src={`${path}/img/img3.jpg`} />}
+						label='ID123zxc'
+					/>
+				</div>
 				<Button
+					id='btn'
+					size='mini'
 					color='red'
 					content='Like'
 					icon='heart'
@@ -110,10 +139,13 @@ function Localist() {
 						content: '2,048',
 					}}
 				/>
-			</div>
-			<div className='vid'>
 				<HoverVideoPlayer
 					videoSrc={`${path}/vid/loca2.mp4`}
+					style={{
+						width: '250px',
+						height: '250px',
+						objectFit: 'cover',
+					}}
 					restartOnPaused // The video should restart when it is paused
 					muted={false}
 					pausedOverlay={
@@ -123,34 +155,38 @@ function Localist() {
 								alt=''
 								style={{
 									// Make the image expand to cover the video's dimensions
-									width: '219.25px',
-									height: '400px',
+									width: '250px',
+									height: '250px',
 									objectFit: 'cover',
 								}}
 							/>
-							<div className='id'>
-								<Chip
-									avatar={<Avatar alt='Natacha' src={`${path}/img/img3.jpg`} />}
-									label='ID123zxc'
-								/>
-							</div>
-
-							<div className='title'>
-								<a href=''>로케이션</a>
-								<h1>브런치카페</h1>
-							</div>
-							<div className='tag'>
-								<a href=''>신림</a>
-								<a href=''>넓은</a>
-								<a href=''>밝은</a>
-								<a href=''>통유리</a>
-							</div>
 						</div>
 					}
 					onClick={() => {
 						setModal(!modal);
 					}}></HoverVideoPlayer>
+
+				<div className='title'>
+					<p>로케이션</p>
+					<p>브런치카페</p>
+				</div>
+				<div className='tag'>
+					<a href=''>#신림</a>
+					<a href=''>#넓은</a>
+					<a href=''>#밝은</a>
+					<a href=''>#통유리</a>
+				</div>
+			</div>
+			<div className='vid'>
+				<div className='id'>
+					<Chip
+						avatar={<Avatar alt='Natacha' src={`${path}/img/img3.jpg`} />}
+						label='ID123zxc'
+					/>
+				</div>
 				<Button
+					id='btn'
+					size='mini'
 					color='red'
 					content='Like'
 					icon='heart'
@@ -161,10 +197,13 @@ function Localist() {
 						content: '2,048',
 					}}
 				/>
-			</div>
-			<div className='vid'>
 				<HoverVideoPlayer
 					videoSrc={`${path}/vid/loca3.mp4`}
+					style={{
+						width: '250px',
+						height: '250px',
+						objectFit: 'cover',
+					}}
 					restartOnPaused // The video should restart when it is paused
 					muted={false}
 					pausedOverlay={
@@ -174,34 +213,38 @@ function Localist() {
 								alt=''
 								style={{
 									// Make the image expand to cover the video's dimensions
-									width: '219.25px',
-									height: '400px',
+									width: '250px',
+									height: '250px',
 									objectFit: 'cover',
 								}}
 							/>
-							<div className='id'>
-								<Chip
-									avatar={<Avatar alt='Natacha' src={`${path}/img/img3.jpg`} />}
-									label='ID123zxc'
-								/>
-							</div>
-
-							<div className='title'>
-								<a href=''>자유연기</a>
-								<h1>영화 연기 </h1>
-							</div>
-							<div className='tag'>
-								<a href=''>중년</a>
-								<a href=''>젠틀</a>
-								<a href=''>강직</a>
-								<a href=''>저음</a>
-							</div>
 						</div>
 					}
 					onClick={() => {
 						setModal(!modal);
 					}}></HoverVideoPlayer>
+
+				<div className='title'>
+					<p>스튜디오</p>
+					<p>아파트스타일</p>
+				</div>
+				<div className='tag'>
+					<a href=''>#강남</a>
+					<a href=''>#거실</a>
+					<a href=''>#침실</a>
+					<a href=''>#가구</a>
+				</div>
+			</div>
+			<div className='vid'>
+				<div className='id'>
+					<Chip
+						avatar={<Avatar alt='Natacha' src={`${path}/img/img3.jpg`} />}
+						label='ID123zxc'
+					/>
+				</div>
 				<Button
+					id='btn'
+					size='mini'
 					color='red'
 					content='Like'
 					icon='heart'
@@ -212,10 +255,13 @@ function Localist() {
 						content: '2,048',
 					}}
 				/>
-			</div>
-			<div className='vid'>
 				<HoverVideoPlayer
 					videoSrc={`${path}/vid/loca4.mp4`}
+					style={{
+						width: '250px',
+						height: '250px',
+						objectFit: 'cover',
+					}}
 					restartOnPaused // The video should restart when it is paused
 					muted={false}
 					pausedOverlay={
@@ -225,34 +271,38 @@ function Localist() {
 								alt=''
 								style={{
 									// Make the image expand to cover the video's dimensions
-									width: '219.25px',
-									height: '400px',
+									width: '250px',
+									height: '250px',
 									objectFit: 'cover',
 								}}
 							/>
-							<div className='id'>
-								<Chip
-									avatar={<Avatar alt='Natacha' src={`${path}/img/img3.jpg`} />}
-									label='ID123zxc'
-								/>
-							</div>
-
-							<div className='title'>
-								<a href=''>자기소개</a>
-								<h1>청년배우</h1>
-							</div>
-							<div className='tag'>
-								<a href=''>20대</a>
-								<a href=''>마른</a>
-								<a href=''>소년</a>
-								<a href=''>여린</a>
-							</div>
 						</div>
 					}
 					onClick={() => {
 						setModal(!modal);
 					}}></HoverVideoPlayer>
+
+				<div className='title'>
+					<p>로케이션</p>
+					<p>해변카페</p>
+				</div>
+				<div className='tag'>
+					<a href=''>#강릉</a>
+					<a href=''>#넓은</a>
+					<a href=''>#테라스</a>
+					<a href=''>#야간</a>
+				</div>
+			</div>
+			<div className='vid'>
+				<div className='id'>
+					<Chip
+						avatar={<Avatar alt='Natacha' src={`${path}/img/img3.jpg`} />}
+						label='ID123zxc'
+					/>
+				</div>
 				<Button
+					id='btn'
+					size='mini'
 					color='red'
 					content='Like'
 					icon='heart'
@@ -263,10 +313,13 @@ function Localist() {
 						content: '2,048',
 					}}
 				/>
-			</div>
-			<div className='vid'>
 				<HoverVideoPlayer
 					videoSrc={`${path}/vid/loca5.mp4`}
+					style={{
+						width: '250px',
+						height: '250px',
+						objectFit: 'cover',
+					}}
 					restartOnPaused // The video should restart when it is paused
 					muted={false}
 					pausedOverlay={
@@ -276,34 +329,38 @@ function Localist() {
 								alt=''
 								style={{
 									// Make the image expand to cover the video's dimensions
-									width: '219.25px',
-									height: '400px',
+									width: '250px',
+									height: '250px',
 									objectFit: 'cover',
 								}}
 							/>
-							<div className='id'>
-								<Chip
-									avatar={<Avatar alt='Natacha' src={`${path}/img/img3.jpg`} />}
-									label='ID123zxc'
-								/>
-							</div>
-
-							<div className='title'>
-								<a href=''>특기</a>
-								<h1>뮤지컬 노래</h1>
-							</div>
-							<div className='tag'>
-								<a href=''>20대</a>
-								<a href=''>노래</a>
-								<a href=''>맑은</a>
-								<a href=''>긍정</a>
-							</div>
 						</div>
 					}
 					onClick={() => {
 						setModal(!modal);
 					}}></HoverVideoPlayer>
+
+				<div className='title'>
+					<p>로케이션</p>
+					<p>50평형아파트</p>
+				</div>
+				<div className='tag'>
+					<a href=''>#대구</a>
+					<a href=''>#아파트</a>
+					<a href=''>#넓은</a>
+					<a href=''>#평일</a>
+				</div>
+			</div>
+			<div className='vid'>
+				<div className='id'>
+					<Chip
+						avatar={<Avatar alt='Natacha' src={`${path}/img/img3.jpg`} />}
+						label='ID123zxc'
+					/>
+				</div>
 				<Button
+					id='btn'
+					size='mini'
 					color='red'
 					content='Like'
 					icon='heart'
@@ -314,10 +371,13 @@ function Localist() {
 						content: '2,048',
 					}}
 				/>
-			</div>
-			<div className='vid'>
 				<HoverVideoPlayer
 					videoSrc={`${path}/vid/loca6.mp4`}
+					style={{
+						width: '250px',
+						height: '250px',
+						objectFit: 'cover',
+					}}
 					restartOnPaused // The video should restart when it is paused
 					muted={false}
 					pausedOverlay={
@@ -327,33 +387,38 @@ function Localist() {
 								alt=''
 								style={{
 									// Make the image expand to cover the video's dimensions
-									width: '219.25px',
-									height: '400px',
+									width: '250px',
+									height: '250px',
 									objectFit: 'cover',
 								}}
 							/>
-							<div className='id'>
-								<Chip
-									avatar={<Avatar alt='Natacha' src={`${path}/img/img3.jpg`} />}
-									label='ID123zxc'
-								/>
-							</div>
-
-							<div className='title'>
-								<a href=''>특기</a>
-								<h1>액션 스턴트</h1>
-							</div>
-							<div className='tag'>
-								<a href=''>30대</a>
-								<a href=''>무술</a>
-								<a href=''>스턴트</a>
-							</div>
 						</div>
 					}
 					onClick={() => {
 						setModal(!modal);
 					}}></HoverVideoPlayer>
+
+				<div className='title'>
+					<p>스튜디오</p>
+					<p>삼익프라자</p>
+				</div>
+				<div className='tag'>
+					<a href=''>#상암</a>
+					<a href=''>#장비</a>
+					<a href=''>#24h</a>
+					<a href=''>#주차</a>
+				</div>
+			</div>
+			<div className='vid'>
+				<div className='id'>
+					<Chip
+						avatar={<Avatar alt='Natacha' src={`${path}/img/img3.jpg`} />}
+						label='ID123zxc'
+					/>
+				</div>
 				<Button
+					id='btn'
+					size='mini'
 					color='red'
 					content='Like'
 					icon='heart'
@@ -364,10 +429,13 @@ function Localist() {
 						content: '2,048',
 					}}
 				/>
-			</div>
-			<div className='vid'>
 				<HoverVideoPlayer
 					videoSrc={`${path}/vid/loca7.mp4`}
+					style={{
+						width: '250px',
+						height: '250px',
+						objectFit: 'cover',
+					}}
 					restartOnPaused // The video should restart when it is paused
 					muted={false}
 					pausedOverlay={
@@ -377,34 +445,38 @@ function Localist() {
 								alt=''
 								style={{
 									// Make the image expand to cover the video's dimensions
-									width: '219.25px',
-									height: '400px',
+									width: '250px',
+									height: '250px',
 									objectFit: 'cover',
 								}}
 							/>
-							<div className='id'>
-								<Chip
-									avatar={<Avatar alt='Natacha' src={`${path}/img/img3.jpg`} />}
-									label='ID123zxc'
-								/>
-							</div>
-
-							<div className='title'>
-								<a href=''>자유연기</a>
-								<h1>영화 독백</h1>
-							</div>
-							<div className='tag'>
-								<a href=''>독백</a>
-								<a href=''>30대</a>
-								<a href=''>광기</a>
-								<a href=''>집요</a>
-							</div>
 						</div>
 					}
 					onClick={() => {
 						setModal(!modal);
 					}}></HoverVideoPlayer>
+
+				<div className='title'>
+					<p>스튜디오</p>
+					<p>호암스튜디오</p>
+				</div>
+				<div className='tag'>
+					<a href=''>#잠실</a>
+					<a href=''>#세트</a>
+					<a href=''>#장비</a>
+					<a href=''>#평일</a>
+				</div>
+			</div>
+			<div className='vid'>
+				<div className='id'>
+					<Chip
+						avatar={<Avatar alt='Natacha' src={`${path}/img/img3.jpg`} />}
+						label='ID123zxc'
+					/>
+				</div>
 				<Button
+					id='btn'
+					size='mini'
 					color='red'
 					content='Like'
 					icon='heart'
@@ -415,10 +487,13 @@ function Localist() {
 						content: '2,048',
 					}}
 				/>
-			</div>
-			<div className='vid'>
 				<HoverVideoPlayer
 					videoSrc={`${path}/vid/loca8.mp4`}
+					style={{
+						width: '250px',
+						height: '250px',
+						objectFit: 'cover',
+					}}
 					restartOnPaused // The video should restart when it is paused
 					muted={false}
 					pausedOverlay={
@@ -428,44 +503,27 @@ function Localist() {
 								alt=''
 								style={{
 									// Make the image expand to cover the video's dimensions
-									width: '219.25px',
-									height: '400px',
+									width: '250px',
+									height: '250px',
 									objectFit: 'cover',
 								}}
 							/>
-							<div className='id'>
-								<Chip
-									avatar={<Avatar alt='Natacha' src={`${path}/img/img3.jpg`} />}
-									label='ID123zxc'
-								/>
-							</div>
-
-							<div className='title'>
-								<a href=''>자유연기</a>
-								<h1>공연 낭독</h1>
-							</div>
-							<div className='tag'>
-								<a href=''>독백</a>
-								<a href=''>40대</a>
-								<a href=''>폭발</a>
-								<a href=''>저음</a>
-							</div>
 						</div>
 					}
 					onClick={() => {
 						setModal(!modal);
 					}}></HoverVideoPlayer>
-				<Button
-					color='red'
-					content='Like'
-					icon='heart'
-					label={{
-						basic: true,
-						color: 'red',
-						pointing: 'left',
-						content: '2,048',
-					}}
-				/>
+
+				<div className='title'>
+					<p>연습실</p>
+					<p>리허설</p>
+				</div>
+				<div className='tag'>
+					<a href=''>#홍대</a>
+					<a href=''>#촬영</a>
+					<a href=''>#녹음</a>
+					<a href=''>#100평</a>
+				</div>
 			</div>
 		</section>
 	);

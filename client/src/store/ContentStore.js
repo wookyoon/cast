@@ -1,93 +1,90 @@
-import {makeAutoObservable, runInAction} from "mobx";
-import ContentApi from "../api/ContentApi";
+import { makeAutoObservable, runInAction } from 'mobx';
+import ContentApi from '../api/ContentApi';
 
-class ContentStore{
-    title = "";
-    tags = [];
-    searchTag="";
-    video=[];
-    videos=[];
-    url = "";
-    menu="0";
-    frommain=true;
-    open = false;
+class ContentStore {
+	title = '';
+	tags = [];
+	searchTag = '';
+	video = [];
+	videos = [];
+	url = '';
+	menu = '0';
+	frommain = true;
+	open = false;
 
-    constructor() {
-        makeAutoObservable(this, {}, { autoBind: true });
-    }
-    
-    async getVideoList(category, param){
-        try{            
-            const results = await ContentApi.getVideos(category, param);
-            console.log(results);
-            runInAction(() => this.videos = results);
-        }
-        catch (err){
-            console.log(err);
-        }
-    }
-    
-    async contentUpload(data){
-        try {
-            const result = await ContentApi.contentUpload(data);
-            console.log(result['message'])
-            return result['message'];
-        } catch (error) {
-            console.log(error)
-            runInAction(this.message = error.message);
-        }
-    }
-    
-    setVideoList(videos){
-        this.videos = videos;
-    }
-    
-    setTitle(title){
-        this.title = title;
-    }
+	constructor() {
+		makeAutoObservable(this, {}, { autoBind: true });
+		this.video.tag = [];
+	}
 
-    addTags(newtag){
-        this.tags = new Set([...this.tags, newtag]);
-        this.tags = [...this.tags.data_]
-        console.log(this.tags)
-    }
+	async getVideoList(category, param) {
+		try {
+			const results = await ContentApi.getVideos(category, param);
+			console.log(results);
+			runInAction(() => (this.videos = results));
+		} catch (err) {
+			console.log(err);
+		}
+	}
 
-    getTags(){
-        return this.tags ;
-    }
+	async contentUpload(data) {
+		try {
+			const result = await ContentApi.contentUpload(data);
+			console.log(result['message']);
+			return result['message'];
+		} catch (error) {
+			console.log(error);
+			runInAction((this.message = error.message));
+		}
+	}
 
-    resetTags(newtag){
-        this.tags = [];
-    }
+	setVideoList(videos) {
+		this.videos = videos;
+	}
 
-    removeTags(x){
-        this.tags = this.tags.filter((tag) => tag !== x);
-        console.log(this.tags);
-    }
+	setTitle(title) {
+		this.title = title;
+	}
 
-    setUrl(url){
-        this.url = url;
-    }
+	addTags(newtag) {
+		this.tags = new Set([...this.tags, newtag]);
+		this.tags = [...this.tags.data_];
+		console.log(this.tags);
+	}
 
-    setUser(user){
-        this.username = user;
-    }
+	getTags() {
+		return this.tags;
+	}
 
-    setVideo(video){
-        this.video=video;
-        console.log("current video", this.video);
-    }
+	resetTags(newtag) {
+		this.tags = [];
+	}
 
-    setMenu(menu){
-        this.menu=menu;
-    }
+	removeTags(x) {
+		this.tags = this.tags.filter((tag) => tag !== x);
+		console.log(this.tags);
+	}
 
-    setModal(open){
-        this.open = open;
-        return this.open;
-    }
+	setUrl(url) {
+		this.url = url;
+	}
+
+	setUser(user) {
+		this.username = user;
+	}
+
+	setVideo(video) {
+		this.video = video;
+		console.log('current video', this.video);
+	}
+
+	setMenu(menu) {
+		this.menu = menu;
+	}
+
+	setModal(open) {
+		this.open = open;
+		return this.open;
+	}
 }
 export default new ContentStore();
-
-
-

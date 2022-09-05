@@ -30,9 +30,9 @@ function VidModal() {
 				</div>
 				<div className='description'>
 					<Modal.Description>
-					{ContentStore.video.tag.map((tag, i)=>(
-                    <p key={i} >#{tag}</p>
-                ))} 
+						{ContentStore.video.tag.map((tag, i) => (
+							<p key={i}>#{tag}</p>
+						))}
 					</Modal.Description>
 				</div>
 				<div className='comment'>

@@ -5,14 +5,15 @@
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-around;
+
 	h1 {
-		font: 25px/2 'Oswald';
+		font: 24px/2 'Oswald';
 		color: #ae8854;
 	}
 	h2 {
 		margin: 5px;
-		font: 20px/1.5 'Oswald';
-		color: #ddd;
+		font: 30px/1 'East Sea Dokdo';
+		color: #ae8854;
 	}
 	p {
 		margin: 5px;
@@ -44,61 +45,63 @@
 		}
 	}
 	.vid {
-		width: 25%;
-		padding: 5px;
-		text-align: center;
+		width: 280px;
+		height: 400px;
+		padding: 35px 15px;
+		margin: 10px 0;
+		position: relative;
+		// text-align: center;
+		background-color: #fff;
 		h1,
 		a {
-			font: 20px/1 'Abel';
+			font: 30px/1 'East Sea Dokdo';
 			color: #ae8854;
 		}
-		h1 {
-			color: #fff;
+		p {
+			font: 30px/1 'East Sea Dokdo';
+			color: #000;
 		}
-
-		video {
-			width: 100%;
-			height: 400px;
-			object-fit: cover;
-		}
-		#image {
-			position: relative;
-			.id {
-				position: absolute;
-				top: 0;
-				left: 0;
-				.MuiChip-root {
-					height: 50px;
-					.MuiAvatar-root {
-						width: 40px;
-						height: 40px;
-					}
-					img {
-						object-fit: cover;
-					}
-					span {
-						color: #fff;
-						font-size: 16px;
-					}
+		.id {
+			position: absolute;
+			top: 5px;
+			.MuiChip-root {
+				height: 25px;
+				.MuiAvatar-root {
+					width: 20px;
+					height: 20px;
+				}
+				img {
+					object-fit: cover;
+				}
+				span {
+					color: #000;
+					font-size: 14px;
 				}
 			}
-
-			.title {
-				width: 200px;
-				display: flex;
-				flex-wrap: wrap;
-				justify-content: space-around;
-				align-items: baseline;
-				position: absolute;
-				bottom: 0;
-			}
-			.tag {
-				display: flex;
-				flex-wrap: wrap;
-				justify-content: space-between;
-				position: absolute;
-				top: 0;
-			}
 		}
+		#btn {
+			position: absolute;
+			bottom: 10px;
+			right: 10px;
+		}
+		video {
+			width: 250px;
+			height: 250px;
+			object-fit: cover;
+		}
+	}
+	.title {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-around;
+		position: absolute;
+		bottom: 75px;
+	}
+	.tag {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-around;
+		position: absolute;
+		bottom: 45px;
 	}
 }

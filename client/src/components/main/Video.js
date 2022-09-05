@@ -72,8 +72,8 @@ function Video() {
 								alt=''
 								style={{
 									// Make the image expand to cover the video's dimensions
-									width: '219.25px',
-									height: '400px',
+									width: '260px',
+									height: '260px',
 									objectFit: 'cover',
 								}}
 							/>
