@@ -68,7 +68,7 @@ const addVideo = asyncHandler(async (req, res) => {
 
     const max = await Video.find({name: name}).count().lean()
     console.log(max)
-    if(max==4){
+    if(max==5){
         return res.json({message: 'max'});
     }
 
@@ -82,7 +82,17 @@ const addVideo = asyncHandler(async (req, res) => {
 })
 
 const deleteVideo = asyncHandler(async (req, res) => {
-    pass
+    var _url = req.url;
+    var queryData = url.parse(_url, true).query;
+    const vid = queryData.vid;
+    console.log("&&&")
+    console.log(vid)
+    console.log( req.url)
+    const video = await Video.findByIdAndDelete(vid).lean();
+    if(video){
+        console.log("####", video)
+        return res.status(200).json({message: 'Success'})
+    }
 })
 
 const updateVideo = asyncHandler(async (req, res) => {

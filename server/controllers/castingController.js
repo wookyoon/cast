@@ -11,7 +11,7 @@ const getCasting = asyncHandler(async (req, res) => {
     var castings = []
     console.log("****")
     
-    if(category == "전체" && param == 0){
+    if(category == "all" && param == 0){
         castings = await Casting.find().lean();
     }else if(category == 0){
         const tags = param.split(",");
@@ -57,6 +57,7 @@ const updateCasting = asyncHandler(async (req, res) => {
     const {name, id, save} = req.body
     const duplicate = await Casting.findOne({_id : id, "apply.name":name},{"apply.$":1}).lean();
     
+    // 이미 지원/신청했는지 확인
     if(duplicate){
         console.log("@@@", duplicate.apply[0].save)
         if(duplicate.apply[0].save == "save"){
@@ -66,13 +67,14 @@ const updateCasting = asyncHandler(async (req, res) => {
         }
     }
 
+    // 본인이 올린 캐스팅인지 확인
     const created = await Casting.findOne({_id : id, "name":name}).lean();
     if(created){
         console.log("@", created)
         return res.status(200).json({message: "created"});
     }
 
-
+    // 캐스팅 지원/신청
     const casting = await Casting.findByIdAndUpdate(id, { $push: { "apply" : req.body } }).lean().exec()
     if (save=="save"){
         await Profile.findOneAndUpdate({"name": name}, { $push: { "saveCasting" : id } }).lean().exec()
@@ -87,7 +89,25 @@ const updateCasting = asyncHandler(async (req, res) => {
 })
 
 const deleteCasting = asyncHandler(async (req, res) => {
+    var _url = req.url;
+    var queryData = url.parse(_url, true).query;
+    const type = queryData.type;
+    const cid = queryData.cid;
+    const name = queryData.name;
+    console.log(type, name, cid)
 
+    if(type=="create"){
+        await Casting.findByIdAndDelete(cid).lean();
+    }else if(type=="save"){
+        await Casting.findOneAndUpdate({_id : cid, "apply.name":name},{$pull: {apply:{name:name}}}).lean();
+    }
+
+    const profile = await Profile.findOneAndUpdate({"name": name}, { $pull: { "saveCasting" : cid } }).lean().exec()
+
+    if(profile){
+        console.log("####", profile)
+        return res.status(200).json({message: 'Success'})
+    }
 })
 
 module.exports = {

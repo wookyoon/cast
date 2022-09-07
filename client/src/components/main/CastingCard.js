@@ -46,30 +46,7 @@ function CastingCard({casting, menu}) {
 								<p> {casting.genre}</p>
 							</div>
 
-							{menu === "all" &&
-							<div className='buttons'>
-								<button class='btn save'>저장</button>
-								<button class='btn apply' onClick={()=>{CastingStore.setCasting(casting); CastingStore.setModal(true)}}>지원</button>
-							</div>
-							}
-							{menu === "created" &&
-							<div className='buttons'>
-								<button class='btn save' onClick={()=>{CastingStore.setCasting(casting); CastingStore.setModal(true)}}>지원자 확인</button>
-								<button class='btn apply' onClick={()=>{CastingStore.setCasting(casting); CastingStore.setModal(true)}}>수정</button>
-								<button class='btn apply' onClick={()=>{CastingStore.setCasting(casting); CastingStore.setModal(true)}}>삭제</button>
-							</div>
-							}
-							{menu === "save" &&
-							<div className='buttons'>
-								<button class='btn apply' onClick={()=>{CastingStore.setCasting(casting, "save"); CastingStore.setModal(true)}}>수정</button>
-								<button class='btn apply' onClick={()=>{CastingStore.setCasting(casting); CastingStore.setModal(true)}}>삭제</button>
-							</div>
-							}
-							{menu === "apply" &&
-							<div className='buttons'>
-								<button class='btn apply' onClick={()=>{CastingStore.setCasting(casting, "apply"); CastingStore.setModal(true)}}>확인</button>
-							</div>
-							}
+							
 						</div>
 						<div className='bottom'>
 							<div className='keyword'>

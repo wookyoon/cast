@@ -14,7 +14,12 @@ class ContentApi{
     }
 
     updateVideo(data) {
-        return axios.patch(this.URL, data )
+        return axios.patch(this.URL, data)
+            .then((response) => response.data);
+    }
+
+    deleteVideo(id) {
+        return axios.delete(this.URL+"/?vid="+id)
             .then((response) => response.data);
     }
 

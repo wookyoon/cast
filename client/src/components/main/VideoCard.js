@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import HoverVideoPlayer from 'react-hover-video-player';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
@@ -10,8 +10,19 @@ import Chip from '@mui/material/Chip';
 const path = process.env.PUBLIC_URL;
 
 function VideoCard({ video }) {
-	const [like, setLike] = useState(video.likeUser?.includes(localStorage.getItem("name")))
-	const [likeNum, setLikeNum] = useState(video.like)
+	const [name, setName] = useState(localStorage.getItem("name"));
+
+	const handleLike = (type) => {
+		if(type === "dislike"){
+			ContentStore.setLike(video._id, type); 
+			video.likeUser = video.likeUser.filter((user) => user !== name); 
+			video.like = video.like-1
+		}else{
+			ContentStore.setLike(video._id, type);
+			video.likeUser = [...video.likeUser,name]; 
+			video.like = video.like+1
+		}
+	}
 
 	return (
 		<div className='vid'>
@@ -30,7 +41,7 @@ function VideoCard({ video }) {
 					label={video.name}
 				/>
 			</div>{' '}
-			{ like ? 
+			{ video.likeUser?.includes(name) ? 
 					<Button
 					id='btn'
 					size='mini'
@@ -41,9 +52,9 @@ function VideoCard({ video }) {
 						basic: true,
 						color: 'red',
 						pointing: 'left',
-						content: likeNum
+						content: video.like
 					}}
-					onClick={(e) => {ContentStore.setLike(video._id, "dislike"); setLike(!like); setLikeNum(likeNum-1)}}
+					onClick={(e) => handleLike("dislike")}
 				/> :
 				<Button
 					id='btn'
@@ -55,9 +66,9 @@ function VideoCard({ video }) {
 						basic: true,
 						color: 'red',
 						pointing: 'left',
-						content: likeNum
+						content: video.like
 					}}
-					onClick={(e) => {ContentStore.setLike(video._id, "like"); setLike(!like); setLikeNum(likeNum+1)}}
+					onClick={(e) => handleLike("like")}
 				/> 
 				}
 			<HoverVideoPlayer

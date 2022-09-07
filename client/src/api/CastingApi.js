@@ -18,5 +18,9 @@ class CastingApi{
             .then((response) => response.data);
     }
 
+    deleteCasting(type, id, name) {
+        return axios.delete(this.URL+"/?type="+type+"&cid="+id+"&name="+name)
+            .then((response) => response.data);
+    }
 }
 export default new CastingApi();

@@ -13,14 +13,18 @@ import { useNavigate } from 'react-router-dom';
 import recommendedTags from '../../utils/videoRecommendedTags';
 import categorys from '../../utils/videoCategory';
 import sorting from '../../utils/videoSort';
+import { Button } from 'semantic-ui-react';
 
 function VideoList() {
-	let [modal, setModal] = useState(false);
 	const [isLoading, setLoading] = useState(true);
 	const [menu, setMenu] = useState('1');
 	const [videoList, setVideoList] = useState();
 	const [inputText, setinputText] = useState();
-	const navigate = useNavigate();
+	const [like, setLike] = useState()
+	// const [like, setLike] = useState(video.likeUser?.includes(localStorage.getItem("name")))
+	// const [likeNum, setLikeNum] = useState(video.like);
+	const [likeNum, setLikeNum] = useState();
+	
 
 	useEffect(() => {
 		ContentStore.getVideoList('전체').then(() => {
@@ -158,8 +162,8 @@ function VideoList() {
 				</ul>
 			</div>
 			{videoList.map((video, idx) => ( 
-				<VideoCard video = {video} key = {idx} />
-            ))}
+				<VideoCard video = {video} key = {idx} likeNum={video.like}/>
+				))}
 		</section>
 		<VideoModal />
 	</>

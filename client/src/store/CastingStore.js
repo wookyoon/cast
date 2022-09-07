@@ -3,8 +3,13 @@ import CastingApi from "../api/CastingApi";
 
 class CastingStore{
     castings = [];
+    saveCastings = [];
+    applyCastings = [];
+    createCastings = [];
+    filteredCasting = [];
     casting=[];
     open = false;
+    mypageOpen = false;
     motivation=""
 
     constructor() {
@@ -25,11 +30,14 @@ class CastingStore{
         }
     }
 
-    async getCastingList(categoty, param){
+    async getCastingList(category, param){
         try{            
-            const results = await CastingApi.getCastings(categoty, param);
-            console.log(results);
-            runInAction(() => this.castings = results);
+            const results = await CastingApi.getCastings(category, param);
+            if(category==="all"){
+                runInAction(() => this.castings = results);
+            }else{
+                return results;
+            }
         }
         catch (err){
             console.log(err);
@@ -54,24 +62,40 @@ class CastingStore{
         }
     }
 
+    async deleteCastingList(type, id, name) {
+		try {
+			const results = await CastingApi.deleteCasting(type, id, name);
+			console.log(results);
+		} catch (err) {
+			console.log(err);
+		}
+	}
+
     setCasting(casting, save){
         this.casting = casting;
-        var filteredCasting;
-        if(save === "save"){
-            filteredCasting = casting.apply.filter(apply => apply.name === localStorage.getItem("name") 
-        && apply.save === "save");
-        this.motivation = filteredCasting.motivation
-        }else if(save === "apply"){
-            filteredCasting = casting.apply.filter(apply => apply.name === localStorage.getItem("name") 
-        && apply.save === "apply");
-        this.motivation = filteredCasting.motivation
+        if(save==="update"){
+            this.filteredCasting = this.casting.apply.filter((user) => user.name === localStorage.getItem("name"));
+            this.motivation = this.filteredCasting[0].motivation
+            console.log("$", this.motivation )
+        }else{
         }
-        console.log("$$$", casting.apply)
+        // if(save === "save"){
+        //     this.filteredCasting = casting.apply.filter(apply => apply.name === localStorage.getItem("name"));
+        // // this.motivation = filteredCasting.motivation
+        // }else if(save === "apply"){
+        //     this.filteredCasting = casting.apply.filter(apply => apply.name === localStorage.getItem("name") 
+        // && apply.save === "apply");
+        // // this.motivation = filteredCasting.motivation
+        // }
         // this.motivation = filteredCasting.motivation
     }
 
     setModal(open){
         this.open = open;
+    }
+
+    setMyPageModal(open){
+        this.mypageOpen = open;
     }
 }
 export default new CastingStore();

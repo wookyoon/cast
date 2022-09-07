@@ -48,6 +48,7 @@ const profileSchema = new Schema({
     likeVideo:[Object],
     applyCasting:[Object],
     saveCasting:[Object],
+    bookmarkCasting:[Object],
     volume:{type:Number}    // 용량 제한 : 20mb
 });
 

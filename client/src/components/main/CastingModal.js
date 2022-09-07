@@ -6,6 +6,7 @@ import { observer } from 'mobx-react';
 function CastingModal() {
     const [motivation, setMotivation] = useState();
     useEffect(() => {
+        // console.log(CastingStore.casting)
     },[]);
 
     const handleSubmit = (param) => {
@@ -19,6 +20,7 @@ function CastingModal() {
             }       
         })
     }
+
     return (
         <Modal
 			onClose={() => CastingStore.setModal(false)}
@@ -40,7 +42,7 @@ function CastingModal() {
 					</Modal.Description>
 				</div>
                 <Form reply>
-                    <Form.TextArea content={CastingStore.motivation} onChange={(e)=>setMotivation(e.target.value)}/>
+                    <Form.TextArea  onChange={(e)=>setMotivation(e.target.value)}/>
                     <Button
                         content='Save'
                         labelPosition='left'

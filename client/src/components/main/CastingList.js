@@ -12,7 +12,7 @@ function CastingList() {
 	const [castingList, setCastingList] = useState();
 
 	useEffect(() => {
-		CastingStore.getCastingList('전체', 0).then(() => {
+		CastingStore.getCastingList('all', 0).then(() => {
 			setLoading(false);
 			setCastingList(CastingStore.castings);
 		});
@@ -74,7 +74,13 @@ function CastingList() {
 					</ul>
 				</div>
 				{castingList.map((casting, idx) => (
+					<div key ={idx} >
 					<CastingCard casting={casting} key={idx} menu={"all"}/>
+                        <div className='buttons'>
+                            <button class='btn save' onClick={()=>{}}>저장</button>
+                            <button class='btn apply' onClick={()=>{CastingStore.setCasting(casting); CastingStore.setModal(true)}}>지원</button>
+                        </div>
+					</div>
 				))}
 			</section>
 			<CastingModal />

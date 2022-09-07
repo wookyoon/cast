@@ -20,7 +20,7 @@ class ContentStore {
 	async getVideoList(category, param) {
 		try {
 			const results = await ContentApi.getVideos(category, param);
-			console.log(results);
+			// console.log(results);
 			runInAction(() => (this.videos = results));
 		} catch (err) {
 			console.log(err);
@@ -30,7 +30,7 @@ class ContentStore {
 	async getIntroVideo(category, param) {
 		try {
 			const results = await ContentApi.getVideos(category, param);
-			console.log(results);
+			// console.log(results);
 			runInAction(() => (this.introVideo = results));
 		} catch (err) {
 			console.log(err);
@@ -99,8 +99,21 @@ class ContentStore {
             console.log(error)
             runInAction(this.message = error.message);
         }
-
     }
+
+	async deleteVideoList(id) {
+		try {
+			const results = await ContentApi.deleteVideo(id);
+			console.log(results);
+		} catch (err) {
+			console.log(err);
+		}
+	}
+
+	deleteVideo(title){
+		this.videos = this.videos.filter((video) => video.title !== title);
+		return this.videos
+	}
 
 	removeTags(x) {
 		this.tags = this.tags.filter((tag) => tag !== x);

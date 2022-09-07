@@ -4,8 +4,6 @@ import { Button } from 'semantic-ui-react';
 import ContentStore from '../../store/ContentStore';
 
 function VideoPostCard({video}) {
-	const [like, setLike] = useState(video.likeUser?.includes(localStorage.getItem("name")))
-	const [likeNum, setLikeNum] = useState(video.like);
 
     return (
         <div className='vid'>
@@ -36,32 +34,7 @@ function VideoPostCard({video}) {
 						/>
 					}
 					></HoverVideoPlayer>
-				{ like ? 
-					<Button
-					color='red'
-					content='Like'
-					icon='heart'
-					label={{
-						basic: true,
-						color: 'red',
-						pointing: 'left',
-						content: likeNum
-					}}
-					onClick={(e) => {ContentStore.setLike(video._id, "dislike"); setLike(!like); setLikeNum(likeNum-1)}}
-				/> :
-				<Button
-					color='red'
-					content='Like'
-					icon='heart outline'
-					label={{
-						basic: true,
-						color: 'red',
-						pointing: 'left',
-						content: likeNum
-					}}
-					onClick={(e) => {ContentStore.setLike(video._id, "like"); setLike(!like); setLikeNum(likeNum+1)}}
-				/> 
-				}
+				
 			</div>
     );
 }
