@@ -2,6 +2,9 @@ import React, {useEffect, useState} from 'react';
 import CastingStore from '../../store/CastingStore';
 import CastingCard from './CastingCard';
 import MyPageCastingModal from './MyPageCastingModal';
+import MyPageCastingUpdateModal from './MyPageCastingUpdateModal';
+import MyPageCastingApplyModal from './MyPageCastingApplyModal';
+import { useNavigate } from 'react-router-dom';
 
 function MyPageCastingList({castings, menu, name}) {
     const [isLoading, setLoading] = useState(true);
@@ -10,6 +13,7 @@ function MyPageCastingList({castings, menu, name}) {
     useEffect(() => {
         // console.log(castings)
 	},[]);
+
     const handleDelete = (type, id) => {
         if (window.confirm("삭제하시겠습니까?") === true){
             console.log("!",castingList); 
@@ -22,6 +26,8 @@ function MyPageCastingList({castings, menu, name}) {
             }
             console.log("!!",castingList);
       }
+
+    
     return (
 		// isLoading ? <p>Loading</p> :
         <>
@@ -33,8 +39,9 @@ function MyPageCastingList({castings, menu, name}) {
                         
                         {menu === "created" &&
                         <div className='buttons'>
-                            <button class='btn save' onClick={()=>{}}>지원자 확인</button>
-                            <button class='btn apply' onClick={()=>{}}>수정</button>
+                            <button class='btn save' onClick={()=>{CastingStore.setCasting(casting, "check");CastingStore.setMyPageApplyModal(true)}}>지원자 확인</button>
+                            <button class='btn save' onClick={()=>{CastingStore.setCasting(casting, "reply");CastingStore.setMyPageApplyModal(true)}}>지원자 결과 확인</button>
+                            <button class='btn apply' onClick={()=>{CastingStore.setCasting(casting);CastingStore.setMyPageUpdateModal(true)}}>수정</button>
                             <button class='btn apply' onClick={()=>{handleDelete("create", casting._id)}}>삭제</button>
                         </div>
                         }
@@ -54,6 +61,8 @@ function MyPageCastingList({castings, menu, name}) {
                 </div>
             </section>
                 <MyPageCastingModal />
+                <MyPageCastingUpdateModal />
+                <MyPageCastingApplyModal />
             </>
     );
 }

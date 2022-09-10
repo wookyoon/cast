@@ -2,22 +2,17 @@ import React,{useState, useEffect } from 'react';
 import { Button, Modal, Form } from 'semantic-ui-react';
 import CastingStore from '../../store/CastingStore';
 import { observer } from 'mobx-react';
+import { useNavigate } from 'react-router-dom';
 
 function MyPageCastingModal() {
-    const [motivation, setMotivation] = useState(CastingStore.motivation);
-
+    const navigate = useNavigate();
     useEffect(() => {
     },[]);
 
     const handleSubmit = (param) => {
-        CastingStore.applyCasting(CastingStore.casting._id, motivation, param).then((re) => {
-            if(re === "already apply"){
-                return alert("이미 지원한 캐스팅입니다.")
-            }else if(re === "already save"){
-                return alert("임시 저장한 캐스팅입니다.")
-            }else if(re === "created"){
-                return alert("등록한 캐스팅입니다.")
-            }       
+        CastingStore.applyCasting(CastingStore.casting._id, CastingStore.motivation, param, "temp").then((re) => {
+            console.log(re)
+            navigate(0)
         })
     }
 
@@ -42,8 +37,7 @@ function MyPageCastingModal() {
 					</Modal.Description>
 				</div>
                 <Form reply>
-                   
-                    <Form.TextArea  value={CastingStore.motivation} onChange={(e)=>setMotivation(e.target.value)}/>
+                    <Form.TextArea  value={CastingStore.motivation} onChange={(e)=>CastingStore.setMotivation(e.target.value)}/>
                     <Button
                         content='Save'
                         labelPosition='left'

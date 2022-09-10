@@ -8,8 +8,8 @@ class CastingApi{
             .then((response) => response.data);
     }
 
-    createCasting(data) {
-        return axios.post(this.URL  , data)
+    createCasting(type, data) {
+        return axios.post(this.URL+"/?type="+type , data)
             .then((response) => response.data);
     }
 
