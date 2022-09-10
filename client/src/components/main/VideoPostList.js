@@ -4,12 +4,13 @@ import VideoPostCard from './VideoPostCard';
 import { Button } from 'semantic-ui-react';
 import VideoModal from './VideoModal';
 
-function VideoPostList() {
+function VideoPostList({user}) {
     const [isLoading, setLoading] = useState(true);
     const [videoList, setVideoList] = useState();
 
     useEffect(() => {
-      ContentStore.getVideoList('mypage', localStorage.getItem('name')).then(()=>{
+
+      ContentStore.getVideoList('mypage', user).then(()=>{
         setLoading(false);
         setVideoList(ContentStore.videos)
       })
@@ -30,7 +31,7 @@ function VideoPostList() {
     return (
 		isLoading ? <p>Loading</p> :
       <>
-        <section id='vidpost'>
+        <section id='video'>
           {videoList.map((video, idx) => ( 
             <div key = {idx} >
               <VideoPostCard video = {video} />
@@ -41,7 +42,7 @@ function VideoPostList() {
                 onClick={(e) => {handleDelete(video)}}
               />}
             </div>
-          ))}
+          ))} 
           <VideoModal />
 		  </section>
 		</>

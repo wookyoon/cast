@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import { useLocation } from 'react-router-dom';
 import Intro from './Intro';
 import VideoPostList from './VideoPostList';
 import MyPageCastingList from './MyPageCastingList';
@@ -11,64 +12,80 @@ function MyPage() {
     const [applyCastingList, setApplyCastingList] = useState();
     const [createCastingList, setCreateCastingList] = useState();
     const [isLoading, setLoading] = useState(true);
+	const user = useLocation().search.split("=")[1]
+	// const user = ;
 
 	useEffect(() => {
-        CastingStore.getCastingList("save", name).then((results)=>{
+		if(user){
+			console.log("*")
 			setLoading(false);
-			setSaveCastingsList(results);
-            // console.log()
-        });
-		CastingStore.getCastingList("apply", name).then((results)=>{
-			setLoading(false);
-			setApplyCastingList(results);
-            // console.log()
-        });
-		CastingStore.getCastingList("created", name).then((results)=>{
-			setLoading(false);
-			setCreateCastingList(results);
-            // console.log(results)
-        });
+		}else{
+			CastingStore.getCastingList("save", name).then((results)=>{
+				setLoading(false);
+				setSaveCastingsList(results);
+				// console.log()
+			});
+			CastingStore.getCastingList("apply", name).then((results)=>{
+				setLoading(false);
+				setApplyCastingList(results);
+				// console.log()
+			});
+			CastingStore.getCastingList("created", name).then((results)=>{
+				setLoading(false);
+				setCreateCastingList(results);
+				// console.log(results)
+			});
+		}
 	},[]);
 
-    return (
+	if(user){
+		return (
 		isLoading ? <p>Loading</p> :
-        <section id='mypage'>
+		<section id='mypage'>
 			<table />
-			<Intro />
+			<Intro user={user}/>
 			<table />
-			<div className='category'>
-				<ul>
-					<li onClick={()=>{setMenu(0)}}>
-					<div style={{ display: 'flex', flexDirection: 'row' }}>
-                       <h1 style={{color:"white"}}>비디오 리스트</h1>
-                    </div>
-					</li>
-					<li  onClick={()=>{setMenu(1) }}>
-					<div  style={{ display: 'flex', flexDirection: 'row' }}>
-                       <h1 style={{color:"white"}}> 지원 작품 리스트</h1>
-                    </div>
-					</li>
-					<li onClick={()=>{ setMenu(2) }}>
-					<div style={{ display: 'flex', flexDirection: 'row' }}>
-					<h1 style={{color:"white"}}>저장 작품 리스트</h1>
-                    </div>
-					</li>
-					<li onClick={()=>{ setMenu(3)}}>
-					<div style={{ display: 'flex', flexDirection: 'row' }}>
-					<h1 style={{color:"white"}}>생성 작품 리스트</h1>
-                    </div>
-					</li>
-				</ul>
-			</div>
-
-			{menu === 0  &&  <VideoPostList /> }
-			{menu === 1  &&  <MyPageCastingList castings={applyCastingList} menu="apply" name={name}/> }
-			{menu === 2  &&  <MyPageCastingList castings={saveCastingList} menu="save" name={name}/> }
-			{menu === 3  &&  <MyPageCastingList castings={createCastingList} menu="created" name={name}/> }
-			
+			<VideoPostList user={user}/>}
 			<table />
 		</section>
-    );
+	);
+    }else{
+		return (
+			isLoading ? <p>Loading</p> :
+			<section id='mypage'>
+				<table />
+				<Intro user={name}/>
+				<table />
+				<div className='category' >
+				<ul>
+					<li style={{ display: 'inline' }} onClick={()=>{setMenu(0)}}>
+					   <h1 style={{color:"white"}}>비디오 리스트</h1>
+					</li>
+					<li style={{ display: 'inline' }} onClick={()=>{setMenu(1) }}>
+					   <h1 style={{color:"white"}}> 지원 작품 리스트</h1>
+					</li>
+					<li style={{ display: 'inline' }} onClick={()=>{ setMenu(2) }}>
+					<h1 style={{color:"white"}}>저장 작품 리스트</h1>
+					</li>
+					<li style={{ display: 'inline' }} onClick={()=>{ setMenu(3)}}>
+					<h1 style={{color:"white"}}>생성 작품 리스트</h1>
+					</li>
+					<li style={{ display: 'inline' }} onClick={()=>{ setMenu(4)}}>
+					<h1 style={{color:"white"}}>좋아요 비디오</h1>
+					</li>
+					<li style={{ display: 'inline' }} onClick={()=>{ setMenu(5)}}>
+					<h1 style={{color:"white"}}>북마크 유저</h1>
+					</li>
+				</ul>
+				{menu === 0  &&  <VideoPostList user={name}/> }
+				{menu === 1  &&  <MyPageCastingList castings={applyCastingList} menu="apply" name={name}/> }
+				{menu === 2  &&  <MyPageCastingList castings={saveCastingList} menu="save" name={name}/> }
+				{menu === 3  &&  <MyPageCastingList castings={createCastingList} menu="created" name={name}/> }
+			</div>
+				<table />
+			</section>
+		);	
+	}
 }
 
 export default MyPage;

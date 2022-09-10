@@ -53,7 +53,7 @@ function MyPageCastingList({castings, menu, name}) {
                         }
                         {menu === "apply" &&
                         <div className='buttons'>
-                            <button class='btn apply' onClick={()=>{}}>확인</button>
+                            <button class='btn apply' onClick={()=>{CastingStore.setCasting(casting, "confirm");CastingStore.setMyPageApplyModal(true)}}>확인</button>
                         </div>
                         }
                     </div>

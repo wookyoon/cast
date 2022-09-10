@@ -66,21 +66,31 @@ class ContentStore {
 		return this.tags;
 	}
 
-    async setVideo(video){
+    async setVideo(video, categoty, param){
         this.video=video;
         console.log("current video", this.video);
-        const data = {
-            category : "hit",
-            id : video._id
-        }
-        try {
-            const result = await ContentApi.updateVideo(data);
-            console.log(result['message'])
-            // return result['message'];
-        } catch (error) {
-            console.log(error)
-            runInAction(this.message = error.message);
-        }
+		if(categoty === "hit"){
+			const data = {
+				category : "hit",
+				id : video._id
+			}
+			try {
+				const result = await ContentApi.updateVideo(data);
+				console.log(result['message'])
+				// return result['message'];
+			} catch (error) {
+				console.log(error)
+				runInAction(this.message = error.message);
+			}
+		}else if(categoty === "like"){
+			if(param === "dislike"){
+				video.likeUser = video.likeUser.filter((user) => user !== localStorage.getItem("name")); 
+				video.like = video.like-1
+			}else if(param === "like"){
+				video.likeUser = [...video.likeUser, localStorage.getItem("name")]; 
+				video.like = video.like+1
+			}
+		}
     }
 
     async setLike(id, param){

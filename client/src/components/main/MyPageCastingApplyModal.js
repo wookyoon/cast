@@ -3,6 +3,7 @@ import { Button, Modal, Form, Checkbox } from 'semantic-ui-react';
 import CastingStore from '../../store/CastingStore';
 import { observer } from 'mobx-react';
 import { useNavigate } from 'react-router-dom';
+
 function MyPageCastingApplyModal() {
     const navigate = useNavigate();
     const [reply, setReply] = useState()
@@ -27,6 +28,22 @@ function MyPageCastingApplyModal() {
 			onOpen={() => CastingStore.setMyPageApplyModal(true)}
 			open={CastingStore.mypageApplyOpen}
 			>
+                {CastingStore.type==="confirm" &&
+                 CastingStore.filteredResultCasting.map((apply, idx)=>(
+                    <div key={idx} >
+                        <Modal.Header>지원자 이름 : {apply.name}</Modal.Header>
+                        <Modal.Description>동기 : {apply.motivation}</Modal.Description>
+                        <Modal.Description>답장 : {apply.reply}</Modal.Description>
+                    </div>
+                ))}
+                {CastingStore.type==="confirm" &&
+                CastingStore.filteredCasting.map((apply, idx)=>(
+                    <div key={idx} >
+                        <Modal.Header>지원자 이름 : {apply.name}</Modal.Header>
+                        <Modal.Description>동기 : {apply.motivation}</Modal.Description>
+                        <Modal.Description>답장 : 심사중 </Modal.Description>
+                    </div>
+                ))} 
                {CastingStore.type==="reply" && CastingStore.filteredResultCasting.map((apply, idx)=>(
                     <div key={idx} >
                         <Modal.Header>지원자 이름 : {apply.name}</Modal.Header>

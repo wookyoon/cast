@@ -106,7 +106,7 @@ const updateVideo = asyncHandler(async (req, res) => {
             user = await Profile.findOneAndUpdate({"name": name}, { $addToSet: { "likeVideo" : id } }).lean().exec()
             video = await Video.findByIdAndUpdate(id, 
                 { $addToSet: { "likeUser" : name}, $inc: { "like" : 1  }}).lean().exec()
-        }else{
+        }else if(param == "dislike"){
             user = await Profile.findOneAndUpdate({"name": name}, { $pull: { "likeVideo" : id } }).lean().exec()
             video = await Video.findByIdAndUpdate(id, 
                 { $pull: { "likeUser" : name}, $inc: { "like" : -1  }}).lean().exec()

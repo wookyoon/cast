@@ -115,12 +115,15 @@ class CastingStore{
         if(save==="update"){
             this.filteredCasting = this.casting.apply.filter((user) => user.name === localStorage.getItem("name"));
             this.motivation = this.filteredCasting[0].motivation
-            console.log("$", this.motivation )
         }else if(save==="check"){
             this.filteredCasting = this.casting.apply.filter((user) => user.save === "apply");
             this.type=save
         }else if(save==="reply"){
             this.filteredResultCasting = this.casting.apply.filter((user) => user.save === "reply");
+            this.type=save
+        }else if(save==="confirm"){
+            this.filteredCasting = this.casting.apply.filter((user) => user.save === "apply" && user.name === localStorage.getItem("name"));
+            this.filteredResultCasting = this.casting.apply.filter((user) => user.save === "reply" && user.name === localStorage.getItem("name"));
             this.type=save
         }
         // if(save === "save"){

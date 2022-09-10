@@ -14,17 +14,15 @@ import recommendedTags from '../../utils/videoRecommendedTags';
 import categorys from '../../utils/videoCategory';
 import sorting from '../../utils/videoSort';
 import { Button } from 'semantic-ui-react';
+import Avatar from '@mui/material/Avatar';
+import Chip from '@mui/material/Chip';
 
 function VideoList() {
 	const [isLoading, setLoading] = useState(true);
 	const [menu, setMenu] = useState('1');
 	const [videoList, setVideoList] = useState();
 	const [inputText, setinputText] = useState();
-	const [like, setLike] = useState()
-	// const [like, setLike] = useState(video.likeUser?.includes(localStorage.getItem("name")))
-	// const [likeNum, setLikeNum] = useState(video.like);
-	const [likeNum, setLikeNum] = useState();
-	
+    const navigate = useNavigate();
 
 	useEffect(() => {
 		ContentStore.getVideoList('전체').then(() => {
@@ -51,14 +49,6 @@ function VideoList() {
         setVideoList(ContentStore.videos);
         })
     }
-
-	const handleSearch = () => {
-		if (menu === '2') {
-			ContentStore.getVideoList('title', inputText).then(() => {
-				setVideoList(ContentStore.videos);
-			});
-		}
-	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -161,8 +151,21 @@ function VideoList() {
 					</li>
 				</ul>
 			</div>
-			{videoList.map((video, idx) => ( 
-				<VideoCard video = {video} key = {idx} likeNum={video.like}/>
+			{videoList.map((video, idx) => (
+				<div className='vid'>
+					<div className='id' onClick={()=>navigate('/mypage/data/?user='+ video.name)}>
+						<Chip
+							avatar={<Avatar alt='Natacha' src={`https://feedback-resized.s3.ap-northeast-2.amazonaws.com/profileImg/${video.name}.jpeg`}/>}
+							label={video.name}
+					/>
+				</div>
+					<VideoCard video = {video} key = {idx} />
+					<div className='tag'>
+					{video.tag.map((tag, i) => (
+						<h4 onClick={()=>handleOnClickTag(tag)} key={i}>#{tag}</h4>
+					))}
+					</div>
+				</div>
 				))}
 		</section>
 		<VideoModal />

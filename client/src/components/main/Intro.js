@@ -7,9 +7,9 @@ import { Button } from 'semantic-ui-react';
 import { faBookmark } from '@fortawesome/free-solid-svg-icons';
 import LoginStore from '../../store/LoginStore';
 import ContentStore from '../../store/ContentStore';
+import { observer } from 'mobx-react';
 
-function Intro() {
-    let [modal, setModal] = useState(false);
+function Intro({user}) {
     const [isLoading, setLoading] = useState(true);
     const [intro, setIntro] = useState();
     const [video, setVideo] = useState();
@@ -18,17 +18,36 @@ function Intro() {
 	const [name, setName] = useState(localStorage.getItem('name'));
 
     useEffect(() => {
-        LoginStore.getUser(name).then(()=>{
+		console.log("!",user)
+        LoginStore.getUser(user).then(()=>{
             // setLoading(false);
+
             setIntro(LoginStore.user)
+			console.log(intro)
         })
-		ContentStore.getIntroVideo("intro", name).then(()=>{
+		ContentStore.getIntroVideo("intro", user).then(()=>{
 			setVideo(ContentStore.introVideo[0])
-			setLike(ContentStore.introVideo[0].likeUser?.includes(localStorage.getItem("name")))
-			setLikeNum(ContentStore.introVideo[0].like)
+			// setLike(ContentStore.introVideo[0].likeUser?.includes(name))
+			// setLikeNum(ContentStore.introVideo[0].like)
             setLoading(false);
         })
     },[]);
+
+	const handleLike = (type) => {
+		if(type === "dislike"){
+			ContentStore.setLike(video._id, type); 
+			video.likeUser = video.likeUser.filter((user) => user !== name); 
+			video.like = video.like-1
+		}else{
+			ContentStore.setLike(video._id, type);
+			video.likeUser = [...video.likeUser,name]; 
+			video.like = video.like+1
+		}
+	}
+	
+	const handleBookmark = () =>{
+		console.log()
+	}
 
     return (
         isLoading ? <p>Loading</p> :
@@ -52,8 +71,10 @@ function Intro() {
 						/>
 					}
 					></HoverVideoPlayer>
-				{ like ? 
+				{video.likeUser?.includes(name) ? 
 					<Button
+					id='btn'
+					size='mini'
 					color='red'
 					content='Like'
 					icon='heart'
@@ -61,11 +82,13 @@ function Intro() {
 						basic: true,
 						color: 'red',
 						pointing: 'left',
-						content: likeNum
+						content: video.like
 					}}
-					onClick={(e) => {ContentStore.setLike(video._id, "dislike"); setLike(!like); setLikeNum(likeNum-1)}}
+					onClick={(e) => handleLike("dislike")}
 				/> :
 				<Button
+					id='btn'
+					size='mini'
 					color='red'
 					content='Like'
 					icon='heart outline'
@@ -73,9 +96,9 @@ function Intro() {
 						basic: true,
 						color: 'red',
 						pointing: 'left',
-						content: likeNum
+						content: video.like
 					}}
-					onClick={(e) => {ContentStore.setLike(video._id, "like"); setLike(!like); setLikeNum(likeNum+1)}}
+					onClick={(e) => handleLike("like")}
 				/> 
 				}
 			</div>
@@ -102,7 +125,7 @@ function Intro() {
 					</div>
 					<div className='follow'>
 						<h1>
-							<FontAwesomeIcon icon={faBookmark} />
+							<FontAwesomeIcon icon={faBookmark} onClick={()=>handleBookmark()}/>
 						</h1>
 						<p>{intro.bookmark}</p>
 					</div>
@@ -132,4 +155,4 @@ function Intro() {
     );
 }
 
-export default Intro;
+export default observer(Intro);
