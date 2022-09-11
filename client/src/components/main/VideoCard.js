@@ -12,8 +12,8 @@ function VideoCard({ video }) {
 	const [name, setName] = useState(localStorage.getItem("name"));
 
 	const handleLike = (type) => {
-			ContentStore.setLike(video._id, type); 
-			ContentStore.setVideo(video, "like", type);
+		ContentStore.setLike(video._id, type); 
+		ContentStore.setVideo(video, "like", type);
 	}
 
 	return (

@@ -5,6 +5,7 @@ import Avatar from '@mui/material/Avatar';
 import Chip from '@mui/material/Chip';
 import { Button } from 'semantic-ui-react';
 import { faBookmark } from '@fortawesome/free-solid-svg-icons';
+import { faBookmark as bookmark } from '@fortawesome/free-regular-svg-icons';
 import LoginStore from '../../store/LoginStore';
 import ContentStore from '../../store/ContentStore';
 import { observer } from 'mobx-react';
@@ -20,33 +21,28 @@ function Intro({user}) {
     useEffect(() => {
 		console.log("!",user)
         LoginStore.getUser(user).then(()=>{
-            // setLoading(false);
-
             setIntro(LoginStore.user)
 			console.log(intro)
         })
 		ContentStore.getIntroVideo("intro", user).then(()=>{
 			setVideo(ContentStore.introVideo[0])
-			// setLike(ContentStore.introVideo[0].likeUser?.includes(name))
-			// setLikeNum(ContentStore.introVideo[0].like)
             setLoading(false);
         })
     },[]);
 
 	const handleLike = (type) => {
-		if(type === "dislike"){
-			ContentStore.setLike(video._id, type); 
-			video.likeUser = video.likeUser.filter((user) => user !== name); 
-			video.like = video.like-1
-		}else{
-			ContentStore.setLike(video._id, type);
-			video.likeUser = [...video.likeUser,name]; 
-			video.like = video.like+1
-		}
+		ContentStore.setLike(video._id, type); 
+		ContentStore.setVideo(video, "like", type);
 	}
 	
-	const handleBookmark = () =>{
-		console.log()
+	const handleBookmark = (type) =>{
+		console.log("@", intro)
+		if(user === localStorage.getItem("name")){
+			return alert("마이페이지")
+		}else{
+			LoginStore.setLike(user, type); 
+			LoginStore.setIntro(intro, "like", type);
+		}
 	}
 
     return (
@@ -123,12 +119,20 @@ function Intro({user}) {
 							label={intro.name}
 						/>
 					</div>
+					{intro.likedUser?.includes(name) ?
 					<div className='follow'>
 						<h1>
-							<FontAwesomeIcon icon={faBookmark} onClick={()=>handleBookmark()}/>
+							<FontAwesomeIcon icon={faBookmark} onClick={()=>handleBookmark("dislike")}/>
 						</h1>
 						<p>{intro.bookmark}</p>
-					</div>
+					</div> :
+					<div className='follow'>
+					<h1>
+						<FontAwesomeIcon icon={bookmark} onClick={()=>handleBookmark("like")}/>
+					</h1>
+					<p>{intro.bookmark}</p>
+				</div>
+					}
 				</div>
 
 				<div className='body'>

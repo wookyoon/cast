@@ -10,15 +10,8 @@ function VideoPostCard({video}) {
 	const [name, setName] = useState(localStorage.getItem("name"));
 
 	const handleLike = (type) => {
-		if(type === "dislike"){
-			ContentStore.setLike(video._id, type); 
-			video.likeUser = video.likeUser.filter((user) => user !== name); 
-			video.like = video.like-1
-		}else{
-			ContentStore.setLike(video._id, type);
-			video.likeUser = [...video.likeUser,name]; 
-			video.like = video.like+1
-		}
+		ContentStore.setLike(video._id, type); 
+		ContentStore.setVideo(video, "like", type);
 	}
 
     return (

@@ -8,8 +8,8 @@ class ContentApi{
             .then((response) => response.data);
     }
 
-    getVideos(category,param) {
-        return axios.get(this.URL+"/?category="+category+"&param="+param)
+    getVideos(category,param,type) {
+        return axios.get(this.URL+"/?category="+category+"&param="+param+"&type="+type)
         .then((response) => response.data);
     }
 

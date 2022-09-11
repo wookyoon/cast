@@ -47,6 +47,17 @@ class LoginStore{
         }
     }
 
+    async updateUser(name){
+        try{            
+            const results = await UserApi.updateUser(name);
+            console.log(results);
+            runInAction(() => this.user = results);
+        }
+        catch (err){
+            console.log(err);
+        }
+    }
+
     setIsLoggedIn(bool){
         this.isLoggedIn = bool;
         localStorage.setItem('isLoggedIn',bool);
@@ -55,7 +66,40 @@ class LoginStore{
     setUser(data){
         localStorage.setItem('email', data.user.email);
     }
+
+    async setLike(name, param){
+        console.log("current intro", name);
+        const data = {
+            category : "like",
+            name : name,
+            loginname: localStorage.getItem("name"),
+            param:param
+        }
+        try {
+            const result = await UserApi.updateUser(data);
+            console.log(result['message'])
+            // return result['message'];
+        } catch (error) {
+            console.log(error)
+            runInAction(this.message = error.message);
+        }
+    }
+
+    async setIntro(intro, categoty, param){
+        this.intro=intro;
+        console.log("current intro ##", this.intro);
+
+        if(param === "dislike"){
+            intro.likedUser = intro.likedUser.filter((user) => user !== localStorage.getItem("name")); 
+            intro.bookmark = intro.bookmark-1
+        }else if(param === "like"){
+            intro.likedUser = [...intro.likedUser, localStorage.getItem("name")]; 
+            intro.bookmark = intro.bookmark+1
+        }
+        console.log("current intro likedUser", this.intro.likedUser);
+        console.log("current intro bookmark", this.intro.bookmark);
     
+    }
 }
 export default new LoginStore();
 

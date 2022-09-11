@@ -4,6 +4,7 @@ import Intro from './Intro';
 import VideoPostList from './VideoPostList';
 import MyPageCastingList from './MyPageCastingList';
 import CastingStore from '../../store/CastingStore';
+import ContentStore from '../../store/ContentStore';
 
 function MyPage() {
 	const [menu, setMenu] = useState(0);
@@ -11,30 +12,55 @@ function MyPage() {
     const [saveCastingList, setSaveCastingsList] = useState();
     const [applyCastingList, setApplyCastingList] = useState();
     const [createCastingList, setCreateCastingList] = useState();
+    const [myVideoList, setMyVideoList] = useState();
+    const [likeVideoList, setLikeVideoList] = useState();
+    const [userVideoList, setUserVideoList] = useState();
     const [isLoading, setLoading] = useState(true);
 	const user = useLocation().search.split("=")[1]
 	// const user = ;
 
 	useEffect(() => {
+		CastingStore.getCastingList("save", name).then((results)=>{
+			// setLoading(false);
+			console.log("save",results)
+
+			setSaveCastingsList(results);
+		});
+		CastingStore.getCastingList("apply", name).then((results)=>{
+			// setLoading(false);
+			console.log("apply",results)
+
+			setApplyCastingList(results);
+		});
+		CastingStore.getCastingList("created", name).then((results)=>{
+			// setLoading(false);
+			console.log("create",results)
+
+			setCreateCastingList(results);
+		});
 		if(user){
-			console.log("*")
-			setLoading(false);
+			ContentStore.getVideoList('mypage', user).then((results)=>{
+				console.log("mypage user",user,results)
+				setMyVideoList(results)
+			});
 		}else{
-			CastingStore.getCastingList("save", name).then((results)=>{
-				setLoading(false);
-				setSaveCastingsList(results);
-				// console.log()
+			ContentStore.getVideoList('mypage', name).then((results)=>{
+				console.log("mypage name",name,results)
+				setMyVideoList(results)
 			});
-			CastingStore.getCastingList("apply", name).then((results)=>{
-				setLoading(false);
-				setApplyCastingList(results);
-				// console.log()
-			});
-			CastingStore.getCastingList("created", name).then((results)=>{
-				setLoading(false);
-				setCreateCastingList(results);
-				// console.log(results)
-			});
+		}
+		ContentStore.getVideoList('mypage', name, "video").then((results)=>{
+			console.log("like",results)
+			setLikeVideoList(results)
+		});
+		ContentStore.getVideoList('mypage', name, "user").then((results)=>{
+			console.log("user",results)
+			setUserVideoList(results)
+			setLoading(false);
+
+		});
+		if(saveCastingList && applyCastingList && createCastingList && myVideoList && likeVideoList && userVideoList){
+			setLoading(false);
 		}
 	},[]);
 
@@ -45,7 +71,7 @@ function MyPage() {
 			<table />
 			<Intro user={user}/>
 			<table />
-			<VideoPostList user={user}/>}
+			<VideoPostList videos={myVideoList} user={user}/>
 			<table />
 		</section>
 	);
@@ -77,10 +103,13 @@ function MyPage() {
 					<h1 style={{color:"white"}}>북마크 유저</h1>
 					</li>
 				</ul>
-				{menu === 0  &&  <VideoPostList user={name}/> }
+				{menu === 0  &&  <VideoPostList videos={myVideoList} user={name} menu={"mine"}/> }
 				{menu === 1  &&  <MyPageCastingList castings={applyCastingList} menu="apply" name={name}/> }
 				{menu === 2  &&  <MyPageCastingList castings={saveCastingList} menu="save" name={name}/> }
 				{menu === 3  &&  <MyPageCastingList castings={createCastingList} menu="created" name={name}/> }
+				{menu === 4  &&  <VideoPostList videos={likeVideoList} user={name} menu={"video"}/> }
+				{menu === 5  &&  <VideoPostList videos={userVideoList} user={name} menu={"user"}/> }
+
 			</div>
 				<table />
 			</section>
