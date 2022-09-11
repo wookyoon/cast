@@ -5,11 +5,13 @@ import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import ContentStore from '../../store/ContentStore';
 import { Button } from 'semantic-ui-react';
 import { observer } from 'mobx-react';
-
-const path = process.env.PUBLIC_URL;
+import Avatar from '@mui/material/Avatar';
+import Chip from '@mui/material/Chip';
+import { useNavigate } from 'react-router-dom';
 
 function VideoCard({ video }) {
 	const [name, setName] = useState(localStorage.getItem("name"));
+    const navigate = useNavigate();
 
 	const handleLike = (type) => {
 		ContentStore.setLike(video._id, type); 
@@ -17,7 +19,13 @@ function VideoCard({ video }) {
 	}
 
 	return (
-		<div >
+		<div>
+			<div className='id' onClick={()=>navigate('/userpage/?user='+ video.name)}>
+					<Chip
+						avatar={<Avatar alt='Natacha' src={`https://feedback-resized.s3.ap-northeast-2.amazonaws.com/profileImg/${video.name}.jpeg`}/>}
+						label={video.name}
+				/>
+			</div>
 			{video.likeUser?.includes(name) ? 
 					<Button
 					id='btn'

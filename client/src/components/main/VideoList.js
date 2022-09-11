@@ -153,12 +153,7 @@ function VideoList() {
 			</div>
 			{videoList.map((video, idx) => (
 				<div className='vid'>
-					<div className='id' onClick={()=>navigate('/mypage/data/?user='+ video.name)}>
-						<Chip
-							avatar={<Avatar alt='Natacha' src={`https://feedback-resized.s3.ap-northeast-2.amazonaws.com/profileImg/${video.name}.jpeg`}/>}
-							label={video.name}
-					/>
-				</div>
+					
 					<VideoCard video = {video} key = {idx} />
 					<div className='tag'>
 					{video.tag.map((tag, i) => (

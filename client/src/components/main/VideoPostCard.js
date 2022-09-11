@@ -5,18 +5,24 @@ import ContentStore from '../../store/ContentStore';
 import { observer } from 'mobx-react';
 import Avatar from '@mui/material/Avatar';
 import Chip from '@mui/material/Chip';
+import { useNavigate } from 'react-router-dom';
 
 function VideoPostCard({video}) {
 	const [name, setName] = useState(localStorage.getItem("name"));
+    const navigate = useNavigate();
 
 	const handleLike = (type) => {
 		ContentStore.setLike(video._id, type); 
 		ContentStore.setVideo(video, "like", type);
 	}
 
+	const handleNavigate = () =>{
+		
+		navigate(0)
+	}
     return (
         <div className='vid'>
-			<div className='id'>
+			<div className='id' onClick={()=>navigate('/userpage/?user='+ video.name)}>
 				<Chip
 					avatar={
 						<Avatar

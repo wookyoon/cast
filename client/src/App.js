@@ -12,6 +12,8 @@ import VideoSearchList from './components/main/VideoSearchList';
 import Upload from './components/content/UploadPage';
 import CastingUpload from './components/content/CastingUpload';
 import CastingList from './components/main/CastingList';
+import UserPage from './components/main/UserPage';
+
 import './scss/style.scss';
 
 function App() {
@@ -25,6 +27,7 @@ function App() {
 				<Route path='/login' exact element={<Login />} />
 				<Route path='/mypage' exact element={<MyPage />} />
 				<Route path='/mypage/data' exact element={<MyPagewithData />} />
+				<Route path='/userpage' exact element={<UserPage />} />
 				<Route path='/casting' exact element={<CastingList />} />
 				<Route path='/upload/casting' exact element={<CastingUpload />} />
 				<Route path='/feedback' exact element={<Feedback />} />
