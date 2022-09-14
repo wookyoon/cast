@@ -34,53 +34,7 @@ function CastingList() {
 		<p>Loading</p>
 	) : (
 		<>
-<<<<<<< HEAD
-			<section id='castinglist'>
-				<table />
-				<Banner />
-				<table />
-				<Search />
-				<section id='work'>
-					<div className='category'>
-						<ul>
-							<li>
-								<div style={{ display: 'flex', flexDirection: 'row' }}>
-									{categorys.map((category, i) => (
-										<div key={i}>
-											&nbsp; &nbsp; &nbsp;
-											<h1 onClick={() => handleOnClickCategory(category)}>
-												{' '}
-												{category}
-											</h1>
-										</div>
-									))}
-								</div>
-							</li>
-						</ul>
-					</div>
-					<div className='tags'>
-						<ul>
-							<li>
-								<h1>추천태그</h1>
-							</li>
-							<li>
-								<div style={{ display: 'flex', flexDirection: 'row' }}>
-									{recommendedTags.map((tag, i) => (
-										<div key={i}>
-											<h1 onClick={() => handleOnClickTag(tag)}>#{tag}</h1>
-											&nbsp; &nbsp; &nbsp;
-										</div>
-									))}
-								</div>
-							</li>
-						</ul>
-					</div>
-					{castingList.map((casting, idx) => (
-						<CastingCard casting={casting} key={idx} menu={'all'} />
-					))}
-				</section>
-				<CastingModal />
-=======
+		<section id='castinglist'>
 			<table />
 			<Banner />
 			<table />
@@ -129,7 +83,7 @@ function CastingList() {
                         </div>
 					</div>
 				))}
->>>>>>> 4e040b7c4325fbd53d314c3b02220d319df370e6
+			</section>
 			</section>
 		</>
 	);
