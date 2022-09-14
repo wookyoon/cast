@@ -1,17 +1,16 @@
 import React ,{useState, useEffect }from 'react';
 import ContentStore from '../../store/ContentStore';
+import CastingStore from '../../store/CastingStore';
 import TagApi from '../../api/TagApi';
 import { useNavigate  } from 'react-router-dom';
 import SearchList from '../main/VideoSearchList';
 import dbtags from '../../utils/tags';
 
-function TagSearch({search}) {
+function TagSearch({type}) {
     const [hasText, setHasText] = useState(false);
     const [inputValue, setInputValue] = useState('');
-    const [tags, setTags] = useState([]);
+    const [tags, setTags] = useState(type==="update"? CastingStore.casting.tag : []);
     const [limit, setLimit] = useState(0);
-    const searchtype= search;
-    const navigate = useNavigate();
 
     useEffect( () => {
         if (inputValue === '') {
@@ -30,13 +29,35 @@ function TagSearch({search}) {
     }
 
     const handleDropDownClick = (clickedOption) => {
-            if (checkLimit()){
-                setTags([...tags, dbtags[clickedOption]]);
-                ContentStore.addTags(dbtags[clickedOption]);
-                setLimit(limit+1);
-                setInputValue(""); setHasText(!hasText)
+        if (checkLimit()){
+            setTags([...tags, dbtags[clickedOption]]);
+            if(type==="update"){
+                CastingStore.setCastingValue("tag", [...tags, dbtags[clickedOption]])
             }
+            ContentStore.addTags(dbtags[clickedOption]);
+            setLimit(limit+1);
+            setInputValue(""); setHasText(!hasText)
+        }
     };
+
+    const handleDeleteTag = (x) =>{
+        setTags(tags.filter((tag) => tag !== x));
+        if(type==="update"){
+            console.log("@@@", tags.filter((tag) => tag !== x))
+            CastingStore.setCastingValue("tag", tags.filter((tag) => tag !== x));
+        }
+        setLimit(limit-1);
+        ContentStore.removeTags(x)
+    }
+
+    const handleClearTag = () =>{
+        setTags([]); 
+        if(type==="update"){
+            CastingStore.setCastingValue("tag", [])
+        }
+        ContentStore.resetTags(); 
+        setLimit(0);
+    }
 
    const DropDown = ({ options, handleComboBox, onClick }) => {
         return (
@@ -55,10 +76,10 @@ function TagSearch({search}) {
             {tags.map( (x,i)=> 
             <div  key={i}>
                 {x}
-                <div  onClick={(e)=>{setTags(tags.filter((tag) => tag !== x));setLimit(limit-1);ContentStore.removeTags(x)}}>&times;</div>
+                <div  onClick={(e)=>{handleDeleteTag(x)}}>&times;</div>
             </div>
             )}
-        <div style={{color:'red'}} onClick={(e)=>{setTags([]); ContentStore.resetTags(); setLimit(0);}}>&times;</div>
+        <div style={{color:'red'}} onClick={(e)=>{handleClearTag()}}>&times;</div>
       {inputValue?<DropDown  options={dbtags} handleComboBox={inputValue} onClick={(e)=>handleDropDownClick(e)}/>:null}
         </div>
     );

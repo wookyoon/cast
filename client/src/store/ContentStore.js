@@ -17,11 +17,13 @@ class ContentStore {
         this.video.tag=[];
     }
 
-	async getVideoList(category, param) {
+	async getVideoList(category, param, type) {
 		try {
-			const results = await ContentApi.getVideos(category, param);
-			console.log(results);
+			const results = await ContentApi.getVideos(category, param, type);
+			// console.log(results);
 			runInAction(() => (this.videos = results));
+			// console.log(results)
+			return results;
 		} catch (err) {
 			console.log(err);
 		}
@@ -30,7 +32,7 @@ class ContentStore {
 	async getIntroVideo(category, param) {
 		try {
 			const results = await ContentApi.getVideos(category, param);
-			console.log(results);
+			// console.log(results);
 			runInAction(() => (this.introVideo = results));
 		} catch (err) {
 			console.log(err);
@@ -66,21 +68,31 @@ class ContentStore {
 		return this.tags;
 	}
 
-    async setVideo(video){
+    async setVideo(video, categoty, param){
         this.video=video;
         console.log("current video", this.video);
-        const data = {
-            category : "hit",
-            id : video._id
-        }
-        try {
-            const result = await ContentApi.updateVideo(data);
-            console.log(result['message'])
-            // return result['message'];
-        } catch (error) {
-            console.log(error)
-            runInAction(this.message = error.message);
-        }
+		if(categoty === "hit"){
+			const data = {
+				category : "hit",
+				id : video._id
+			}
+			try {
+				const result = await ContentApi.updateVideo(data);
+				console.log(result['message'])
+				// return result['message'];
+			} catch (error) {
+				console.log(error)
+				runInAction(this.message = error.message);
+			}
+		}else if(categoty === "like"){
+			if(param === "dislike"){
+				video.likeUser = video.likeUser.filter((user) => user !== localStorage.getItem("name")); 
+				video.like = video.like-1
+			}else if(param === "like"){
+				video.likeUser = [...video.likeUser, localStorage.getItem("name")]; 
+				video.like = video.like+1
+			}
+		}
     }
 
     async setLike(id, param){
@@ -99,8 +111,21 @@ class ContentStore {
             console.log(error)
             runInAction(this.message = error.message);
         }
-
     }
+
+	async deleteVideoList(id) {
+		try {
+			const results = await ContentApi.deleteVideo(id);
+			console.log(results);
+		} catch (err) {
+			console.log(err);
+		}
+	}
+
+	deleteVideo(title){
+		this.videos = this.videos.filter((video) => video.title !== title);
+		return this.videos
+	}
 
 	removeTags(x) {
 		this.tags = this.tags.filter((tag) => tag !== x);

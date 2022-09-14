@@ -18,5 +18,10 @@ class UserApi{
         .then((response) => response.data);
     }
 
+    updateUser(data) {
+        return axios.patch(this.URL, data)
+        .then((response) => response.data);
+    }
+
 }
 export default new UserApi();

@@ -44,10 +44,12 @@ const profileSchema = new Schema({
     followRequest:[Object],
     followers:[Object],
     followersNum:{type:Number},
-    likeUser:[Object],
+    likeUser:[Object], // 로그인한 유저가 좋아요
+    likedUser:[{type:String, default:[]}], // 로그인한 유저를 좋아요
     likeVideo:[Object],
     applyCasting:[Object],
     saveCasting:[Object],
+    bookmarkCasting:[Object],
     volume:{type:Number}    // 용량 제한 : 20mb
 });
 

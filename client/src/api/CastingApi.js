@@ -8,8 +8,8 @@ class CastingApi{
             .then((response) => response.data);
     }
 
-    createCasting(data) {
-        return axios.post(this.URL  , data)
+    createCasting(type, data) {
+        return axios.post(this.URL+"/?type="+type , data)
             .then((response) => response.data);
     }
 
@@ -18,5 +18,9 @@ class CastingApi{
             .then((response) => response.data);
     }
 
+    deleteCasting(type, id, name) {
+        return axios.delete(this.URL+"/?type="+type+"&cid="+id+"&name="+name)
+            .then((response) => response.data);
+    }
 }
 export default new CastingApi();

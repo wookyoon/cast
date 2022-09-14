@@ -8,9 +8,10 @@ const getVideos = asyncHandler(async (req, res) => {
     var queryData = url.parse(_url, true).query;
     const category = queryData.category;
     const param = queryData.param;
+    const type = queryData.type;
     var videos = []
-    console.log(category)
-    console.log(param)
+    console.log(category, param, type)
+    // console.log(param)
     
     if(category == "전체"){
         videos = await Video.find().lean();
@@ -31,10 +32,21 @@ const getVideos = asyncHandler(async (req, res) => {
         videos = await Video.find({"name": re }).lean()
     }else if(category=="intro"){
         videos = await Video.find({"name": param, "title": "intro"}).lean();
-        console.log("**************")
-        console.log("*", videos)
     }else if(category == "mypage"){
-        videos = await Video.find({"name": param, "title": { $ne: 'intro' } }).lean();
+        if(type == "video"){
+            likes = await Profile.findOne({"name":param},{_id:0, likeVideo:1}).lean()
+            console.log(likes.likeVideo)
+            videos = await Video.find({_id:likes.likeVideo})
+            console.log(videos)
+        }else if(type == "user"){
+            console.log("&&&&", param)
+            users = await Profile.findOne({"name":param},{_id:0, likeUser:1})
+            console.log(users.likeUser)
+            videos = await Video.find({"name":users.likeUser, "title": { $eq: 'intro' }})
+            console.log("$$$",videos)
+        }else{
+            videos = await Video.find({"name": param, "title": { $ne: 'intro' } }).lean();
+        }
     }else if(category == "sort"){
         if(param == "New"){
             videos = await Video.find().sort({"created":-1}).lean();
@@ -68,7 +80,7 @@ const addVideo = asyncHandler(async (req, res) => {
 
     const max = await Video.find({name: name}).count().lean()
     console.log(max)
-    if(max==4){
+    if(max==5){
         return res.json({message: 'max'});
     }
 
@@ -82,7 +94,17 @@ const addVideo = asyncHandler(async (req, res) => {
 })
 
 const deleteVideo = asyncHandler(async (req, res) => {
-    pass
+    var _url = req.url;
+    var queryData = url.parse(_url, true).query;
+    const vid = queryData.vid;
+    console.log("&&&")
+    console.log(vid)
+    console.log( req.url)
+    const video = await Video.findByIdAndDelete(vid).lean();
+    if(video){
+        console.log("####", video)
+        return res.status(200).json({message: 'Success'})
+    }
 })
 
 const updateVideo = asyncHandler(async (req, res) => {
@@ -96,7 +118,7 @@ const updateVideo = asyncHandler(async (req, res) => {
             user = await Profile.findOneAndUpdate({"name": name}, { $addToSet: { "likeVideo" : id } }).lean().exec()
             video = await Video.findByIdAndUpdate(id, 
                 { $addToSet: { "likeUser" : name}, $inc: { "like" : 1  }}).lean().exec()
-        }else{
+        }else if(param == "dislike"){
             user = await Profile.findOneAndUpdate({"name": name}, { $pull: { "likeVideo" : id } }).lean().exec()
             video = await Video.findByIdAndUpdate(id, 
                 { $pull: { "likeUser" : name}, $inc: { "like" : -1  }}).lean().exec()

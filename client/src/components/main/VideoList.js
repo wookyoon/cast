@@ -13,14 +13,16 @@ import { useNavigate } from 'react-router-dom';
 import recommendedTags from '../../utils/videoRecommendedTags';
 import categorys from '../../utils/videoCategory';
 import sorting from '../../utils/videoSort';
+import { Button } from 'semantic-ui-react';
+import Avatar from '@mui/material/Avatar';
+import Chip from '@mui/material/Chip';
 
 function VideoList() {
-	let [modal, setModal] = useState(false);
 	const [isLoading, setLoading] = useState(true);
 	const [menu, setMenu] = useState('1');
 	const [videoList, setVideoList] = useState();
 	const [inputText, setinputText] = useState();
-	const navigate = useNavigate();
+    const navigate = useNavigate();
 
 	useEffect(() => {
 		ContentStore.getVideoList('전체').then(() => {
@@ -46,14 +48,6 @@ function VideoList() {
 		ContentStore.getVideoList('sort', sort).then(() => {
 			setVideoList(ContentStore.videos);
 		});
-	};
-
-	const handleSearch = () => {
-		if (menu === '2') {
-			ContentStore.getVideoList('title', inputText).then(() => {
-				setVideoList(ContentStore.videos);
-			});
-		}
 	};
 
 	const handleSubmit = (e) => {
@@ -142,6 +136,7 @@ function VideoList() {
 									</div>
 								))}
 							</div>
+<<<<<<< HEAD
 						</li>
 					</ul>
 				</div>
@@ -165,6 +160,41 @@ function VideoList() {
 			</section>
 			<VideoModal />
 		</>
+=======
+                        ))}
+                    </div>
+					</li>
+				</ul>
+			</div>
+			<div className='tags'>
+				<ul>
+					<li>
+					<div style={{ display: 'flex', flexDirection: 'row' }}>
+                        {recommendedTags.map((tag, i)=>(
+                            <div key={i}>
+                            <h2 onClick={()=>handleOnClickTag(tag)}>#{tag}</h2>
+                            &nbsp; &nbsp; &nbsp;
+                            </div>
+                        ))}
+                    </div>
+					</li>
+				</ul>
+			</div>
+			{videoList.map((video, idx) => (
+				<div className='vid'>
+					
+					<VideoCard video = {video} key = {idx} />
+					<div className='tag'>
+					{video.tag.map((tag, i) => (
+						<h4 onClick={()=>handleOnClickTag(tag)} key={i}>#{tag}</h4>
+					))}
+					</div>
+				</div>
+				))}
+		</section>
+		<VideoModal />
+	</>
+>>>>>>> 4e040b7c4325fbd53d314c3b02220d319df370e6
 	);
 }
 

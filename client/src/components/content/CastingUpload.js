@@ -57,7 +57,7 @@ function CastingUpload() {
         }
 
         // console.log(data)
-        CastingStore.castingCreate(data)
+        CastingStore.castingCreate("new", data)
 
     }
 
