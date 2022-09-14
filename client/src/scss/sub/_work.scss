@@ -7,11 +7,6 @@
 		font: 25px/2 'Oswald';
 		color: #ae8854;
 	}
-	// h2 {
-	// 	margin: 5px;
-	// 	font: 20px/1.5 'Oswald';
-	// 	color: #ddd;
-	// }
 	p {
 		margin: 5px;
 		font: 20px/1.5 'Oswald';
@@ -42,33 +37,51 @@
 	}
 	.cards {
 		.card {
-			width: 90%;
+			width: 280px;
+			height: 400px;
+			padding: 35px 15px;
+			margin: 10px 0;
+			position: relative;
+			background-color: #fff;
+			h1,
+			a {
+				font: 30px/1 'East Sea Dokdo';
+				color: #ae8854;
+			}
+			h2,
+			p {
+				font: 30px/1 'East Sea Dokdo';
+				color: #000;
+			}
 
-			margin: 50px auto;
-			background-color: #333;
-			border-radius: 5px;
-			.head {
-				display: flex;
-				justify-content: space-between;
-				padding: 10px;
-				.id {
-					.MuiChip-root {
-						height: 50px;
-						.MuiAvatar-root {
-							width: 40px;
-							height: 40px;
-						}
-						img {
-							object-fit: cover;
-						}
-						span {
-							color: #fff;
-							font-size: 16px;
-						}
+			.id {
+				position: absolute;
+				top: 5px;
+				.MuiChip-root {
+					height: 25px;
+					.MuiAvatar-root {
+						width: 20px;
+						height: 20px;
+					}
+					img {
+						object-fit: cover;
+					}
+					span {
+						color: #000;
+						font-size: 14px;
 					}
 				}
 			}
+			.post_date {
+				position: absolute;
+				top: 5px;
+				right: 1px;
+			}
+
 			.content {
+				width: '260px';
+				height: '260px';
+				background-color: #333;
 				.top {
 					display: flex;
 					justify-content: space-between;
@@ -136,7 +149,7 @@
 
 						h2 {
 							margin: 5px;
-							font: 18px/1.5 'Oswald';
+							font: 16px/1.5 'Oswald';
 							color: #000;
 						}
 						.story {

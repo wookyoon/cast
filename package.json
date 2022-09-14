@@ -19,10 +19,13 @@
     "express-async-handler": "^1.2.0",
     "google-auth-library": "^8.1.1",
     "mongoose": "^6.4.4",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "react-card-flip": "^1.1.5",
+    "react-hover-flip": "^0.4.6"
   },
   "devDependencies": {
     "http-proxy-middleware": "^2.0.6",
-    "nodemon": "^2.0.19"
+    "nodemon": "^2.0.19",
+    "sass": "^1.54.8"
   }
 }

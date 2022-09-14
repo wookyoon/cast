@@ -36,17 +36,17 @@ function VideoList() {
 		});
 	};
 
-    const handleOnClickCategory = (category) => {
-        ContentStore.getVideoList("category", category).then(()=>{
-        	setVideoList(ContentStore.videos);
-        })
-    }
+	const handleOnClickCategory = (category) => {
+		ContentStore.getVideoList('category', category).then(() => {
+			setVideoList(ContentStore.videos);
+		});
+	};
 
 	const handleOnClickSort = (sort) => {
-        ContentStore.getVideoList("sort", sort).then(()=>{
-        setVideoList(ContentStore.videos);
-        })
-    }
+		ContentStore.getVideoList('sort', sort).then(() => {
+			setVideoList(ContentStore.videos);
+		});
+	};
 
 	const handleSearch = () => {
 		if (menu === '2') {
@@ -78,9 +78,9 @@ function VideoList() {
 		}
 	};
 
-	return ( isLoading ? 
+	return isLoading ? (
 		<p>Loading</p>
-		 : 
+	) : (
 		<>
 			<div className='search'>
 				<Form.Select
@@ -124,45 +124,47 @@ function VideoList() {
 										&nbsp; &nbsp; &nbsp;
 									</div>
 								))}
-							))}
 							</div>
 						</li>
 					</ul>
 				</div>
-			<div className='category'>
-				<ul>
-					<li>
-					<div style={{ display: 'flex', flexDirection: 'row' }}>
-                        {sorting.map((sort, i)=>(
-                            <div key={i}>
-                            <h1 key={i} onClick={()=>handleOnClickSort(sort)}> {sort}</h1>
-                            &nbsp; &nbsp; &nbsp;
+				<div className='category'>
+					<ul>
+						<li>
+							<div style={{ display: 'flex', flexDirection: 'row' }}>
+								{sorting.map((sort, i) => (
+									<div key={i}>
+										<h1 key={i} onClick={() => handleOnClickSort(sort)}>
+											{' '}
+											{sort}
+										</h1>
+										&nbsp; &nbsp; &nbsp;
+									</div>
+								))}
 							</div>
-                        ))}
-                    </div>
-					</li>
-				</ul>
-			</div>
-			<div className='tags'>
-				<ul>
-					<li>
-					<div style={{ display: 'flex', flexDirection: 'row' }}>
-                        {recommendedTags.map((tag, i)=>(
-                            <div key={i}>
-                            <h2 onClick={()=>handleOnClickTag(tag)}>#{tag}</h2>
-                            &nbsp; &nbsp; &nbsp;
-                            </div>
-                        ))}
-                    </div>
-					</li>
-				</ul>
-			</div>
-			{videoList.map((video, idx) => ( 
-				<VideoCard video = {video} key = {idx} />
-            ))}
-		</section>
-		<VideoModal />
-	</>
+						</li>
+					</ul>
+				</div>
+				<div className='tags'>
+					<ul>
+						<li>
+							<div style={{ display: 'flex', flexDirection: 'row' }}>
+								{recommendedTags.map((tag, i) => (
+									<div key={i}>
+										<h2 onClick={() => handleOnClickTag(tag)}>#{tag}</h2>
+										&nbsp; &nbsp; &nbsp;
+									</div>
+								))}
+							</div>
+						</li>
+					</ul>
+				</div>
+				{videoList.map((video, idx) => (
+					<VideoCard video={video} key={idx} />
+				))}
+			</section>
+			<VideoModal />
+		</>
 	);
 }
 

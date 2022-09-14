@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Abel&family=East+Sea+Dokdo&family=Oswald&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abel&family=Noto+Sans+KR&family=Oswald&display=swap');
 
 @import 'common/reset';
 @import 'common/header';
@@ -13,6 +13,7 @@
 @import 'main/banner';
 @import 'main/video';
 @import 'main/vidmodal';
+@import 'main/castinglist';
 
 @import 'sub/feedback';
 @import 'sub/work';
@@ -21,3 +22,4 @@
 @import 'sub/intro';
 @import 'sub/vidpost';
 @import 'sub/location';
+@import 'sub/localist';
