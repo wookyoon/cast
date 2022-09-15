@@ -31,11 +31,10 @@ function MyPageCastingList({castings, menu, name}) {
     return (
 		// isLoading ? <p>Loading</p> :
         <>
-            <section id='work'>
-                <div>
+            <section id='job'>
                     {castingList.map((casting, idx)=>(
-                        <div key = {idx}>
-                        <CastingCard key = {idx} casting={casting} menu={menu}/>
+                        <div className='card' key = {idx}>
+                        <CastingCard casting={casting} menu={menu}/>
                         
                         {menu === "created" &&
                         <div className='buttons'>
@@ -58,7 +57,6 @@ function MyPageCastingList({castings, menu, name}) {
                         }
                     </div>
                     ))}
-                </div>
             </section>
                 <MyPageCastingModal />
                 <MyPageCastingUpdateModal />

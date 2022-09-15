@@ -52,12 +52,12 @@ const updateUser = asyncHandler(async (req, res) => {
     const {category, name, loginname, param} = req.body
     console.log(category, name, loginname, param)
     if(param == "like"){
-        user = await Profile.findOneAndUpdate({"name": name}, { $addToSet: { "likedUser" : loginname } }).lean().exec()
+        user = await Profile.findOneAndUpdate({"name": name}, { $addToSet: { "likedUser" : loginname } , $inc: { "bookmark" : 1  }}).lean().exec()
         console.log(name, user)
         loginuser = await Profile.findOneAndUpdate({"name": loginname}, { $addToSet: { "likeUser" : name } }).lean().exec()
         console.log(loginname, loginuser)
        }else if(param == "dislike"){
-        user = await Profile.findOneAndUpdate({"name": name}, { $pull: { "likedUser" : loginname } }).lean().exec()
+        user = await Profile.findOneAndUpdate({"name": name}, { $pull: { "likedUser" : loginname } , $inc: { "bookmark" : -1  }}).lean().exec()
         loginuser = await Profile.findOneAndUpdate({"name": loginname}, { $pull: { "likeUser" : name } }).lean().exec()
       }
 

@@ -5,7 +5,6 @@ import CastingStore from '../../store/CastingStore';
 import CastingCard from './CastingCard';
 import recommendedTags from '../../utils/castingRecommendedTags';
 import categorys from '../../utils/castingCategory';
-import CastingModal from './CastingModal';
 
 function CastingList() {
 	const [isLoading, setLoading] = useState(true);
@@ -33,13 +32,12 @@ function CastingList() {
 	return isLoading ? (
 		<p>Loading</p>
 	) : (
-		<>
-		<section id='castinglist'>
+		<section id='location'>
 			<table />
 			<Banner />
 			<table />
 			<Search />
-			<section id='work'>
+			<section id='job'>
 				<div className='category'>
 					<ul>
 						<li>
@@ -75,7 +73,7 @@ function CastingList() {
 					</ul>
 				</div>
 				{castingList.map((casting, idx) => (
-					<div key ={idx} >
+					<div className='card' key ={idx} >
 					<CastingCard casting={casting} key={idx} menu={"all"}/>
                         <div className='buttons'>
                             <button class='btn save' onClick={()=>{}}>저장</button>
@@ -84,8 +82,7 @@ function CastingList() {
 					</div>
 				))}
 			</section>
-			</section>
-		</>
+		</section>
 	);
 }
 
