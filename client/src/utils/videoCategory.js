@@ -1,9 +1,20 @@
 const videoCategory = [
-    '전체보기',
-    '자기소개',
-    '자유연기',
-    '특기',
-    '기타'
+    {category : '전체보기',
+    color : "grey"},
+    {category : '자기소개',
+    color : 'yellow'},
+    {category : '자유연기',
+    color : 'orange'},
+    {category : '감정연기',
+    color : 'teal'},
+    {category : '독백',
+    color : 'blue'},
+    {category : '흉내',
+    color : 'brown'},
+    {category : '특기',
+    color : 'pink'},
+    {category : '기타',
+    color : 'grey'},
 ]
 
 export default videoCategory;

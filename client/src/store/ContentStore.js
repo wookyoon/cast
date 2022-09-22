@@ -17,9 +17,9 @@ class ContentStore {
         this.video.tag=[];
     }
 
-	async getVideoList(category, param, type) {
+	async getVideoList(category, param, type, name) {
 		try {
-			const results = await ContentApi.getVideos(category, param, type);
+			const results = await ContentApi.getVideos(category, param, type, name);
 			// console.log(results);
 			runInAction(() => (this.videos = results));
 			// console.log(results)

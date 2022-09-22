@@ -9,15 +9,20 @@ const getVideos = asyncHandler(async (req, res) => {
     const category = queryData.category;
     const param = queryData.param;
     const type = queryData.type;
+    const name = queryData.name;
     var videos = []
-    console.log(category, param, type)
+    console.log(category, param, type, name);
     // console.log(param)
     
     if(category == "전체"){
         videos = await Video.find().lean();
     }else if(category == "tag"){
-            const tags = param.split(",");
+        const tags = param.split(",");
+        if(tags.includes('all')){
+            videos = await Video.find().lean();
+        }else{
             videos = await Video.find({tag: { $all: tags }}).lean();
+        }
     }else if(category == "category"){
         if(param == "전체보기"){
             videos = await Video.find().lean();
@@ -36,15 +41,61 @@ const getVideos = asyncHandler(async (req, res) => {
         if(type == "video"){
             likes = await Profile.findOne({"name":param},{_id:0, likeVideo:1}).lean()
             console.log(likes.likeVideo)
-            videos = await Video.find({_id:likes.likeVideo})
+            videos = await Video.find({_id:likes.likeVideo}).lean();
             console.log(videos)
         }else if(type == "user"){
             console.log("&&&&", param)
-            users = await Profile.findOne({"name":param},{_id:0, likeUser:1})
+            users = await Profile.findOne({"name":param},{_id:0, likeUser:1}).lean();
             console.log(users.likeUser)
-            videos = await Video.find({"name":users.likeUser, "title": { $eq: 'intro' }})
+            videos = await Video.find({"name":users.likeUser, "title": { $eq: 'intro' }}).lean();
             console.log("$$$",videos)
-        }else{
+        }else if(type == "tag"){
+            const tags = param.split(",");
+            likes = await Profile.findOne({"name":name},{_id:0, likeVideo:1}).lean()
+            console.log(likes.likeVideo)
+            if(tags.includes('all')){
+                videos = await Video.find({_id:likes.likeVideo}).lean();
+            }else{
+
+            videos = await Video.find({_id:likes.likeVideo}).find({tag: { $all: tags }}).lean();
+            console.log(videos)
+            }
+        }else if(type == "category"){
+            likes = await Profile.findOne({"name":name},{_id:0, likeVideo:1}).lean()
+            console.log(likes.likeVideo)
+
+            if(param == "전체보기"){
+                videos = await Video.find({_id:likes.likeVideo}).lean();
+            }else{
+                videos = await Video.find({_id:likes.likeVideo}).find({"category": param }).lean()
+            }
+        console.log(videos)
+        }else if(type == "sort"){
+            likes = await Profile.findOne({"name":name},{_id:0, likeVideo:1}).lean()
+            console.log(likes.likeVideo)
+            if(param == "New"){
+                videos = await Video.find({_id:likes.likeVideo}).sort({"created":-1}).lean();
+            }else if(param == "Old"){
+                videos = await Video.find({_id:likes.likeVideo}).sort({"created":1}).lean();
+            }if(param == "Hit"){
+                videos = await Video.find({_id:likes.likeVideo}).sort({"hit":-1}).lean();
+            }if(param == "Like"){
+                videos = await Video.find({_id:likes.likeVideo}).sort({"like":-1}).lean();
+            }
+            console.log(videos)
+        }else if(type=="title"){
+            likes = await Profile.findOne({"name":name},{_id:0, likeVideo:1}).lean()
+            console.log("###", param, name)
+
+            var re = new RegExp(param,"gi");
+            videos = await Video.find({_id:likes.likeVideo}).find({"title": re }).lean()
+        }else if(type=="name"){
+            likes = await Profile.findOne({"name":name},{_id:0, likeVideo:1}).lean()
+
+            var re = new RegExp(param,"gi");
+            videos = await Video.find({_id:likes.likeVideo}).find({"name": re }).lean()
+        }
+        else{
             videos = await Video.find({"name": param, "title": { $ne: 'intro' } }).lean();
         }
     }else if(category == "sort"){

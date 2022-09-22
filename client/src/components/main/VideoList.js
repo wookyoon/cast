@@ -16,12 +16,14 @@ import sorting from '../../utils/videoSort';
 import { Button } from 'semantic-ui-react';
 import Avatar from '@mui/material/Avatar';
 import Chip from '@mui/material/Chip';
+import Search from '../common/Search';
 
 function VideoList() {
 	const [isLoading, setLoading] = useState(true);
-	const [menu, setMenu] = useState('1');
+	const [menu, setMenu] = useState('2');
 	const [videoList, setVideoList] = useState();
 	const [inputText, setinputText] = useState();
+	const [searchTags, setTags] = useState([]);
     const navigate = useNavigate();
 
 	useEffect(() => {
@@ -33,6 +35,7 @@ function VideoList() {
 	}, []);
 
 	const handleOnClickTag = (tag) => {
+		console.log(tag)
 		ContentStore.getVideoList('tag', tag).then(() => {
 			setVideoList(ContentStore.videos);
 		});
@@ -54,13 +57,14 @@ function VideoList() {
 		e.preventDefault();
 	};
 
+	const handleDeleteTag = (tag) =>{
+		setTags(searchTags.filter((item) => item !== tag));
+		console.log(searchTags)
+	}
 	const handleEnter = (e) => {
 		if (e.key === 'Enter') {
-			if (menu === '1') {
-				ContentStore.getVideoList('tag', ContentStore.tags).then(() => {
-					setVideoList(ContentStore.videos);
-				});
-			} else if (menu === '2') {
+			console.log(menu)
+			if (menu === '2') {
 				ContentStore.getVideoList('title', inputText).then(() => {
 					setVideoList(ContentStore.videos);
 				});
@@ -76,14 +80,47 @@ function VideoList() {
 		<p>Loading</p>
 	) : (
 		<>
+			<section id='actors'>
+				<div className='category'>
+					<ul>
+						{categorys.map((category, i) => (
+							<li key={i}>
+							<Button  size='huge' color={category.color} inverted  onClick={() => handleOnClickCategory(category.category)}>
+							{category.category}
+							</Button>
+						</li>
+						))}
+					</ul>
+				</div>
+				
+			<div className='tags'>
+				<ul>
+				<Button size='large' inverted color='grey' onClick={()=>{handleOnClickTag('all');setTags([])}}>태그전체</Button>
+
+                        {recommendedTags.map((tags, i)=>(
+							<li>
+							{tags.map((tag, i)=>(
+								<Button.Group size='large'>
+									{searchTags.includes(tag)?<Button inverted color='red' key={i} onClick={()=>handleDeleteTag(tag)}>{tag}
+								</Button>:<Button  inverted color='grey' key={i} onClick={()=>setTags([...searchTags, tag])}>{tag}
+								</Button> 
+								 }
+								</Button.Group>
+							))}
+						</li>
+                        ))}
+						<Button size='large' inverted  onClick={()=>handleOnClickTag(searchTags)}>검색</Button>
+				</ul>
+			</div>
 			<div className='search'>
+				<ul>
+					<li>
 				<Form.Select
 					className='category'
 					aria-label='Default select example'
 					onChange={(e) => {
 						setMenu(e.target.value);
 					}}>
-					<option value='1'>태그</option>
 					<option value='2'>제목</option>
 					<option value='3'>계정</option>
 				</Form.Select>
@@ -91,74 +128,33 @@ function VideoList() {
 					className='d-flex'
 					onSubmit={(e) => handleSubmit(e)}
 					onKeyPress={(e) => handleEnter(e)}>
-					{menu === '1' ? (
-						<TagSearch />
-					) : (
-						<Form.Control
-							type='search'
-							placeholder='검색어를 입력하세요'
-							className='me-2'
-							aria-label='Search'
-							onChange={(e) => setinputText(e.target.value)}
-						/>
-					)}
+					
+					<Form.Control
+						type='search'
+						placeholder='검색어를 입력하세요'
+						className='me-2'
+						aria-label='Search'
+						onChange={(e) => setinputText(e.target.value)}
+					/>
 				</Form>
-			</div>
-			<section id='video'>
-				<div className='category'>
-					<ul>
-						<li>
-							<div style={{ display: 'flex', flexDirection: 'row' }}>
-								{categorys.map((category, i) => (
-									<div key={i}>
-										<h1 key={i} onClick={() => handleOnClickCategory(category)}>
-											{' '}
-											{category}
-										</h1>
-										&nbsp; &nbsp; &nbsp;
-									</div>
-								))}
-							</div>
-						</li>
-					</ul>
-				</div>
-				<div className='category'>
-					<ul>
-						<li>
-							<div style={{ display: 'flex', flexDirection: 'row' }}>
-								{sorting.map((sort, i) => (
-									<div key={i}>
-										<h1 key={i} onClick={() => handleOnClickSort(sort)}>
-											{' '}
-											{sort}
-										</h1>
-												&nbsp; &nbsp; &nbsp;
-									</div>
-								))}
-							</div>
-						</li>
-					</ul>
-				</div>
-			<div className='tags'>
-				<ul>
+					</li>
 					<li>
-					<div style={{ display: 'flex', flexDirection: 'row' }}>
-                        {recommendedTags.map((tag, i)=>(
-                            <div key={i}>
-                            <h2 onClick={()=>handleOnClickTag(tag)}>#{tag}</h2>
-                            &nbsp; &nbsp; &nbsp;
-                            </div>
-                        ))}
-                    </div>
+						<Button inverted onClick={()=>handleOnClickSort("New")}>최신순</Button>
+					</li>
+					<li>
+						<Button inverted onClick={()=>handleOnClickSort("Hit")}>조회순</Button>
+					</li>
+					<li>
+						<Button inverted onClick={()=>handleOnClickSort("Like")}>인기순</Button>
 					</li>
 				</ul>
 			</div>
 			{videoList.map((video, idx) => (
-				<div className='vid'>
+				<div className='vid' key={idx}>
 					<VideoCard video = {video} key = {idx} />
 					<div className='tag'>
 					{video.tag.map((tag, i) => (
-						<h4 onClick={()=>handleOnClickTag(tag)} key={i}>#{tag}</h4>
+						<Button size='mini'  onClick={()=>handleOnClickTag(tag)}>{tag}</Button>
 					))}
 					</div>
 				</div>

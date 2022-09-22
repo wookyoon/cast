@@ -31,12 +31,17 @@ function Intro({user}) {
     },[]);
 
 	const handleLike = (type) => {
+		if(user === localStorage.getItem("name")){
+			return alert("마이페이지")
+		}
+		else{
 		ContentStore.setLike(video._id, type); 
 		ContentStore.setVideo(video, "like", type);
+		}
+
 	}
 	
 	const handleBookmark = (type) =>{
-		console.log("@", intro)
 		if(user === localStorage.getItem("name")){
 			return alert("마이페이지")
 		}else{
