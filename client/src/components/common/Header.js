@@ -21,7 +21,7 @@ function Header(props) {
 						<li>
 							<NavLink activestyle={active} to='/login'>
 								{/* <FontAwesomeIcon icon={faMasksTheater} />  */}
-								<h1>BeVid</h1>
+								<h1>PERSONA</h1>
 							</NavLink>
 						</li>
 					</div>
@@ -31,6 +31,12 @@ function Header(props) {
 							<NavLink activestyle={active} exact='true' to='/'>
 								{/* <FontAwesomeIcon icon={faMicrophoneLines} /> */}
 								<h1>배우</h1>
+							</NavLink>
+						</li>
+						<li id='actors'>
+							<NavLink activestyle={active} exact='true' to='/actors'>
+								{/* <FontAwesomeIcon icon={faMicrophoneLines} /> */}
+								<h1>우배</h1>
 							</NavLink>
 						</li>
 						{/* <li>
@@ -49,6 +55,12 @@ function Header(props) {
 							<NavLink activestyle={active} to='/location'>
 								{/* <FontAwesomeIcon icon={faUserTie} /> */}
 								<h1>공간</h1>
+							</NavLink>
+						</li>
+						<li id='mylist'>
+							<NavLink activestyle={active} to='/mylist'>
+								{/* <FontAwesomeIcon icon={faUserTie} /> */}
+								<h1>리스트</h1>
 							</NavLink>
 						</li>
 						<li id='profile'>

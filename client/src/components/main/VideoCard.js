@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import HoverVideoPlayer from 'react-hover-video-player';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
@@ -10,24 +10,32 @@ import Chip from '@mui/material/Chip';
 import { useNavigate } from 'react-router-dom';
 
 function VideoCard({ video }) {
-	const [name, setName] = useState(localStorage.getItem("name"));
-    const navigate = useNavigate();
+	const [name, setName] = useState(localStorage.getItem('name'));
+	const navigate = useNavigate();
 
 	const handleLike = (type) => {
-		ContentStore.setLike(video._id, type); 
-		ContentStore.setVideo(video, "like", type);
-	}
+		ContentStore.setLike(video._id, type);
+		ContentStore.setVideo(video, 'like', type);
+	};
 
 	return (
 		<div>
-			<div className='id' onClick={()=>navigate('/userpage/?user='+ video.name)}>
-					<Chip
-						avatar={<Avatar alt='Natacha' src={`https://feedback-resized.s3.ap-northeast-2.amazonaws.com/profileImg/${video.name}.jpeg`}/>}
-						label={video.name}
+			<div
+				className='id'
+				onClick={() => navigate('/userpage/?user=' + video.name)}>
+				<Chip
+					avatar={
+						<Avatar
+							alt='Natacha'
+							src={`https://feedback-resized.s3.ap-northeast-2.amazonaws.com/profileImg/${video.name}.jpeg`}
+						/>
+					}
+					label={video.name}
+					variant='outlined'
 				/>
 			</div>
-			{video.likeUser?.includes(name) ? 
-					<Button
+			{video.likeUser?.includes(name) ? (
+				<Button
 					id='btn'
 					size='mini'
 					color='red'
@@ -37,10 +45,11 @@ function VideoCard({ video }) {
 						basic: true,
 						color: 'red',
 						pointing: 'left',
-						content: video.like
+						content: video.like,
 					}}
-					onClick={(e) => handleLike("dislike")}
-				/> :
+					onClick={(e) => handleLike('dislike')}
+				/>
+			) : (
 				<Button
 					id='btn'
 					size='mini'
@@ -51,16 +60,16 @@ function VideoCard({ video }) {
 						basic: true,
 						color: 'red',
 						pointing: 'left',
-						content: video.like
+						content: video.like,
 					}}
-					onClick={(e) => handleLike("like")}
-				/> 
-				}
+					onClick={(e) => handleLike('like')}
+				/>
+			)}
 			<HoverVideoPlayer
-			onClick={(e) => {
-				ContentStore.setVideo(video, "hit");
-				ContentStore.setModal(true);
-			}}
+				onClick={(e) => {
+					ContentStore.setVideo(video, 'hit');
+					ContentStore.setModal(true);
+				}}
 				videoSrc={video.videoUrl}
 				style={{
 					width: '250px',
@@ -82,8 +91,7 @@ function VideoCard({ video }) {
 							}}
 						/>
 					</div>
-				}
-			></HoverVideoPlayer>
+				}></HoverVideoPlayer>
 			<div className='title'>
 				<p>{video.category}</p>
 				<p>{video.title}</p>

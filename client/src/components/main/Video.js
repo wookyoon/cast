@@ -3,7 +3,7 @@ import HoverVideoPlayer from 'react-hover-video-player';
 import Avatar from '@mui/material/Avatar';
 import Chip from '@mui/material/Chip';
 import { Button } from 'semantic-ui-react';
-import VidModal from './VidModal';
+// import VidModal from './VidModal';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';

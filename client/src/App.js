@@ -4,7 +4,7 @@ import Footer from './components/common/Footer';
 import Login from './components/login/LoginPage';
 import Main from './components/main/Main';
 import MyPage from './components/sub/MyPage';
-import MyPagewithData from './components/main/MyPage'
+import MyPagewithData from './components/main/MyPage';
 import Feedback from './components/sub/Feedback';
 import Location from './components/sub/Location';
 
@@ -13,6 +13,8 @@ import Upload from './components/content/UploadPage';
 import CastingUpload from './components/content/CastingUpload';
 import CastingList from './components/main/CastingList';
 import UserPage from './components/main/UserPage';
+import Actors from './components/sub/Actors';
+import Mylist from './components/sub/Mylist';
 
 import './scss/style.scss';
 
@@ -32,6 +34,8 @@ function App() {
 				<Route path='/upload/casting' exact element={<CastingUpload />} />
 				<Route path='/feedback' exact element={<Feedback />} />
 				<Route path='/location' exact element={<Location />} />
+				<Route path='/actors' exact element={<Actors />} />
+				<Route path='/mylist' exact element={<Mylist />} />
 			</Routes>
 			<Footer />
 		</>

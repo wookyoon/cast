@@ -11,10 +11,9 @@ function Location() {
 	const navigate = useNavigate();
 	return (
 		<section id='location'>
+			{/* <table /> */}
+			{/* <Search /> */}
 			<table />
-			<Banner />
-			<table />
-			<Search />
 			<Localist />
 			{/* <VideoList /> */}
 			<VideoModal />
