@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Banner from '../main/Banner';
 import Search from '../common/Search';
+import CastingModal from './CastingModal';
 import CastingStore from '../../store/CastingStore';
 import CastingCard from './CastingCard';
 import recommendedTags from '../../utils/castingRecommendedTags';
 import categorys from '../../utils/castingCategory';
+import { Button } from 'semantic-ui-react';
 
 function CastingList() {
 	const [isLoading, setLoading] = useState(true);
@@ -33,8 +35,6 @@ function CastingList() {
 		<p>Loading</p>
 	) : (
 		<section id='location'>
-			<table />
-			<Banner />
 			<table />
 			<Search />
 			<section id='job'>
@@ -73,15 +73,25 @@ function CastingList() {
 					</ul>
 				</div>
 				{castingList.map((casting, idx) => (
-					<div className='card' key ={idx} >
-					<CastingCard casting={casting} key={idx} menu={"all"}/>
-                        <div className='buttons'>
-                            <button class='btn save' onClick={()=>{}}>저장</button>
-                            <button class='btn apply' onClick={()=>{CastingStore.setCasting(casting); CastingStore.setModal(true)}}>지원</button>
-                        </div>
+					<div className='card' key={idx}>
+						<CastingCard casting={casting} key={idx} menu={'all'} />
+						<div className='buttons'>
+							<button class='btn save' onClick={() => {}}>
+								저장
+							</button>
+							<button
+								class='btn apply'
+								onClick={() => {
+									CastingStore.setCasting(casting);
+									CastingStore.setModal(true);
+								}}>
+								지원
+							</button>
+						</div>
 					</div>
 				))}
 			</section>
+			<CastingModal />
 		</section>
 	);
 }
