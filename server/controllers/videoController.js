@@ -80,7 +80,7 @@ const addVideo = asyncHandler(async (req, res) => {
 
     const max = await Video.find({name: name}).count().lean()
     console.log(max)
-    if(max==5){
+    if(max==10){
         return res.json({message: 'max'});
     }
 

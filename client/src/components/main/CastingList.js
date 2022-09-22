@@ -5,6 +5,7 @@ import CastingStore from '../../store/CastingStore';
 import CastingCard from './CastingCard';
 import recommendedTags from '../../utils/castingRecommendedTags';
 import categorys from '../../utils/castingCategory';
+import CastingModal from './CastingModal';
 
 function CastingList() {
 	const [isLoading, setLoading] = useState(true);
@@ -82,6 +83,7 @@ function CastingList() {
 					</div>
 				))}
 			</section>
+			<CastingModal />
 		</section>
 	);
 }
