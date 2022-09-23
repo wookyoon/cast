@@ -50,7 +50,11 @@ const profileSchema = new Schema({
     applyCasting:[Object],
     saveCasting:[Object],
     bookmarkCasting:[Object],
-    volume:{type:Number}    // 용량 제한 : 20mb
+    volume:{type:Number},    // 용량 제한 : 20mb
+    offer:[{
+        name:{type:String},
+        message:{type:String}
+    }]
 });
 
 

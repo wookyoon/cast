@@ -56,6 +56,7 @@ function VideoPostList({videos}) {
       setTags(searchTags.filter((item) => item !== tag));
       console.log(searchTags)
     }
+	
     const handleEnter = (e) => {
       if (e.key === 'Enter') {
         console.log(menu)

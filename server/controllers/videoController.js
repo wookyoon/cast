@@ -129,11 +129,11 @@ const addVideo = asyncHandler(async (req, res) => {
         return res.json({message: 'Dupicate Title'});
     }
 
-    const max = await Video.find({name: name}).count().lean()
-    console.log(max)
-    if(max==10){
-        return res.json({message: 'max'});
-    }
+    // const max = await Video.find({name: name}).count().lean()
+    // console.log(max)
+    // if(max==10){
+    //     return res.json({message: 'max'});
+    // }
 
     // const videoObject = {"tag":tag,name,title,url,"hit":0,"like":0,"bookmark":0,"created":new Date(),"commentsOpen":true}
     const video = await Video.create(req.body);

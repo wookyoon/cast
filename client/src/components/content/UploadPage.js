@@ -6,6 +6,7 @@ import Dropzone from 'react-dropzone';
 import { PlusOutlined } from '@ant-design/icons';
 import Form from 'react-bootstrap/Form';
 import TagSearch from './TagSearch';
+import recommendedTags from '../../utils/videoRecommendedTags';
 
 const { Title } = Typography;
 
@@ -18,8 +19,9 @@ function UploadPage() {
 	const [VideoSize, setVideoSize] = useState();
 	const [ImageSize, setImageSize] = useState();
 	const [VideoDuration, setVideoDuration] = useState();
-	const [category, setCategory] = useState();
+	const [category, setCategory] = useState('자기소개');
 	const [share, setShare] = useState();
+    const [searchTags, setTags] = useState([]);
 
 	const titleTest = () => {
 		var special_pattern = /[`~!@#$%^&*|\\\'\";:\/?]/gi;
@@ -32,6 +34,10 @@ function UploadPage() {
 			return false;
 		}
 	};
+
+	const handleDeleteTag = (tag) =>{
+		setTags(searchTags.filter((item) => item !== tag));
+	}
 
 	const region = 'ap-northeast-2';
 
@@ -57,7 +63,9 @@ function UploadPage() {
 			return alert('jpg or jpeg 파일만 가능합니다.');
 		}
 
-		if (!title || !Video || !Image || ContentStore.getTags().length === 0) {
+		console.log("****", searchTags)
+		console.log("****", category)
+		if (!title || !Video || !Image ) {
 			return alert('fill all the fields first!');
 		}
 
@@ -79,7 +87,7 @@ function UploadPage() {
 			const created = y.toString() + '.' + m.toString() + '.' + d.toString();
 
 			const data = {
-				tag: ContentStore.tags,
+				tag: searchTags,
 				name: localStorage.getItem('name'),
 				title: title,
 				videoUrl:
@@ -244,7 +252,24 @@ function UploadPage() {
 				<br />
 				<br />
 				<label>Tags</label>
-				<TagSearch />
+				{/* <TagSearch /> */}
+				<div className='tags'>
+				<ul>
+                        {recommendedTags.map((tags, i)=>(
+							<li>
+							{tags.map((tag, i)=>(
+								<Button.Group size='large'>
+									{searchTags.includes(tag)?<Button inverted color='red' key={i} onClick={()=>handleDeleteTag(tag)}>{tag}
+								</Button>:<Button  inverted color='grey' key={i} onClick={()=>{setTags([...searchTags, tag]);console.log(searchTags)}}>{tag}
+								</Button> 
+								 }
+								</Button.Group>
+							))}
+						</li>
+                        ))}
+				</ul>
+			</div>
+
 				<br />
 				<br />
 
@@ -255,8 +280,11 @@ function UploadPage() {
 					onChange={(e) => {
 						setCategory(e.target.value);
 					}}>
-					{/* <option value='자기소개'>자기소개</option> */}
+					<option value='자기소개'>자기소개</option>
 					<option value='자유연기'>자유연기</option>
+					<option value='감정연기'>감정연기</option>
+					<option value='독백'>독백</option>
+					<option value='모사'>모사</option>
 					<option value='특기'>특기</option>
 					<option value='기타'>기타</option>
 				</Form.Select>

@@ -9,7 +9,7 @@ const videoCategory = [
     color : 'teal'},
     {category : '독백',
     color : 'blue'},
-    {category : '흉내',
+    {category : '모사',
     color : 'brown'},
     {category : '특기',
     color : 'pink'},
