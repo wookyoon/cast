@@ -5,6 +5,7 @@ import Chip from '@mui/material/Chip';
 import { Button } from 'semantic-ui-react';
 import VideoModal from '../main/VideoModal';
 import Search from '../common/Search';
+import { Label } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 const path = process.env.PUBLIC_URL;
@@ -21,48 +22,33 @@ function Localist() {
 						</Button>
 					</li>
 					<li>
-						<Button size='huge' inverted color='orange'>
-							단편영화
-						</Button>
-					</li>
-					<li>
-						<Button size='huge' inverted color='orange'>
-							독립영화
-						</Button>
-					</li>
-					<li>
-						<Button size='huge' inverted color='orange'>
-							상업영화
-						</Button>
-					</li>
-					<li>
 						<Button size='huge' inverted color='yellow'>
+							단편
+						</Button>
+					</li>
+					<li>
+						<Button size='huge' inverted color='orange'>
+							장편
+						</Button>
+					</li>
+					<li>
+						<Button size='huge' inverted color='teal'>
 							연극
 						</Button>
 					</li>{' '}
 					<li>
-						<Button size='huge' inverted color='yellow'>
+						<Button size='huge' inverted color='blue'>
 							뮤지컬
 						</Button>
 					</li>
 					<li>
-						<Button size='huge' inverted color='yellow'>
-							드라마
+						<Button size='huge' inverted color='brown'>
+							시리즈
 						</Button>
 					</li>
 					<li>
-						<Button size='huge' inverted color='green'>
-							웹
-						</Button>
-					</li>
-					<li>
-						<Button size='huge' inverted color='green'>
+						<Button size='huge' inverted color='pink'>
 							광고
-						</Button>
-					</li>
-					<li>
-						<Button size='huge' inverted color='green'>
-							행사
 						</Button>
 					</li>
 					<li>
@@ -150,532 +136,620 @@ function Localist() {
 					<Chip
 						avatar={<Avatar alt='Natacha' src={`${path}/img/img3.jpg`} />}
 						label='ID123zxc'
+						variant='outlined'
 					/>
 				</div>
 				<div className='deadline'>
-					<h1>마감: 06.28</h1>
+					<div class='ui grey label'>
+						마감<div class='detail'>10.26</div>
+					</div>
 				</div>
-				<div className='info'>
-					<div className='info-inner'>
-						<div className='info-front'>
-							<div className='category'>
-								<h1>분류</h1>
-								<div className='genre'>
-									<h1>장르</h1>
-								</div>
-							</div>
-							<div className='story'>
-								<h1>작품설명</h1>
-								<p>배를 타고 바다로 나가 상어를 처리한다</p>
-							</div>
-							<div className='role'>
-								<h1>역할설명</h1>
-								<p>물을 무서워하는 보안관</p>
+				<div className='info-card'>
+					<div className='story'>
+						<div class='ui large grey label'>로그라인</div>
+						<div className='context'>
+							<p>최대60자</p>
+						</div>
+					</div>
+					<div className='role'>
+						<div class='ui large grey label'>역할설명</div>
+						<div className='context'>
+							<p>최대60자</p>
+						</div>
+					</div>
+					<div className='info'>
+						<div className='produce'>
+							<div class='ui large grey label'>제작</div>
+							<div className='text'>
+								<p>최대14자</p>
 							</div>
 						</div>
-						<div class='info-back'>
-							<div className='people'>
-								<div className='produce'>
-									<h1>제작</h1>
-									<p>명지대학교</p>
-								</div>
-								<div className='director'>
-									<h1>감독</h1>
-									<p>김이박</p>
-								</div>
+						<div className='location'>
+							<div class='ui large grey label'>촬영지</div>
+							<div className='text'>
+								<p>최대14자</p>
 							</div>
-							<div className='info'>
-								<div className='date'>
-									<h1>촬영일</h1>
-									<p>07.15-07.28</p>
-								</div>
-								<div className='location'>
-									<h1>로케이션</h1>
-									<p>서울, 파주</p>
-								</div>
+						</div>
+					</div>
+					<div className='info2'>
+						<div className='date'>
+							<div class='ui large grey label'>촬영일</div>
+							<div className='text'>
+								<p>최대14자</p>
 							</div>
-							<div className='etc'>
-								<h1>참고사항</h1>
-								<p>촬영감독 김촬영</p>
+						</div>
+						<div className='pay'>
+							<div class='ui large grey label'>출연료</div>
+							<div className='text'>
+								<p>최대 14자</p>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div className='title'>
-					<h1>제목</h1>
-					<p>내 핑계 대지마</p>
+					<Button size='tiny' color='yellow'>
+						단편
+					</Button>
+					<div className='name'>
+						<p>최대12자</p>
+					</div>
 				</div>
-				<div className='play'>
-					<h1>역할</h1>
-					<p>주연 이김박</p>
-				</div>
-
 				<div className='tag'>
-					<a href=''>#남자</a>
-					<a href=''>#20대</a>
-					<a href=''>#창백</a>
-					<a href=''>#소심</a>
+					<Button size='mini'>중년</Button>
+					<Button size='mini'>차분</Button>
+					<Button size='mini'>마른</Button>
+					<Button size='mini'>사투리</Button>
 				</div>
-				<div className='buttons'>
-					<button class='btn save'>저장</button>
-					<button class='btn apply'>지원</button>
-				</div>
+				<Button id='apply' size='small' color='red'>
+					지원하기
+				</Button>
+				<Button
+					id='btn'
+					size='mini'
+					color='red'
+					content='Like'
+					icon='heart'
+					label={{
+						basic: true,
+						color: 'red',
+						pointing: 'left',
+						content: '2,048',
+					}}
+				/>
 			</div>
 			<div className='card'>
 				<div className='id'>
 					<Chip
 						avatar={<Avatar alt='Natacha' src={`${path}/img/img3.jpg`} />}
 						label='ID123zxc'
+						variant='outlined'
 					/>
 				</div>
 				<div className='deadline'>
-					<h1>마감: 06.28</h1>
+					<div class='ui grey label'>
+						마감<div class='detail'>10.26</div>
+					</div>
 				</div>
-				<div className='info'>
-					<div className='info-inner'>
-						<div className='info-front'>
-							<div className='category'>
-								<h1>단편영화</h1>
-								<div className='genre'>
-									<h1>코미디</h1>
-								</div>
-							</div>
-							<div className='story'>
-								<h1>작품설명</h1>
-								<p>새로운 학교에 전학갔는데 모두가 일찐이다</p>
-							</div>
-							<div className='role'>
-								<h1>역할설명</h1>
-								<p>내신으로 서울대 가고싶어하는 고등학생</p>
+				<div className='info-card'>
+					<div className='story'>
+						<div class='ui large grey label'>로그라인</div>
+						<div className='context'>
+							<p>
+								작은 해안마을에 나타난 식인상어를 처치하기 위해 싸우는
+								경찰서장의 이야기
+							</p>
+						</div>
+					</div>
+					<div className='role'>
+						<div class='ui large grey label'>역할설명</div>
+						<div className='context'>
+							<p>주연 / 의협심이 강한 경찰서장</p>
+						</div>
+					</div>
+					<div className='info'>
+						<div className='produce'>
+							<div class='ui large grey label'>제작</div>
+							<div className='text'>
+								<p>드래곤스튜디오</p>
 							</div>
 						</div>
-						<div class='info-back'>
-							<div className='people'>
-								<div className='produce'>
-									<h1>제작</h1>
-									<p>영화아카데미</p>
-								</div>
-								<div className='director'>
-									<h1>감독</h1>
-									<p>박이김</p>
-								</div>
+						<div className='location'>
+							<div class='ui large grey label'>촬영지</div>
+							<div className='text'>
+								<p>인천 수원 잠실</p>
 							</div>
-							<div className='info'>
-								<div className='date'>
-									<h1>촬영일</h1>
-									<p>07.15-07.28</p>
-								</div>
-								<div className='location'>
-									<h1>로케이션</h1>
-									<p>강남, 분당</p>
-								</div>
+						</div>
+					</div>
+					<div className='info2'>
+						<div className='date'>
+							<div class='ui large grey label'>촬영일</div>
+							<div className='text'>
+								<p>7.10-10.25</p>
 							</div>
-							<div className='etc'>
-								<h1>참고사항</h1>
-								<p>감독 2022년 단편영화제 수상</p>
+						</div>
+						<div className='pay'>
+							<div class='ui large grey label'>출연료</div>
+							<div className='text'>
+								<p>회당 20만원</p>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div className='title'>
-					<h1>제목</h1>
-					<p>대학 못갈지도?</p>
+					<Button size='tiny' color='orange'>
+						장편
+					</Button>
+					<div className='name'>
+						<p>돌아온 죠스</p>
+					</div>
 				</div>
-				<div className='play'>
-					<h1>역할</h1>
-					<p>주연 김고딩</p>
-				</div>
-
 				<div className='tag'>
-					<a href=''>#남자</a>
-					<a href=''>#10대</a>
-					<a href=''>#170cm</a>
-					<a href=''>#안경</a>
+					<Button size='mini'>장년</Button>
+					<Button size='mini'>평범</Button>
+					<Button size='mini'>건장</Button>
+					<Button size='mini'>액션</Button>
 				</div>
-				<div className='buttons'>
-					<button class='btn save'>저장</button>
-					<button class='btn apply'>지원</button>
-				</div>
+				<Button id='apply' size='small' color='red'>
+					지원하기
+				</Button>
+				<Button
+					id='btn'
+					size='mini'
+					color='red'
+					content='Like'
+					icon='heart'
+					label={{
+						basic: true,
+						color: 'red',
+						pointing: 'left',
+						content: '2,048',
+					}}
+				/>
 			</div>
 			<div className='card'>
 				<div className='id'>
 					<Chip
 						avatar={<Avatar alt='Natacha' src={`${path}/img/img3.jpg`} />}
 						label='ID123zxc'
+						variant='outlined'
 					/>
 				</div>
 				<div className='deadline'>
-					<h1>마감: 07.08</h1>
+					<div class='ui grey label'>
+						마감<div class='detail'>10.26</div>
+					</div>
 				</div>
-				<div className='info'>
-					<div className='info-inner'>
-						<div className='info-front'>
-							<div className='category'>
-								<h1>장편영화</h1>
-								<div className='genre'>
-									<h1>로맨스</h1>
-								</div>
-							</div>
-							<div className='story'>
-								<h1>작품설명</h1>
-								<p>이직한 회사 상사가 전남친이다</p>
-							</div>
-							<div className='role'>
-								<h1>역할설명</h1>
-								<p>많은 연봉을 받기위해 이직한 개발자</p>
+				<div className='info-card'>
+					<div className='story'>
+						<div class='ui large grey label'>로그라인</div>
+						<div className='context'>
+							<p>
+								곡성의 한 경찰이 마을을 둘러싼 정체불명의 괴사건들을 파헤쳐
+								나가는 이야기
+							</p>
+						</div>
+					</div>
+					<div className='role'>
+						<div class='ui large grey label'>역할설명</div>
+						<div className='context'>
+							<p>조연 / 정체불명의 일본인</p>
+						</div>
+					</div>
+					<div className='info'>
+						<div className='produce'>
+							<div class='ui large grey label'>제작</div>
+							<div className='text'>
+								<p>드래곤스튜디오</p>
 							</div>
 						</div>
-						<div class='info-back'>
-							<div className='people'>
-								<div className='produce'>
-									<h1>제작</h1>
-									<p>넷플릭스</p>
-								</div>
-								<div className='director'>
-									<h1>감독</h1>
-									<p>김옹밥</p>
-								</div>
+						<div className='location'>
+							<div class='ui large grey label'>촬영지</div>
+							<div className='text'>
+								<p>인천 수원 잠실 제주도 곡성</p>
 							</div>
-							<div className='info'>
-								<div className='date'>
-									<h1>촬영일</h1>
-									<p>03.15-06.28</p>
-								</div>
-								<div className='location'>
-									<h1>로케이션</h1>
-									<p>서울, 전주</p>
-								</div>
+						</div>
+					</div>
+					<div className='info2'>
+						<div className='date'>
+							<div class='ui large grey label'>촬영일</div>
+							<div className='text'>
+								<p>10.10-12.25</p>
 							</div>
-							<div className='etc'>
-								<h1>참고사항</h1>
-								<p>청룡영화사 수상자 김감독의 신작</p>
+						</div>
+						<div className='pay'>
+							<div class='ui large grey label'>출연료</div>
+							<div className='text'>
+								<p>회당 20만원</p>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div className='title'>
-					<h1>제목</h1>
-					<p>퇴사마렵다</p>
+					<Button size='tiny' color='teal'>
+						연극
+					</Button>
+					<div className='name'>
+						<p>곡성 호텔</p>
+					</div>
 				</div>
-				<div className='play'>
-					<h1>역할</h1>
-					<p>주연 이나박</p>
-				</div>
-
 				<div className='tag'>
-					<a href=''>#여자</a>
-					<a href=''>#30대</a>
-					<a href=''>#밝은</a>
-					<a href=''>#복싱</a>
+					<Button size='mini'>장년</Button>
+					<Button size='mini'>평범</Button>
+					<Button size='mini'>건장</Button>
+					<Button size='mini'>액션</Button>
 				</div>
-				<div className='buttons'>
-					<button class='btn save'>저장</button>
-					<button class='btn apply'>지원</button>
-				</div>
+				<Button id='apply' size='small' color='red'>
+					지원하기
+				</Button>
+				<Button
+					id='btn'
+					size='mini'
+					color='red'
+					content='Like'
+					icon='heart'
+					label={{
+						basic: true,
+						color: 'red',
+						pointing: 'left',
+						content: '2,048',
+					}}
+				/>
 			</div>
 			<div className='card'>
 				<div className='id'>
 					<Chip
 						avatar={<Avatar alt='Natacha' src={`${path}/img/img3.jpg`} />}
 						label='ID123zxc'
+						variant='outlined'
 					/>
 				</div>
 				<div className='deadline'>
-					<h1>마감: 11.11</h1>
+					<div class='ui grey label'>
+						마감<div class='detail'>10.26</div>
+					</div>
 				</div>
-				<div className='info'>
-					<div className='info-inner'>
-						<div className='info-front'>
-							<div className='category'>
-								<h1>기타</h1>
-								<div className='genre'>
-									<h1>스릴러</h1>
-								</div>
-							</div>
-							<div className='story'>
-								<h1>작품설명</h1>
-								<p>독서실 냉장고에 바나나우유가 사라졌다</p>
-							</div>
-							<div className='role'>
-								<h1>역할설명</h1>
-								<p>바바나우유 매니아 고시생</p>
+				<div className='info-card'>
+					<div className='story'>
+						<div class='ui large grey label'>로그라인</div>
+						<div className='context'>
+							<p>
+								곡성의 한 경찰이 마을을 둘러싼 정체불명의 괴사건들을 파헤쳐
+								나가는 이야기
+							</p>
+						</div>
+					</div>
+					<div className='role'>
+						<div class='ui large grey label'>역할설명</div>
+						<div className='context'>
+							<p>조연 / 정체불명의 일본인</p>
+						</div>
+					</div>
+					<div className='info'>
+						<div className='produce'>
+							<div class='ui large grey label'>제작</div>
+							<div className='text'>
+								<p>드래곤스튜디오</p>
 							</div>
 						</div>
-						<div class='info-back'>
-							<div className='people'>
-								<div className='produce'>
-									<h1>제작</h1>
-									<p>유튜브</p>
-								</div>
-								<div className='director'>
-									<h1>감독</h1>
-									<p>박김박</p>
-								</div>
+						<div className='location'>
+							<div class='ui large grey label'>촬영지</div>
+							<div className='text'>
+								<p>인천 수원 잠실 제주도 곡성</p>
 							</div>
-							<div className='info'>
-								<div className='date'>
-									<h1>촬영일</h1>
-									<p>11.15-12.28</p>
-								</div>
-								<div className='location'>
-									<h1>로케이션</h1>
-									<p>부산</p>
-								</div>
+						</div>
+					</div>
+					<div className='info2'>
+						<div className='date'>
+							<div class='ui large grey label'>촬영일</div>
+							<div className='text'>
+								<p>10.10-12.25</p>
 							</div>
-							<div className='etc'>
-								<h1>참고사항</h1>
-								<p>100만 유튜버 김유튜 시리즈</p>
+						</div>
+						<div className='pay'>
+							<div class='ui large grey label'>출연료</div>
+							<div className='text'>
+								<p>회당 20만원</p>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div className='title'>
-					<h1>제목</h1>
-					<p>바나나는 하얗다</p>
+					<Button size='tiny' color='blue'>
+						뮤지컬
+					</Button>
+					<div className='name'>
+						<p>곡성 호텔</p>
+					</div>
 				</div>
-				<div className='play'>
-					<h1>역할</h1>
-					<p>주연 김딸기</p>
-				</div>
-
 				<div className='tag'>
-					<a href=''>#남자</a>
-					<a href=''>#20대</a>
-					<a href=''>#180cm</a>
-					<a href=''>#마른</a>
+					<Button size='mini'>장년</Button>
+					<Button size='mini'>평범</Button>
+					<Button size='mini'>건장</Button>
+					<Button size='mini'>액션</Button>
 				</div>
-				<div className='buttons'>
-					<button class='btn save'>저장</button>
-					<button class='btn apply'>지원</button>
-				</div>
+				<Button id='apply' size='small' color='red'>
+					지원하기
+				</Button>
+				<Button
+					id='btn'
+					size='mini'
+					color='red'
+					content='Like'
+					icon='heart'
+					label={{
+						basic: true,
+						color: 'red',
+						pointing: 'left',
+						content: '2,048',
+					}}
+				/>
 			</div>
 			<div className='card'>
 				<div className='id'>
 					<Chip
 						avatar={<Avatar alt='Natacha' src={`${path}/img/img3.jpg`} />}
 						label='ID123zxc'
+						variant='outlined'
 					/>
 				</div>
 				<div className='deadline'>
-					<h1>마감: 06.28</h1>
+					<div class='ui grey label'>
+						마감<div class='detail'>10.26</div>
+					</div>
 				</div>
-				<div className='info'>
-					<div className='info-inner'>
-						<div className='info-front'>
-							<div className='category'>
-								<h1>분류</h1>
-								<div className='genre'>
-									<h1>장르</h1>
-								</div>
-							</div>
-							<div className='story'>
-								<h1>작품설명</h1>
-								<p>배를 타고 바다로 나가 상어를 처리한다</p>
-							</div>
-							<div className='role'>
-								<h1>역할설명</h1>
-								<p>물을 무서워하는 보안관</p>
+				<div className='info-card'>
+					<div className='story'>
+						<div class='ui large grey label'>로그라인</div>
+						<div className='context'>
+							<p>
+								곡성의 한 경찰이 마을을 둘러싼 정체불명의 괴사건들을 파헤쳐
+								나가는 이야기
+							</p>
+						</div>
+					</div>
+					<div className='role'>
+						<div class='ui large grey label'>역할설명</div>
+						<div className='context'>
+							<p>조연 / 정체불명의 일본인</p>
+						</div>
+					</div>
+					<div className='info'>
+						<div className='produce'>
+							<div class='ui large grey label'>제작</div>
+							<div className='text'>
+								<p>드래곤스튜디오</p>
 							</div>
 						</div>
-						<div class='info-back'>
-							<div className='people'>
-								<div className='produce'>
-									<h1>제작</h1>
-									<p>명지대학교</p>
-								</div>
-								<div className='director'>
-									<h1>감독</h1>
-									<p>김이박</p>
-								</div>
+						<div className='location'>
+							<div class='ui large grey label'>촬영지</div>
+							<div className='text'>
+								<p>인천 수원 잠실 제주도 곡성</p>
 							</div>
-							<div className='info'>
-								<div className='date'>
-									<h1>촬영일</h1>
-									<p>07.15-07.28</p>
-								</div>
-								<div className='location'>
-									<h1>로케이션</h1>
-									<p>서울, 파주</p>
-								</div>
+						</div>
+					</div>
+					<div className='info2'>
+						<div className='date'>
+							<div class='ui large grey label'>촬영일</div>
+							<div className='text'>
+								<p>10.10-12.25</p>
 							</div>
-							<div className='etc'>
-								<h1>참고사항</h1>
-								<p>촬영감독 김촬영</p>
+						</div>
+						<div className='pay'>
+							<div class='ui large grey label'>출연료</div>
+							<div className='text'>
+								<p>회당 20만원</p>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div className='title'>
-					<h1>제목</h1>
-					<p>내 핑계 대지마</p>
+					<Button size='tiny' color='brown'>
+						시리즈
+					</Button>
+					<div className='name'>
+						<p>곡성 호텔</p>
+					</div>
 				</div>
-				<div className='play'>
-					<h1>역할</h1>
-					<p>주연 이김박</p>
-				</div>
-
 				<div className='tag'>
-					<a href=''>#남자</a>
-					<a href=''>#20대</a>
-					<a href=''>#창백</a>
-					<a href=''>#소심</a>
+					<Button size='mini'>장년</Button>
+					<Button size='mini'>평범</Button>
+					<Button size='mini'>건장</Button>
+					<Button size='mini'>액션</Button>
 				</div>
-				<div className='buttons'>
-					<button class='btn save'>저장</button>
-					<button class='btn apply'>지원</button>
-				</div>
+				<Button id='apply' size='small' color='red'>
+					지원하기
+				</Button>
+				<Button
+					id='btn'
+					size='mini'
+					color='red'
+					content='Like'
+					icon='heart'
+					label={{
+						basic: true,
+						color: 'red',
+						pointing: 'left',
+						content: '2,048',
+					}}
+				/>
 			</div>
 			<div className='card'>
 				<div className='id'>
 					<Chip
 						avatar={<Avatar alt='Natacha' src={`${path}/img/img3.jpg`} />}
 						label='ID123zxc'
+						variant='outlined'
 					/>
 				</div>
 				<div className='deadline'>
-					<h1>마감: 06.28</h1>
+					<div class='ui grey label'>
+						마감<div class='detail'>10.26</div>
+					</div>
 				</div>
-				<div className='info'>
-					<div className='info-inner'>
-						<div className='info-front'>
-							<div className='category'>
-								<h1>분류</h1>
-								<div className='genre'>
-									<h1>장르</h1>
-								</div>
-							</div>
-							<div className='story'>
-								<h1>작품설명</h1>
-								<p>배를 타고 바다로 나가 상어를 처리한다</p>
-							</div>
-							<div className='role'>
-								<h1>역할설명</h1>
-								<p>물을 무서워하는 보안관</p>
+				<div className='info-card'>
+					<div className='story'>
+						<div class='ui large grey label'>로그라인</div>
+						<div className='context'>
+							<p>
+								곡성의 한 경찰이 마을을 둘러싼 정체불명의 괴사건들을 파헤쳐
+								나가는 이야기
+							</p>
+						</div>
+					</div>
+					<div className='role'>
+						<div class='ui large grey label'>역할설명</div>
+						<div className='context'>
+							<p>조연 / 정체불명의 일본인</p>
+						</div>
+					</div>
+					<div className='info'>
+						<div className='produce'>
+							<div class='ui large grey label'>제작</div>
+							<div className='text'>
+								<p>드래곤스튜디오</p>
 							</div>
 						</div>
-						<div class='info-back'>
-							<div className='people'>
-								<div className='produce'>
-									<h1>제작</h1>
-									<p>명지대학교</p>
-								</div>
-								<div className='director'>
-									<h1>감독</h1>
-									<p>김이박</p>
-								</div>
+						<div className='location'>
+							<div class='ui large grey label'>촬영지</div>
+							<div className='text'>
+								<p>인천 수원 잠실 제주도 곡성</p>
 							</div>
-							<div className='info'>
-								<div className='date'>
-									<h1>촬영일</h1>
-									<p>07.15-07.28</p>
-								</div>
-								<div className='location'>
-									<h1>로케이션</h1>
-									<p>서울, 파주</p>
-								</div>
+						</div>
+					</div>
+					<div className='info2'>
+						<div className='date'>
+							<div class='ui large grey label'>촬영일</div>
+							<div className='text'>
+								<p>10.10-12.25</p>
 							</div>
-							<div className='etc'>
-								<h1>참고사항</h1>
-								<p>촬영감독 김촬영</p>
+						</div>
+						<div className='pay'>
+							<div class='ui large grey label'>출연료</div>
+							<div className='text'>
+								<p>회당 20만원</p>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div className='title'>
-					<h1>제목</h1>
-					<p>내 핑계 대지마</p>
+					<Button size='tiny' color='pink'>
+						광고
+					</Button>
+					<div className='name'>
+						<p>곡성 호텔</p>
+					</div>
 				</div>
-				<div className='play'>
-					<h1>역할</h1>
-					<p>주연 이김박</p>
-				</div>
-
 				<div className='tag'>
-					<a href=''>#남자</a>
-					<a href=''>#20대</a>
-					<a href=''>#창백</a>
-					<a href=''>#소심</a>
+					<Button size='mini'>장년</Button>
+					<Button size='mini'>평범</Button>
+					<Button size='mini'>건장</Button>
+					<Button size='mini'>액션</Button>
 				</div>
-				<div className='buttons'>
-					<button class='btn save'>저장</button>
-					<button class='btn apply'>지원</button>
-				</div>
-			</div>
+				<Button id='apply' size='small' color='red'>
+					지원하기
+				</Button>
+				<Button
+					id='btn'
+					size='mini'
+					color='red'
+					content='Like'
+					icon='heart'
+					label={{
+						basic: true,
+						color: 'red',
+						pointing: 'left',
+						content: '2,048',
+					}}
+				/>
+			</div>{' '}
 			<div className='card'>
 				<div className='id'>
 					<Chip
 						avatar={<Avatar alt='Natacha' src={`${path}/img/img3.jpg`} />}
 						label='ID123zxc'
+						variant='outlined'
 					/>
 				</div>
 				<div className='deadline'>
-					<h1>마감: 06.28</h1>
+					<div class='ui grey label'>
+						마감<div class='detail'>10.26</div>
+					</div>
 				</div>
-				<div className='info'>
-					<div className='info-inner'>
-						<div className='info-front'>
-							<div className='category'>
-								<h1>단편영화</h1>
-								<div className='genre'>
-									<h1>코미디</h1>
-								</div>
-							</div>
-							<div className='story'>
-								<h1>작품설명</h1>
-								<p>새로운 학교에 전학갔는데 모두가 일찐이다</p>
-							</div>
-							<div className='role'>
-								<h1>역할설명</h1>
-								<p>내신으로 서울대 가고싶어하는 고등학생</p>
+				<div className='info-card'>
+					<div className='story'>
+						<div class='ui large grey label'>로그라인</div>
+						<div className='context'>
+							<p>
+								곡성의 한 경찰이 마을을 둘러싼 정체불명의 괴사건들을 파헤쳐
+								나가는 이야기
+							</p>
+						</div>
+					</div>
+					<div className='role'>
+						<div class='ui large grey label'>역할설명</div>
+						<div className='context'>
+							<p>조연 / 정체불명의 일본인</p>
+						</div>
+					</div>
+					<div className='info'>
+						<div className='produce'>
+							<div class='ui large grey label'>제작</div>
+							<div className='text'>
+								<p>드래곤스튜디오</p>
 							</div>
 						</div>
-						<div class='info-back'>
-							<div className='people'>
-								<div className='produce'>
-									<h1>제작</h1>
-									<p>영화아카데미</p>
-								</div>
-								<div className='director'>
-									<h1>감독</h1>
-									<p>박이김</p>
-								</div>
+						<div className='location'>
+							<div class='ui large grey label'>촬영지</div>
+							<div className='text'>
+								<p>인천 수원 잠실 제주도 곡성</p>
 							</div>
-							<div className='info'>
-								<div className='date'>
-									<h1>촬영일</h1>
-									<p>07.15-07.28</p>
-								</div>
-								<div className='location'>
-									<h1>로케이션</h1>
-									<p>강남, 분당</p>
-								</div>
+						</div>
+					</div>
+					<div className='info2'>
+						<div className='date'>
+							<div class='ui large grey label'>촬영일</div>
+							<div className='text'>
+								<p>10.10-12.25</p>
 							</div>
-							<div className='etc'>
-								<h1>참고사항</h1>
-								<p>감독 2022년 단편영화제 수상</p>
+						</div>
+						<div className='pay'>
+							<div class='ui large grey label'>출연료</div>
+							<div className='text'>
+								<p>회당 20만원</p>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div className='title'>
-					<h1>제목</h1>
-					<p>대학 못갈지도?</p>
+					<Button size='tiny' color='grey'>
+						기타
+					</Button>
+					<div className='name'>
+						<p>곡성 호텔</p>
+					</div>
 				</div>
-				<div className='play'>
-					<h1>역할</h1>
-					<p>주연 김고딩</p>
-				</div>
-
 				<div className='tag'>
-					<a href=''>#남자</a>
-					<a href=''>#10대</a>
-					<a href=''>#170cm</a>
-					<a href=''>#안경</a>
+					<Button size='mini'>장년</Button>
+					<Button size='mini'>평범</Button>
+					<Button size='mini'>건장</Button>
+					<Button size='mini'>액션</Button>
 				</div>
-				<div className='buttons'>
-					<button class='btn save'>저장</button>
-					<button class='btn apply'>지원</button>
-				</div>
+				<Button id='apply' size='small' color='red'>
+					지원하기
+				</Button>
+				<Button
+					id='btn'
+					size='mini'
+					color='red'
+					content='Like'
+					icon='heart'
+					label={{
+						basic: true,
+						color: 'red',
+						pointing: 'left',
+						content: '2,048',
+					}}
+				/>
 			</div>
 		</section>
 	);

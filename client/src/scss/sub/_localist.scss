@@ -6,30 +6,11 @@
 	flex-wrap: wrap;
 	justify-content: space-around;
 
-	h1 {
-		font: 24px/2 'Oswald';
-		color: #ae8854;
-	}
-	h2 {
-		margin: 5px;
-		font: 20px/1 'Noto Sans KR';
-		color: #ae8854;
-	}
-	p {
-		margin: 5px;
-		font: 20px/1.5 'Oswald';
-		color: #fff;
-	}
-	a {
-		margin: 5px;
-		font: 20px/1.5 'Oswald';
-		color: pink;
-	}
 	.category {
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: space-around;
-		padding: 10px;
+		padding: 6px;
 		li {
 			display: inline-block;
 			padding: 4px 4px;
@@ -40,7 +21,7 @@
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: space-around;
-		padding: 10px;
+		padding: 6px;
 		li {
 			display: inline-block;
 			padding: 4px 4px;
@@ -51,7 +32,7 @@
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: space-around;
-		padding: 10px;
+		padding: 6px;
 		li {
 			display: inline-block;
 			padding: 4px 4px;
@@ -59,21 +40,19 @@
 	}
 	.card {
 		width: 280px;
-		height: 400px;
+		height: 450px;
 		padding: 35px 15px;
 		margin: 10px 0;
 		border-radius: 5px;
 		position: relative;
-		// text-align: center;
 		background-color: #fff;
-		h1,
-		a {
+		h1 {
 			font: 20px/1 'Noto Sans KR';
 			color: #ae8854;
 		}
 		p {
-			font: 20px/1 'Noto Sans KR';
-			color: #999;
+			font: 15px/1 'Noto Sans KR';
+			color: #000;
 		}
 		.id {
 			position: absolute;
@@ -96,55 +75,57 @@
 		.deadline {
 			position: absolute;
 			top: 5px;
-			right: 0px;
+			right: 15px;
 		}
-		.info:hover .info-inner {
-			transform: rotateY(180deg);
-		}
-		.info {
-			background-color: transparent;
+
+		.info-card {
+			background-color: #fff;
 			width: 250px;
-			height: 250px;
-			// border: 1px solid #f1f1f1;
-			perspective: 1000px;
-			.info-inner {
-				position: relative;
-				width: 100%;
-				height: 100%;
-				text-align: center;
-				transition: transform 0.8s;
-				transform-style: preserve-3d;
-				.info-front,
-				.info-back {
+			height: 300px;
+			position: relative;
+			text-align: center;
+			.story {
+				position: absolute;
+				top: 3px;
+				.context {
+					width: 250px;
+				}
+			}
+			.role {
+				position: absolute;
+				top: 85px;
+				.context {
+					width: 250px;
+				}
+			}
+			.info {
+				position: absolute;
+				top: 168px;
+				.text {
+					width: 100px;
+				}
+				.produce {
 					position: absolute;
-					width: 100%;
-					height: 100%;
-					-webkit-backface-visibility: hidden;
-					backface-visibility: hidden;
+					left: 18px;
 				}
-				.info-front {
-					background-color: #353b48;
+				.location {
+					position: absolute;
+					left: 130px;
 				}
-				.info-back {
-					background-color: #192a56;
-					transform: rotateY(180deg);
-					.people {
-						display: flex;
-						flex-wrap: wrap;
-						justify-content: space-around;
-					}
-					.info {
-						display: flex;
-						flex-wrap: wrap;
-						justify-content: space-around;
-					}
-					.etc {
-						position: absolute;
-						bottom: 70px;
-						top: 50%;
-						left: 50%;
-						transform: translate(-50%, -20%);
-					}
+			}
+			.info2 {
+				position: absolute;
+				top: 235px;
+				.text {
+					width: 100px;
+				}
+				.date {
+					position: absolute;
+					left: 18px;
+				}
+				.pay {
+					position: absolute;
+					left: 130px;
 				}
 			}
 		}
@@ -152,27 +133,29 @@
 			display: flex;
 			flex-wrap: wrap;
 			justify-content: space-around;
+			align-items: center;
 			position: absolute;
-			bottom: 70px;
-		}
-		.play {
-			display: flex;
-			flex-wrap: wrap;
-			justify-content: space-around;
-			position: absolute;
-			bottom: 45px;
+			bottom: 80px;
+			.name {
+				width: 160px;
+				text-align: center;
+			}
 		}
 		.tag {
 			display: flex;
 			flex-wrap: wrap;
 			justify-content: space-around;
 			position: absolute;
-			bottom: 22px;
+			bottom: 45px;
 		}
-		.buttons {
+		#apply {
 			position: absolute;
-			bottom: 5px;
-			right: 10px;
+			bottom: 6px;
+		}
+		#btn {
+			position: absolute;
+			bottom: 6px;
+			right: 15px;
 		}
 	}
 }

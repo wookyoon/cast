@@ -42,7 +42,7 @@ function Actors() {
 					</li>
 					<li>
 						<Button size='huge' inverted color='brown'>
-							흉내
+							모사
 						</Button>
 					</li>
 					<li>
@@ -124,6 +124,9 @@ function Actors() {
 					</li>
 					<li>
 						<Button inverted>최신순</Button>
+					</li>{' '}
+					<li>
+						<Button inverted>조회순</Button>
 					</li>
 					<li>
 						<Button inverted>인기순</Button>
@@ -173,6 +176,9 @@ function Actors() {
 					<Button size='mini'>마른</Button>
 					<Button size='mini'>사투리</Button>
 				</div>
+				<Button id='apply' size='small' color='red'>
+					제안하기
+				</Button>
 				<Button
 					id='btn'
 					size='mini'
@@ -230,6 +236,9 @@ function Actors() {
 					<Button size='mini'>마른</Button>
 					<Button size='mini'>외국어</Button>
 				</div>
+				<Button id='apply' size='small' color='red'>
+					제안하기
+				</Button>
 				<Button
 					id='btn'
 					size='mini'
@@ -287,6 +296,9 @@ function Actors() {
 					<Button size='mini'>보통</Button>
 					<Button size='mini'>노래</Button>
 				</div>
+				<Button id='apply' size='small' color='red'>
+					제안하기
+				</Button>
 				<Button
 					id='btn'
 					size='mini'
@@ -344,6 +356,9 @@ function Actors() {
 					<Button size='mini'>마른</Button>
 					<Button size='mini'>액션</Button>
 				</div>
+				<Button id='apply' size='small' color='red'>
+					제안하기
+				</Button>
 				<Button
 					id='btn'
 					size='mini'
@@ -400,6 +415,9 @@ function Actors() {
 					<Button size='mini'>쾌할</Button>
 					<Button size='mini'>건장</Button>
 				</div>
+				<Button id='apply' size='small' color='red'>
+					제안하기
+				</Button>
 				<Button
 					id='btn'
 					size='mini'
@@ -457,6 +475,9 @@ function Actors() {
 					<Button size='mini'>보통</Button>
 					<Button size='mini'>노래</Button>
 				</div>
+				<Button id='apply' size='small' color='red'>
+					제안하기
+				</Button>
 				<Button
 					id='btn'
 					size='mini'
@@ -514,6 +535,9 @@ function Actors() {
 					<Button size='mini'>건장</Button>
 					<Button size='mini'>춤</Button>
 				</div>
+				<Button id='apply' size='small' color='red'>
+					제안하기
+				</Button>
 				<Button
 					id='btn'
 					size='mini'

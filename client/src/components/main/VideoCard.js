@@ -14,12 +14,11 @@ function VideoCard({ video }) {
 	const navigate = useNavigate();
 
 	const handleLike = (type) => {
-		if(video.name === localStorage.getItem("name")){
-			return alert("마이페이지")
-		}
-		else{
-		ContentStore.setLike(video._id, type); 
-		ContentStore.setVideo(video, "like", type);
+		if (video.name === localStorage.getItem('name')) {
+			return alert('마이페이지');
+		} else {
+			ContentStore.setLike(video._id, type);
+			ContentStore.setVideo(video, 'like', type);
 		}
 	};
 
@@ -39,6 +38,9 @@ function VideoCard({ video }) {
 					variant='outlined'
 				/>
 			</div>
+			<Button id='apply' size='small' color='red'>
+				제안하기
+			</Button>
 			{video.likeUser?.includes(name) ? (
 				<Button
 					id='btn'
@@ -99,14 +101,44 @@ function VideoCard({ video }) {
 					</div>
 				}></HoverVideoPlayer>
 			<div className='title'>
-			{video.category === "자기소개" && <Button size='tiny' color='yellow'>{video.category}</Button>}
-			{video.category === "자유연기" && <Button size='tiny' color='orange'>{video.category}</Button>}
-			{video.category === "감정연기" && <Button size='tiny' color='teal'>{video.category}</Button>}
-			{video.category === "독백" && <Button size='tiny' color='blue'>{video.category}</Button>}
-			{video.category === "모사" && <Button size='tiny' color='brown'>{video.category}</Button>}
-			{video.category === "특기" && <Button size='tiny' color='pink'>{video.category}</Button>}
-			{video.category === "기타" && <Button size='tiny' color='grey'>{video.category}</Button>}
-			<div className='name'><p>{video.title}</p></div>
+				{video.category === '자기소개' && (
+					<Button size='tiny' color='yellow'>
+						{video.category}
+					</Button>
+				)}
+				{video.category === '자유연기' && (
+					<Button size='tiny' color='orange'>
+						{video.category}
+					</Button>
+				)}
+				{video.category === '감정연기' && (
+					<Button size='tiny' color='teal'>
+						{video.category}
+					</Button>
+				)}
+				{video.category === '독백' && (
+					<Button size='tiny' color='blue'>
+						{video.category}
+					</Button>
+				)}
+				{video.category === '모사' && (
+					<Button size='tiny' color='brown'>
+						{video.category}
+					</Button>
+				)}
+				{video.category === '특기' && (
+					<Button size='tiny' color='pink'>
+						{video.category}
+					</Button>
+				)}
+				{video.category === '기타' && (
+					<Button size='tiny' color='grey'>
+						{video.category}
+					</Button>
+				)}
+				<div className='name'>
+					<p>{video.title}</p>
+				</div>
 			</div>
 		</div>
 	);

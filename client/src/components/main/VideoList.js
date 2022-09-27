@@ -24,7 +24,7 @@ function VideoList() {
 	const [videoList, setVideoList] = useState();
 	const [inputText, setinputText] = useState();
 	const [searchTags, setTags] = useState([]);
-    const navigate = useNavigate();
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		ContentStore.getVideoList('전체').then(() => {
@@ -35,7 +35,7 @@ function VideoList() {
 	}, []);
 
 	const handleOnClickTag = (tag) => {
-		console.log(tag)
+		console.log(tag);
 		ContentStore.getVideoList('tag', tag).then(() => {
 			setVideoList(ContentStore.videos);
 		});
@@ -57,13 +57,13 @@ function VideoList() {
 		e.preventDefault();
 	};
 
-	const handleDeleteTag = (tag) =>{
+	const handleDeleteTag = (tag) => {
 		setTags(searchTags.filter((item) => item !== tag));
-		console.log(searchTags)
-	}
+		console.log(searchTags);
+	};
 	const handleEnter = (e) => {
 		if (e.key === 'Enter') {
-			console.log(menu)
+			console.log(menu);
 			if (menu === '2') {
 				ContentStore.getVideoList('title', inputText).then(() => {
 					setVideoList(ContentStore.videos);
@@ -81,87 +81,124 @@ function VideoList() {
 	) : (
 		<>
 			<section id='actors'>
+				<div className='search'>
+					<ul>
+						<li>
+							<Form.Select
+								className='category'
+								aria-label='Default select example'
+								onChange={(e) => {
+									setMenu(e.target.value);
+								}}>
+								<option value='2'>제목</option>
+								<option value='3'>계정</option>
+							</Form.Select>
+							<Form
+								className='d-flex'
+								onSubmit={(e) => handleSubmit(e)}
+								onKeyPress={(e) => handleEnter(e)}>
+								<Form.Control
+									type='search'
+									placeholder='&nbsp;검색어를 입력하세요'
+									className='me-2'
+									aria-label='Search'
+									onChange={(e) => setinputText(e.target.value)}
+								/>
+							</Form>
+						</li>
+						<li>
+							<Button inverted onClick={() => handleOnClickSort('New')}>
+								최신순
+							</Button>
+						</li>
+						<li>
+							<Button inverted onClick={() => handleOnClickSort('Hit')}>
+								조회순
+							</Button>
+						</li>
+						<li>
+							<Button inverted onClick={() => handleOnClickSort('Like')}>
+								인기순
+							</Button>
+						</li>
+					</ul>
+				</div>
 				<div className='category'>
 					<ul>
 						{categorys.map((category, i) => (
 							<li key={i}>
-							<Button  size='huge' color={category.color} inverted  onClick={() => handleOnClickCategory(category.category)}>
-							{category.category}
-							</Button>
-						</li>
+								<Button
+									size='huge'
+									color={category.color}
+									inverted
+									onClick={() => handleOnClickCategory(category.category)}>
+									{category.category}
+								</Button>
+							</li>
 						))}
 					</ul>
 				</div>
-				
-			<div className='tags'>
-				<ul>
-				<Button size='large' inverted color='grey' onClick={()=>{handleOnClickTag('all');setTags([])}}>태그전체</Button>
+				<div className='tags'>
+					<ul>
+						<Button
+							size='large'
+							inverted
+							color='grey'
+							onClick={() => {
+								handleOnClickTag('all');
+								setTags([]);
+							}}>
+							태그전체
+						</Button>
 
-                        {recommendedTags.map((tags, i)=>(
+						{recommendedTags.map((tags, i) => (
 							<li>
-							{tags.map((tag, i)=>(
-								<Button.Group size='large'>
-									{searchTags.includes(tag)?<Button inverted color='red' key={i} onClick={()=>handleDeleteTag(tag)}>{tag}
-								</Button>:<Button  inverted color='grey' key={i} onClick={()=>setTags([...searchTags, tag])}>{tag}
-								</Button> 
-								 }
-								</Button.Group>
-							))}
-						</li>
-                        ))}
-						<Button size='large' inverted  onClick={()=>handleOnClickTag(searchTags)}>검색</Button>
-				</ul>
-			</div>
-			<div className='search'>
-				<ul>
-					<li>
-				<Form.Select
-					className='category'
-					aria-label='Default select example'
-					onChange={(e) => {
-						setMenu(e.target.value);
-					}}>
-					<option value='2'>제목</option>
-					<option value='3'>계정</option>
-				</Form.Select>
-				<Form
-					className='d-flex'
-					onSubmit={(e) => handleSubmit(e)}
-					onKeyPress={(e) => handleEnter(e)}>
-					
-					<Form.Control
-						type='search'
-						placeholder='검색어를 입력하세요'
-						className='me-2'
-						aria-label='Search'
-						onChange={(e) => setinputText(e.target.value)}
-					/>
-				</Form>
-					</li>
-					<li>
-						<Button inverted onClick={()=>handleOnClickSort("New")}>최신순</Button>
-					</li>
-					<li>
-						<Button inverted onClick={()=>handleOnClickSort("Hit")}>조회순</Button>
-					</li>
-					<li>
-						<Button inverted onClick={()=>handleOnClickSort("Like")}>인기순</Button>
-					</li>
-				</ul>
-			</div>
-			{videoList.map((video, idx) => (
-				<div className='vid' key={idx}>
-					<VideoCard video = {video} key = {idx} />
-					<div className='tag'>
-					{video.tag.map((tag, i) => (
-						<Button size='mini'  onClick={()=>handleOnClickTag(tag)}>{tag}</Button>
-					))}
-					</div>
+								{tags.map((tag, i) => (
+									<Button.Group size='large'>
+										{searchTags.includes(tag) ? (
+											<Button
+												inverted
+												color='red'
+												key={i}
+												onClick={() => handleDeleteTag(tag)}>
+												{tag}
+											</Button>
+										) : (
+											<Button
+												inverted
+												color='grey'
+												key={i}
+												onClick={() => setTags([...searchTags, tag])}>
+												{tag}
+											</Button>
+										)}
+									</Button.Group>
+								))}
+							</li>
+						))}
+						<Button
+							size='large'
+							color='red'
+							onClick={() => handleOnClickTag(searchTags)}>
+							검색
+						</Button>
+					</ul>
 				</div>
+				{videoList.map((video, idx) => (
+					<div className='vid' key={idx}>
+						<VideoCard video={video} key={idx} />
+						<div className='tag'>
+							{video.tag.map((tag, i) => (
+								<Button size='mini' onClick={() => handleOnClickTag(tag)}>
+									{tag}
+								</Button>
+							))}
+						</div>
+					</div>
 				))}
-		</section>
-		<VideoModal />
-	</>
+			</section>
+			<VideoModal />
+		</>
 	);
 }
 

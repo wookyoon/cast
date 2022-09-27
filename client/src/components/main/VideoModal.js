@@ -9,18 +9,17 @@ function VideoModal() {
 		<Modal
 			onClose={() => ContentStore.setModal(false)}
 			onOpen={() => ContentStore.setModal(true)}
-			open={ContentStore.open}
-			>
+			open={ContentStore.open}>
 			<Modal.Header>{ContentStore.video.title}</Modal.Header>
 			<div className='content'>
 				<div className='vid'>
 					<HoverVideoPlayer
+						id='vidframe'
 						videoSrc={ContentStore.video.videoUrl}
 						controls
 						restartOnPaused // The video should restart when it is paused
 						muted={false}
-						style={{ objectFit: 'contain' }}
-						></HoverVideoPlayer>
+						style={{ objectFit: 'contain' }}></HoverVideoPlayer>
 				</div>
 				<div className='description'>
 					<Modal.Description>
@@ -29,7 +28,7 @@ function VideoModal() {
 						))}
 					</Modal.Description>
 				</div>
-				<div className='comment'>
+				{/* <div className='comment'>
 					<Comment.Group>
 						<Header as='h3' dividing>
 							Comments
@@ -110,7 +109,7 @@ function VideoModal() {
 							/>
 						</Form>
 					</Comment.Group>
-				</div>
+				</div> */}
 			</div>
 
 			<Modal.Actions>

@@ -6,11 +6,13 @@
 	}
 	.description {
 		text-align: center;
+		display: flex;
+		justify-content: center;
 	}
-	.comment {
-		display: block;
-		margin: 0px auto;
-	}
+	// .comment {
+	// 	display: block;
+	// 	margin: 0px auto;
+	// }
 }
 
 // margin: 0px auto;
