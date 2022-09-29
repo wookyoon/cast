@@ -4,7 +4,6 @@ import VideoModal from './VideoModal';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import Form from 'react-bootstrap/Form';
-import TagSearch from '../content/TagSearch';
 
 import ContentStore from '../../store/ContentStore';
 import VideoCard from './VideoCard';

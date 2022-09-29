@@ -25,12 +25,11 @@ function UploadPage() {
 
 	const titleTest = () => {
 		var special_pattern = /[`~!@#$%^&*|\\\'\";:\/?]/gi;
-		var blank_pattern = /[\s]/g;
+		// var blank_pattern = /[\s]/g;
+
 		if (special_pattern.test(title) === true) {
-			return alert('특수문자가 입력되었습니다.');
-		} else if (blank_pattern.test(title) === true) {
-			return alert('공백이 입력되었습니다.');
-		} else {
+			return true;
+		}  else {
 			return false;
 		}
 	};
@@ -63,13 +62,12 @@ function UploadPage() {
 			return alert('jpg or jpeg 파일만 가능합니다.');
 		}
 
-		console.log("****", searchTags)
-		console.log("****", category)
 		if (!title || !Video || !Image ) {
 			return alert('fill all the fields first!');
 		}
 
 		if (titleTest()) {
+			return alert('특수문자가 입력되었습니다.')
 		} else if (VideoSize > 10000000) {
 			// 얼마나 남았는지 보여주고 넘기면 업로드안되게
 			return alert('동영상 사이즈가 10MB이상입니다');

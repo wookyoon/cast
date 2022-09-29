@@ -4,7 +4,7 @@
 	flex-wrap: wrap;
 	justify-content: space-around;
 	.category {
-		display: flex;
+		// display: flex;
 		flex-wrap: wrap;
 		justify-content: space-around;
 		padding: 6px;
@@ -26,13 +26,19 @@
 	}
 	.search {
 		width: 100%;
-		display: flex;
+		display:  flex;
 		flex-wrap: wrap;
 		justify-content: space-around;
 		padding: 6px;
 		li {
-			display: inline-block;
+			display: inline-flex;
 			padding: 4px 4px;
+			.category {
+				display: flex;
+				flex-wrap: wrap;
+				// justify-content: space-around;
+				padding: 6px;
+			}
 		}
 	}
 	.vid {
