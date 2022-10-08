@@ -24,7 +24,9 @@ function VideoModal() {
 				<div className='description'>
 					<Modal.Description>
 						{ContentStore.video.tag.map((tag, i) => (
-							<p key={i}>#{tag}</p>
+							<Button key={i} size='mini' >
+							{tag}
+						</Button>
 						))}
 					</Modal.Description>
 				</div>

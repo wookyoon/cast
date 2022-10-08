@@ -23,5 +23,14 @@ class UserApi{
         .then((response) => response.data);
     }
 
+    getOffers(name) {
+        return axios.get(this.URL+"/offer/?name="+name)
+        .then((response) => response.data);
+    }
+
+    updateOffer(data) {
+        return axios.post(this.URL+"/offer", data)
+        .then((response) => response.data);
+    }
 }
 export default new UserApi();

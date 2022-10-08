@@ -11,6 +11,11 @@ router.route('/')
 router.route('/exist')
     .get(profileController.getEmail)
 
+router.route('/offer')
+    .get(profileController.getOffers)
+    .post(profileController.updateOffer)
+
+
 
 // router.post("/exist", (req, res) => {
     

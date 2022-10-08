@@ -70,10 +70,38 @@ const deleteUser = asyncHandler(async (req, res) => {
     // 게시글 다지워야 계정삭제가능 or 계정삭제하면 다 지워주기
 })
 
+const getOffers = asyncHandler(async (req, res) => {
+    var _url = req.url;
+    var queryData = url.parse(_url, true).query;
+    console.log(queryData.name)
+
+    const offers = await Profile.findOne({"name": queryData.name},{offer:1, _id:0}).lean().exec();
+    console.log("@@@", offers)
+
+    if(offers){
+        return res.json(offers);
+    }else{
+        return res.json({message: "no offers"});
+    }
+})
+
+const updateOffer = asyncHandler(async (req, res) => {
+    const {user, offer} = req.body
+    doc = await Profile.findOneAndUpdate({"name": user}, { $addToSet: { "offer" : offer } }).lean().exec();
+    if(doc){
+        return res.json({message: "success"});
+    }else{
+        return res.json({message: "fail"});
+    }
+
+})
+
 module.exports = {
     getUser,
     createUser,
     updateUser,
     deleteUser,
-    getEmail
+    getEmail,
+    getOffers,
+    updateOffer
 }

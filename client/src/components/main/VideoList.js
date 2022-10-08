@@ -16,40 +16,66 @@ import { Button } from 'semantic-ui-react';
 import Avatar from '@mui/material/Avatar';
 import Chip from '@mui/material/Chip';
 import Search from '../common/Search';
+import LoginStore from '../../store/LoginStore';
+import OfferModal from './OfferModal';
 
-function VideoList() {
+function VideoList({videos, user, type}) {
 	const [isLoading, setLoading] = useState(true);
 	const [menu, setMenu] = useState('2');
 	const [videoList, setVideoList] = useState();
+	const [video, setVideo] = useState();
 	const [inputText, setinputText] = useState();
 	const [searchTags, setTags] = useState([]);
+	const [name, setName] = useState(localStorage.getItem("name"));
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		ContentStore.getVideoList('전체').then(() => {
+		if(type==='my'){
+			setVideoList(videos);
 			setLoading(false);
-			setVideoList(ContentStore.videos);
-		});
-		console.log(ContentStore.videos);
+		}else{
+			ContentStore.getVideoList('전체').then(() => {
+				setLoading(false);
+				setVideoList(ContentStore.videos);
+			});
+		}
 	}, []);
 
 	const handleOnClickTag = (tag) => {
 		console.log(tag);
-		ContentStore.getVideoList('tag', tag).then(() => {
-			setVideoList(ContentStore.videos);
-		});
+		if(type==='my'){
+			ContentStore.getVideoList('mypage', tag, 'tag', user).then(() => {
+				setVideoList(ContentStore.videos);
+			});
+		}else{
+			ContentStore.getVideoList('tag', tag).then(() => {
+				setVideoList(ContentStore.videos);
+			});
+		}
 	};
 
 	const handleOnClickCategory = (category) => {
-		ContentStore.getVideoList('category', category).then(() => {
-			setVideoList(ContentStore.videos);
-		});
+		if(type==='my'){
+			ContentStore.getVideoList('mypage', category, 'category', user).then(() => {
+				setVideoList(ContentStore.videos);
+			});
+		}else{
+			ContentStore.getVideoList('category', category).then(() => {
+				setVideoList(ContentStore.videos);
+			});
+		}
 	};
 
 	const handleOnClickSort = (sort) => {
-		ContentStore.getVideoList('sort', sort).then(() => {
-			setVideoList(ContentStore.videos);
-		});
+		if(type==='my'){
+			ContentStore.getVideoList('mypage', sort, 'sort', user).then(() => {
+				setVideoList(ContentStore.videos);
+			});
+		}else {
+			ContentStore.getVideoList('sort', sort).then(() => {
+				setVideoList(ContentStore.videos);
+			});
+		}
 	};
 
 	const handleSubmit = (e) => {
@@ -60,21 +86,61 @@ function VideoList() {
 		setTags(searchTags.filter((item) => item !== tag));
 		console.log(searchTags);
 	};
+
 	const handleEnter = (e) => {
 		if (e.key === 'Enter') {
 			console.log(menu);
 			if (menu === '2') {
-				ContentStore.getVideoList('title', inputText).then(() => {
-					setVideoList(ContentStore.videos);
-				});
+				if(type==='my'){
+					ContentStore.getVideoList('mypage', inputText, 'title', user).then(
+						() => {
+							setVideoList(ContentStore.videos);
+						}
+					);
+				}else{
+					ContentStore.getVideoList('title', inputText).then(() => {
+						setVideoList(ContentStore.videos);
+					});
+				}
 			} else if (menu === '3') {
-				ContentStore.getVideoList('name', inputText).then(() => {
-					setVideoList(ContentStore.videos);
-				});
+				if(type==='my'){
+					ContentStore.getVideoList('mypage', inputText, 'name', user).then(
+						() => {
+							setVideoList(ContentStore.videos);
+						}
+					);
+				}else{
+					ContentStore.getVideoList('name', inputText).then(() => {
+						setVideoList(ContentStore.videos);
+					});
+				}
 			}
 		}
 	};
 
+	const handleDelete = (video) => {
+		if (window.confirm('삭제하시겠습니까?') === true) {
+			console.log(video._id);
+			ContentStore.deleteVideoList(video._id).then(() => {
+				setVideoList(ContentStore.deleteVideo(video.title));
+				console.log('완료');
+			});
+		} else {
+			console.log('취소');
+		}
+	};
+
+	const handleOffer = (video) => {
+		if (video.name === name) {
+			return alert('마이페이지');
+		} else if(name===null) {
+			return alert('로그인이 필요한 기능입니다.');
+		} else {
+			setVideo(video)
+			LoginStore.setOfferModal(true);
+		}
+	}
+	
 	return isLoading ? (
 		<p>Loading</p>
 	) : (
@@ -186,6 +252,9 @@ function VideoList() {
 				{videoList.map((video, idx) => (
 					<div className='vid' key={idx}>
 						<VideoCard video={video} key={idx} />
+						<Button onClick={()=>handleOffer(video)} id='apply' size='small' color='red'>
+				제안하기
+			</Button>
 						<div className='tag'>
 							{video.tag.map((tag, i) => (
 								<Button size='mini' onClick={() => handleOnClickTag(tag)}>
@@ -193,10 +262,23 @@ function VideoList() {
 								</Button>
 							))}
 						</div>
+
+						{user === video.name && (
+							<Button
+							color='black'
+							size='massive'
+							content='Delete'
+							onClick={(e) => {
+									handleDelete(video);
+								}}
+							/>
+							)}
 					</div>
 				))}
 			</section>
 			<VideoModal />
+			<OfferModal video={video} name={name} />
+			
 		</>
 	);
 }

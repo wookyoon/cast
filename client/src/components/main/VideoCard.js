@@ -14,13 +14,18 @@ function VideoCard({ video }) {
 	const navigate = useNavigate();
 
 	const handleLike = (type) => {
-		if (video.name === localStorage.getItem('name')) {
+		console.log(name)
+		if (video.name === name) {
 			return alert('마이페이지');
+		} else if(name===null) {
+			return alert('로그인이 필요한 기능입니다.');
 		} else {
 			ContentStore.setLike(video._id, type);
 			ContentStore.setVideo(video, 'like', type);
 		}
 	};
+
+	
 
 	return (
 		<div>
@@ -38,9 +43,7 @@ function VideoCard({ video }) {
 					variant='outlined'
 				/>
 			</div>
-			<Button id='apply' size='small' color='red'>
-				제안하기
-			</Button>
+			
 			{video.likeUser?.includes(name) ? (
 				<Button
 					id='btn'

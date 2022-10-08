@@ -15,7 +15,7 @@ import CastingList from './components/main/CastingList';
 import UserPage from './components/main/UserPage';
 import Actors from './components/sub/Actors';
 import Mylist from './components/sub/Mylist';
-
+import MyVideoList from './components/main/MyVideoList';
 import './scss/style.scss';
 
 function App() {
@@ -36,6 +36,7 @@ function App() {
 				<Route path='/location' exact element={<Location />} />
 				<Route path='/actors' exact element={<Actors />} />
 				<Route path='/mylist' exact element={<Mylist />} />
+				<Route path='/mypage/videos' exact element={<MyVideoList/>} />
 			</Routes>
 			<Footer />
 		</>

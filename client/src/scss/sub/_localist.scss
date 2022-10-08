@@ -1,13 +1,10 @@
 #job {
-	width: 100%;
-	margin: 0px auto;
 	background-color: #000;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-around;
-
 	.category {
-		display: flex;
+		// display: flex;
 		flex-wrap: wrap;
 		justify-content: space-around;
 		padding: 6px;
@@ -29,16 +26,22 @@
 	}
 	.search {
 		width: 100%;
-		display: flex;
+		display:  flex;
 		flex-wrap: wrap;
 		justify-content: space-around;
 		padding: 6px;
 		li {
-			display: inline-block;
+			display: inline-flex;
 			padding: 4px 4px;
+			.category {
+				display: flex;
+				flex-wrap: wrap;
+				// justify-content: space-around;
+				padding: 6px;
+			}
 		}
 	}
-	.card {
+	.vid {
 		width: 280px;
 		height: 450px;
 		padding: 35px 15px;
@@ -158,4 +161,24 @@
 			right: 15px;
 		}
 	}
+	.title {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-around;
+		align-items: center;
+		position: absolute;
+		bottom: 80px;
+		.name {
+			width: 160px;
+			text-align: center;
+		}
+	}
+	.tag {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-around;
+		position: absolute;
+		bottom: 45px;
+	}
+	
 }

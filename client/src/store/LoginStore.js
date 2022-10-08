@@ -7,10 +7,22 @@ class LoginStore{
     user=[];
     isLoggedIn=localStorage.getItem('isLoggedIn')? true : false;
     emailIsExist='';
+	offerOpen = false;
+	offeredOpen = false;
 
     constructor() {
         makeAutoObservable(this, {}, { autoBind: true });
     }
+
+    setOfferModal(open) {
+		this.offerOpen = open;
+		return this.offerOpen;
+	}
+
+    setOfferedModal(open) {
+		this.offeredOpen = open;
+		return this.offeredOpen;
+	}
 
     async emailValidation(email){
         try {
@@ -98,7 +110,28 @@ class LoginStore{
         }
         console.log("current intro likedUser", this.intro.likedUser);
         console.log("current intro bookmark", this.intro.bookmark);
-    
+    }
+
+    async setOffer(data){
+        try {
+            const result = await UserApi.updateOffer(data);
+            console.log(result['message'])
+            // return result['message'];
+        } catch (error) {
+            console.log(error)
+            runInAction(this.message = error.message);
+        }
+    }
+
+    async getOffers(name){
+        try{            
+            const results = await UserApi.getOffers(name);
+            console.log(results);
+            return results;
+        }
+        catch (err){
+            console.log(err);
+        }
     }
 }
 export default new LoginStore();

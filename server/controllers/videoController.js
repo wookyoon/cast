@@ -40,39 +40,29 @@ const getVideos = asyncHandler(async (req, res) => {
     }else if(category == "mypage"){
         if(type == "video"){
             likes = await Profile.findOne({"name":param},{_id:0, likeVideo:1}).lean()
-            console.log(likes.likeVideo)
             videos = await Video.find({_id:likes.likeVideo}).lean();
-            console.log(videos)
         }else if(type == "user"){
-            console.log("&&&&", param)
             users = await Profile.findOne({"name":param},{_id:0, likeUser:1}).lean();
-            console.log(users.likeUser)
             videos = await Video.find({"name":users.likeUser, "title": { $eq: 'intro' }}).lean();
-            console.log("$$$",videos)
         }else if(type == "tag"){
             const tags = param.split(",");
             likes = await Profile.findOne({"name":name},{_id:0, likeVideo:1}).lean()
-            console.log(likes.likeVideo)
             if(tags.includes('all')){
                 videos = await Video.find({_id:likes.likeVideo}).lean();
             }else{
 
             videos = await Video.find({_id:likes.likeVideo}).find({tag: { $all: tags }}).lean();
-            console.log(videos)
             }
         }else if(type == "category"){
             likes = await Profile.findOne({"name":name},{_id:0, likeVideo:1}).lean()
-            console.log(likes.likeVideo)
 
             if(param == "전체보기"){
                 videos = await Video.find({_id:likes.likeVideo}).lean();
             }else{
                 videos = await Video.find({_id:likes.likeVideo}).find({"category": param }).lean()
             }
-        console.log(videos)
         }else if(type == "sort"){
             likes = await Profile.findOne({"name":name},{_id:0, likeVideo:1}).lean()
-            console.log(likes.likeVideo)
             if(param == "New"){
                 videos = await Video.find({_id:likes.likeVideo}).sort({"created":-1}).lean();
             }else if(param == "Old"){
@@ -82,10 +72,8 @@ const getVideos = asyncHandler(async (req, res) => {
             }if(param == "Like"){
                 videos = await Video.find({_id:likes.likeVideo}).sort({"like":-1}).lean();
             }
-            console.log(videos)
         }else if(type=="title"){
             likes = await Profile.findOne({"name":name},{_id:0, likeVideo:1}).lean()
-            console.log("###", param, name)
 
             var re = new RegExp(param,"gi");
             videos = await Video.find({_id:likes.likeVideo}).find({"title": re }).lean()
@@ -148,12 +136,8 @@ const deleteVideo = asyncHandler(async (req, res) => {
     var _url = req.url;
     var queryData = url.parse(_url, true).query;
     const vid = queryData.vid;
-    console.log("&&&")
-    console.log(vid)
-    console.log( req.url)
     const video = await Video.findByIdAndDelete(vid).lean();
     if(video){
-        console.log("####", video)
         return res.status(200).json({message: 'Success'})
     }
 })
